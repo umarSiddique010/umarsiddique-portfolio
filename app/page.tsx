@@ -1,5 +1,13 @@
+import TechMarquee from '@/components/tech-marquee/tech-marquee';
+import ProjectSection from '@/components/project-section/project-section';
+import HeroSection from '@/components/hero-section/hero-section';
+
 export default function Home() {
-  return <main className=" w-full bg-red-50 flex items-center justify-center">
-    <h1 className="text-4xl font-bold">Umar</h1>
-  </main>;
+  return (
+    <section>
+      <HeroSection />
+      <TechMarquee />
+      <ProjectSection />
+    </section>
+  );
 }

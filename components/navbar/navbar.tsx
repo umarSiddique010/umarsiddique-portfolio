@@ -3,53 +3,31 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ModeToggle } from './mode-toggle';
-import { Button } from './ui/button';
+import { ModeToggle } from '../mode-toggle';
+import { Button } from '../ui/button';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { AnimatePresence, motion, Variants } from 'motion/react';
+import { navLinks } from '@/constants/navigation-links';
 
 export default function Navbar() {
   const pathname = usePathname();
 
-  const links = [
-    {
-      title: 'Home',
-      href: '/',
-    },
-    {
-      title: 'Projects',
-      href: '/projects',
-    },
-    {
-      title: 'About',
-      href: '/about',
-    },
-
-    {
-      title: 'Blog',
-      href: '/blog',
-    },
-    {
-      title: 'Contact',
-      href: '/contact',
-    },
-  ];
   return (
-    <nav className="w-full flex justify-between items-center px-5 py-3 h-[72px]">
+    <nav className="w-full sticky top-0 z-50 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10">
       <Link href="/" className="font-bold text-xl">
         LOGO
       </Link>
 
       <div className="flex items-center gap-2 md:gap-4">
         <div className="hidden md:block">
-          <DesktopNav links={links} pathname={pathname} />
+          <DesktopNav links={navLinks} pathname={pathname} />
         </div>
 
         <ModeToggle />
 
         <div className="block md:hidden">
-          <MobileNav links={links} pathname={pathname} />
+          <MobileNav links={navLinks} pathname={pathname} />
         </div>
       </div>
     </nav>
@@ -185,7 +163,7 @@ function MobileNav({
               transition: { duration: 0.5, ease: 'easeInOut' },
             }}
             transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-            className="fixed inset-0 z-50 flex flex-col bg-accent/50 backdrop-blur-md  p-2"
+            className="fixed inset-0 z-50 flex flex-col bg-accent/50 backdrop-blur-md p-2"
           >
             <div className="flex justify-end items-center h-20 w-full">
               <button

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
+import Navbar from '@/components/navbar/navbar';
+import Footer from '@/components/footer/footer';
 import { ThemeProvider } from 'next-themes';
+import Background from '@/components/main-background';
+import MainBackground from '@/components/main-background';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,8 +39,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <MainBackground />
           <Navbar />
-          <main className="flex-1 flex flex-col bg-indigo-950">{children}</main>
+          <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
