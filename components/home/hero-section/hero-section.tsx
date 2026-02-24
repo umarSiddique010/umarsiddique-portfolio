@@ -3,16 +3,16 @@
 import { motion, Variants } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
 import { Download, MapPin } from 'lucide-react';
+import { CodeIntro } from './hero-code';
 
 export default function Hero() {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.1, delayChildren: 0 },
     },
   };
 
@@ -58,6 +58,7 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
+        {/* Left Side */}
         <motion.div
           className="lg:col-span-8 flex flex-col items-start text-left"
           variants={itemVariants}
@@ -66,10 +67,11 @@ export default function Hero() {
             variant="secondary"
             className="mb-8 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 px-4 py-1.5 text-sm font-medium border-0 transition-colors"
           >
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+            <span className="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse animation-duration-[0.8s]"></span>
             Available for new opportunities
           </Badge>
 
+          {/* Main Heading   */}
           <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-extrabold tracking-tighter text-foreground mb-6 leading-[1.05]">
             <motion.div
               className="flex flex-wrap mb-1"
@@ -120,13 +122,14 @@ export default function Hero() {
             </motion.div>
           </h1>
 
+          {/* Main Paragraph */}  
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed font-medium"
           >
-            I build production-ready digital solutions. Whether you need to
-            scale an engineering team or launch a custom product, I write clean,
-            accessible, and high-performance code.
+            Full-stack developer building fast, accessible web applications with
+            Next.js. I focus on performance, scalable architecture, and building
+            systems that hold up in production.
           </motion.p>
 
           <motion.div
@@ -154,29 +157,22 @@ export default function Hero() {
               size="lg"
               className="rounded-full px-6 h-12 text-muted-foreground hover:text-foreground"
             >
-              <a href="/resume.pdf" download>
+              <Link href="/resume.pdf" download>
                 <Download className="mr-2 h-4 w-4" /> Download CV
-              </a>
+              </Link>
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* ================= RIGHT COLUMN (Identity) ================= */}
+        {/* Right Side */}
         <motion.div
           variants={itemVariants}
           className="lg:col-span-4 flex flex-col items-start lg:border-l border-foreground/10 lg:pl-12"
         >
-          <Avatar className="h-20 w-20 mb-6 ring-1 ring-border bg-foreground/5">
-            <AvatarImage src="/avatar.jpg" alt="Md Umar Siddique" />
-            <AvatarFallback className="text-foreground font-bold text-2xl tracking-tighter">
-              US
-            </AvatarFallback>
-          </Avatar>
-
           <div className="space-y-1">
-            <h3 className="font-bold text-2xl md:text-3xl text-foreground tracking-tight">
+            <h2 className="font-bold text-2xl md:text-3xl text-foreground tracking-tight">
               Md Umar Siddique
-            </h3>
+            </h2>
             <p className="text-base font-medium text-muted-foreground">
               Full-Stack Developer
             </p>
@@ -186,6 +182,9 @@ export default function Hero() {
             <MapPin className="h-4 w-4" />
             <span>India • Remote Friendly</span>
           </div>
+
+          {/* Code Intro */}
+          <CodeIntro />
         </motion.div>
       </motion.div>
     </section>
