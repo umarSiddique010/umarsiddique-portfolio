@@ -40,7 +40,7 @@ vi.mock('motion/react', () => {
 });
 
 // Mock the CodeIntro
-vi.mock('./Hero-code', () => ({
+vi.mock('./hero-code', () => ({
   CodeIntro: () => <div data-testid="mock-code-intro">Mocked Code Intro</div>,
 }));
 
