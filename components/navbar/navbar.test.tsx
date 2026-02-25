@@ -18,10 +18,12 @@ vi.mock('@/constants/navigation-links', () => ({
 }));
 
 vi.mock('motion/react', async () => {
-  const actual = (await vi.importActual('motion/react')) as any;
+  const actual = await vi.importActual('motion/react');
   return {
     ...actual,
-    AnimatePresence: ({ children }: any) => <>{children}</>,
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => (
+      <>{children}</>
+    ),
   };
 });
 
@@ -52,7 +54,7 @@ describe('Navbar Component - DOM & Unit Tests', () => {
     });
 
     it('does not crash when navLinks array is empty (Edge Case)', () => {
-      mockNavLinks = []; 
+      mockNavLinks = [];
       render(<Navbar />);
       expect(screen.getByRole('link', { name: /logo/i })).toBeInTheDocument();
       expect(

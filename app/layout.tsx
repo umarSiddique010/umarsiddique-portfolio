@@ -4,7 +4,6 @@ import './globals.css';
 import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer/footer';
 import { ThemeProvider } from 'next-themes';
-import Background from '@/components/main-background';
 import MainBackground from '@/components/main-background';
 
 const geistSans = Geist({
@@ -37,7 +36,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

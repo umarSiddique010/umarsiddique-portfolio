@@ -19,9 +19,9 @@ export default function TechMarquee() {
   const progress = useMotionValue(0);
 
   const smoothSpeed = useSpring(1, {
-    stiffness: 30, 
-    damping: 10, 
-    mass: 1.5, 
+    stiffness: 30,
+    damping: 10,
+    mass: 1.5,
   });
   useEffect(() => {
     smoothSpeed.set(isHovered ? 0 : 1);
@@ -48,11 +48,11 @@ export default function TechMarquee() {
       >
         <motion.div
           className="flex gap-10 md:gap-16 pr-10 md:pr-16 w-max"
-          // style={{ x }} 
+          style={{ x }}
         >
           {marqueeItems.map((item, index) => (
             <Link
-              key={`${item.title}-${index}`} 
+              key={`${item.title}-${index}`}
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"

@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🎨 1. Running Prettier & ESLint (lint-staged)..."
+pnpm exec lint-staged
+
+echo "🧐 2. Running TypeScript Typecheck..."
+pnpm run typecheck
+
+echo "🧪 3. Running Unit Tests..."
+pnpm exec vitest run

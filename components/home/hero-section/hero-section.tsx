@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Download, MapPin } from 'lucide-react';
 import { CodeIntro } from './hero-code';
 
-export default function Hero() {
+export default function HeroSection() {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -122,7 +122,7 @@ export default function Hero() {
             </motion.div>
           </h1>
 
-          {/* Main Paragraph */}  
+          {/* Main Paragraph */}
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed font-medium"
@@ -149,7 +149,7 @@ export default function Hero() {
               size="lg"
               className="rounded-full px-8 h-12 text-base font-semibold bg-transparent border-foreground/20 hover:bg-foreground/5 shadow-none"
             >
-              <Link href="/contact">Let's Talk</Link>
+              <Link href="/contact">Let&apos;s Talk</Link>
             </Button>
             <Button
               asChild

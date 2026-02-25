@@ -10,8 +10,8 @@ export default function Home() {
       <HeroSection />
       <TechMarquee />
       <ProjectSection />
-      <AboutSection/>
-      <CTAsection/>
+      <AboutSection />
+      <CTAsection />
     </section>
   );
 }

@@ -30,7 +30,6 @@ export default function CTAsection() {
 
   return (
     <section className="w-full py-32 md:py-36 px-6 relative overflow-hidden flex flex-col items-center justify-center text-center z-10">
-
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-xl h-xl bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       <motion.div
@@ -53,7 +52,9 @@ export default function CTAsection() {
         {/* Headline */}
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-foreground mb-6 leading-[1.05]">
           Have a project in mind? <br />
-          <span className="text-muted-foreground">Let's build it right.</span>
+          <span className="text-muted-foreground">
+            Let&apos;s build it right.
+          </span>
         </h2>
         {/* Subtext */}
         <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium">
