@@ -10,7 +10,7 @@ import CTAsection from '@/components/cta-section/cta-section';
 export default function AboutPage() {
   return (
     <section className="w-full max-w-6xl mx-auto px-6 pt-20 -pb-20 md:pt-32 md:-pb-20">
-      <motion.div
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -29,13 +29,13 @@ export default function AboutPage() {
           background shaped how I think — in structured logic and systems, not
           just surface-level implementation.
         </p>
-      </motion.div>
+      </motion.section>
 
       {/* --- EXTRACTED CARDS COMPONENT --- */}
       <AboutCards />
 
       {/* --- TIMELINE SECTION --- */}
-      <motion.div
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -93,7 +93,7 @@ export default function AboutPage() {
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </motion.section>
       <CTAsection {...aboutCTA} />
     </section>
   );

@@ -26,34 +26,9 @@ export default function HeroSection() {
     },
   };
 
-  const lineOneH1DivVariants: Variants = {
-    hidden: { opacity: 1 },
-    visible: { transition: { staggerChildren: 0.04 } },
-  };
-  const lineOneH1SpanVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring', damping: 10, stiffness: 300 },
-    },
-  };
-  const lineTwoH1DivVariants: Variants = {
-    hidden: { opacity: 1 },
-    visible: { transition: { staggerChildren: 0.04 } },
-  };
-  const lineTwoH1SpanVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring', damping: 10, stiffness: 300 },
-    },
-  };
-
   return (
-    <section className="relative w-full pt-28 md:pt-40 pb-16 px-6 md:px-12 z-10 max-w-7xl mx-auto">
-      <motion.div
+    <section className="relative w-full md:py-16 py-16 px-6 md:px-12 z-10 max-w-7xl mx-auto">
+      <motion.header
         className="w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center"
         variants={containerVariants}
         initial="hidden"
@@ -78,7 +53,10 @@ export default function HeroSection() {
               className="flex flex-wrap mb-1"
               initial="hidden"
               animate="visible"
-              variants={lineOneH1DivVariants}
+              variants={{
+                hidden: { opacity: 1 },
+                visible: { transition: { staggerChildren: 0.04 } },
+              }}
             >
               {'Building Fast, Modern'.split(' ').map((word, wordIndex) => (
                 <span
@@ -89,7 +67,18 @@ export default function HeroSection() {
                     <motion.span
                       key={charIndex}
                       className="inline-block"
-                      variants={lineOneH1SpanVariants}
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            type: 'spring',
+                            damping: 10,
+                            stiffness: 300,
+                          },
+                        },
+                      }}
                     >
                       {char}
                     </motion.span>
@@ -102,7 +91,10 @@ export default function HeroSection() {
               className="flex flex-wrap bg-linear-to-r from-zinc-700 via-zinc-600 to-zinc-200 bg-clip-text text-transparent py-1 dark:bg-linear-to-r dark:from-zinc-500 dark:via-zinc-300 dark:to-zinc-100"
               initial="hidden"
               animate="visible"
-              variants={lineTwoH1DivVariants}
+              variants={{
+                hidden: { opacity: 1 },
+                visible: { transition: { staggerChildren: 0.04 } },
+              }}
             >
               {'Web Applications.'.split(' ').map((word, wordIndex) => (
                 <span
@@ -113,7 +105,18 @@ export default function HeroSection() {
                     <motion.span
                       key={charIndex}
                       className="inline-block"
-                      variants={lineTwoH1SpanVariants}
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            type: 'spring',
+                            damping: 10,
+                            stiffness: 300,
+                          },
+                        },
+                      }}
                     >
                       {char}
                     </motion.span>
@@ -207,7 +210,7 @@ export default function HeroSection() {
             <CodeIntro />
           </div>
         </motion.div>
-      </motion.div>
+      </motion.header>
     </section>
   );
 }

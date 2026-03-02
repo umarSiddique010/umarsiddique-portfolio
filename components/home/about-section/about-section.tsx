@@ -12,7 +12,7 @@ export default function AboutSection() {
       className="w-full py-24 px-6 max-w-7xl mx-auto relative z-10"
     >
       {/* Section Header */}
-      <motion.div
+      <motion.header
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
@@ -25,10 +25,10 @@ export default function AboutSection() {
         <p className="text-muted-foreground text-lg max-w-md font-medium">
           The core of who I am, what I know, and how I build.
         </p>
-      </motion.div>
+      </motion.header>
 
       {/* THE ASYMMETRIC GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start relative">
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start relative">
         {/* LEFT COLUMN: Sticky Narrative Summary */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -184,11 +184,11 @@ export default function AboutSection() {
             </p>
           </motion.div>
         </div>
-      </div>
+      </section>
       {/* End of Asymmetric Grid */}
 
       {/* The Closer */}
-      <motion.div
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
@@ -205,7 +205,7 @@ export default function AboutSection() {
             performance, reliability, and well-tested systems.
           </span>
         </p>
-      </motion.div>
+      </motion.section>
     </section>
   );
 }

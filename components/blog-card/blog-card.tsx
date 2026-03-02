@@ -24,13 +24,13 @@ export default function BlogCard({
       transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
       className="h-full"
     >
-      <Card className="overflow-hidden border-foreground/10 bg-accent/10 transition-all duration-300 ease-in-out rounded-2xl flex flex-col h-full group hover:border-foreground/20 hover:bg-foreground/5 hover:-translate-y-2">
+      <Card className="overflow-hidden border-foreground/10 bg-foreground/5 transition-all duration-300 ease-in-out rounded-2xl flex flex-col h-full group hover:border-foreground/20 hover:bg-foreground/10 group-hover:scale-105 shadow-xl">
         <div className="relative w-full aspect-1000/420 overflow-hidden">
           <Image
             src={blog.bannerImage}
             alt={`${blog.title} Banner`}
             fill
-            className="object-cover object-center"
+            className="object-cover object-center group-hover:scale-105 transition-all duration-300 ease-in-out"
           />
         </div>
 

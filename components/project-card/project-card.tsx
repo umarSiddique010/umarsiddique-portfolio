@@ -39,7 +39,7 @@ export default function ProjectCard({
       transition={{ duration: 0.3, ease: 'easeOut', delay: index * 0.1 }}
       className="h-full"
     >
-      <Card className="overflow-hidden border-foreground/10 bg-accent/10 transition-all duration-500 ease-in-out rounded-2xl flex flex-col h-full group hover:border-foreground/20 hover:bg-foreground/5 hover:-translate-y-2">
+      <Card className="overflow-hidden border-foreground/10 bg-foreground/5 transition-all duration-500 ease-in-out rounded-2xl flex flex-col h-full group hover:border-foreground/20 hover:bg-foreground/10 group-hover:scale-105 shadow-xl">
         {/* --- IMAGE SECTION --- */}
         <div className="relative w-full aspect-16/10 bg-foreground/5 border-b border-foreground/10 overflow-hidden shrink-0">
           {/* Toggle Buttons */}
@@ -86,7 +86,7 @@ export default function ProjectCard({
               alt={`${project.title} Desktop View`}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-fit object-center p-4"
+              className="object-contain object-center p-4 group-hover:scale-105 transition-all duration-500 ease-in-out"
             />
           </div>
 
@@ -100,13 +100,13 @@ export default function ProjectCard({
                   : 'opacity-0 scale-110 pointer-events-none',
               )}
             >
-              <div className="relative w-[25%] h-[85%] rounded-2xl border-[6px] border-foreground/10 overflow-hidden bg-background shadow-xl">
+              <div className="relative w-[25%] h-[85%] rounded-2xl border-[6px] border-foreground/10 overflow-hidden bg-background shadow-xl group-hover:scale-105 transition-all duration-500 ease-in-out">
                 <Image
                   src={project.mobileImage!}
                   alt={`${project.title} Mobile View`}
                   fill
                   sizes="(max-width: 768px) 30vw, 15vw"
-                  className="object-fit object-center"
+                  className="object-contain object-center"
                 />
               </div>
             </div>

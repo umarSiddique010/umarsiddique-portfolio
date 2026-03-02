@@ -69,6 +69,13 @@ vi.mock('motion/react', () => ({
         {children}
       </div>
     ),
+    section: ({
+      children,
+      className,
+    }: {
+      children: ReactNode;
+      className?: string;
+    }) => <section className={className}>{children}</section>,
   },
 }));
 

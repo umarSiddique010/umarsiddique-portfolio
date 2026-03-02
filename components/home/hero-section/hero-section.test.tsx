@@ -35,6 +35,13 @@ vi.mock('motion/react', () => {
         children: React.ReactNode;
         className?: string;
       }) => <p className={className}>{children}</p>,
+      header: ({
+        children,
+        className,
+      }: {
+        children: React.ReactNode;
+        className?: string;
+      }) => <header className={className}>{children}</header>,
     },
   };
 });

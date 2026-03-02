@@ -52,14 +52,18 @@ type MotionDivProps = {
   className?: string;
 };
 
+// --- Motion mock  ---
 vi.mock('motion/react', () => ({
   motion: {
     div: ({ children, className }: MotionDivProps) => (
       <div className={className}>{children}</div>
     ),
+
+    section: ({ children, className }: MotionDivProps) => (
+      <section className={className}>{children}</section>
+    ),
   },
 }));
-
 describe('Blogs Page', () => {
   describe('Initial Render', () => {
     it('renders header, description, category buttons, CTA, and default "All" state', () => {

@@ -28,7 +28,7 @@ export default function Blogs() {
 
   return (
     <section className="w-full max-w-6xl mx-auto px-6 pt-20 -pb-20 md:pt-32 md:-pb-20">
-      <div className="mb-12">
+      <header className="mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
           Engineering Essays.
         </h1>
@@ -37,10 +37,10 @@ export default function Blogs() {
           production systems — grounded in practical engineering decisions and
           real-world trade-offs.
         </p>
-      </div>
+      </header>
 
       {/* --- CATEGORY AND SORT BY FILTER BUTTONS --- */}
-      <div className="flex flex-col gap-5 md:flex-row md:justify-between items-center mb-12">
+      <section className="flex flex-col gap-5 md:flex-row md:justify-between items-center mb-12">
         <div className="flex flex-wrap gap-3">
           {categories.map((category) => (
             <button
@@ -77,10 +77,10 @@ export default function Blogs() {
             <option value="oldest">Oldest</option>
           </select>
         </label>
-      </div>
+      </section>
 
       {/* --- BLOGS GRID --- */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <motion.section layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {sortedBlogs.length > 0 ? (
           sortedBlogs.map((blog, index) => (
             <BlogCard key={blog.id} blog={blog} index={index} />
@@ -92,7 +92,7 @@ export default function Blogs() {
             </p>
           </div>
         )}
-      </motion.div>
+      </motion.section>
 
       <CTAsection {...blogCTA} />
     </section>

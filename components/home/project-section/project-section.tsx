@@ -7,7 +7,7 @@ export default function ProjectSection() {
   );
   return (
     <section id="projects" className="w-full py-24 px-6 max-w-7xl mx-auto">
-      <div className="space-y-4 mb-16 text-left">
+      <section className="space-y-4 mb-16 text-left">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
           Featured Projects
         </h2>
@@ -15,13 +15,13 @@ export default function ProjectSection() {
           A selection of recent projects showcasing practical problem-solving
           and production-ready architecture.
         </p>
-      </div>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {homeProjects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
-      </div>
+      </section>
     </section>
   );
 }
