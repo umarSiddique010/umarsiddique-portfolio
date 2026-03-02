@@ -1,136 +1,45 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeAll } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import ProjectSection from './project-section';
+import type { Project } from '@/constants/projects';
 
-beforeAll(() => {
-  class MockIntersectionObserver {
-    observe = vi.fn();
-    unobserve = vi.fn();
-    disconnect = vi.fn();
-  }
-  window.IntersectionObserver =
-    MockIntersectionObserver as unknown as typeof IntersectionObserver;
-
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: vi.fn().mockImplementation((query) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: vi.fn(),
-      removeListener: vi.fn(),
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
-    })),
-  });
-});
+// Mock ProjectCard to avoid rendering the whole complex card logic here
+vi.mock('@/components/project-card/project-card', () => ({
+  default: ({ project }: { project: Project }) => (
+    <div data-testid="mock-project-card">{project.title}</div>
+  ),
+}));
 
 describe('ProjectSection Component', () => {
-  describe('Core Rendering & Content Checks', () => {
-    it('renders the section headings accurately', () => {
-      render(<ProjectSection />);
-      expect(screen.getByText('Featured Projects')).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          /A selection of recent projects showcasing practical problem-solving/i,
-        ),
-      ).toBeInTheDocument();
-    });
+  it('renders only the featured projects (Resume Craft & useHttpRequest)', () => {
+    render(<ProjectSection />);
 
-    it('renders all projects with their titles and descriptions', () => {
-      render(<ProjectSection />);
+    const renderedProjects = screen.getAllByTestId('mock-project-card');
 
-      // Project 1
-      expect(screen.getByText('Resume Craft')).toBeInTheDocument();
-      expect(
-        screen.getByText(/A production-ready resume builder/i),
-      ).toBeInTheDocument();
+    // 1. Check count
+    expect(renderedProjects).toHaveLength(2);
 
-      // Project 2
-      expect(screen.getByText('use-http-request-hook')).toBeInTheDocument();
-      expect(
-        screen.getByText(/A lightweight, production-ready React hook/i),
-      ).toBeInTheDocument();
-    });
+    // 2. Check specific titles
+    expect(screen.getByText('Resume Craft')).toBeInTheDocument();
+    expect(screen.getByText('useHttpRequest')).toBeInTheDocument();
 
-    it('renders tech stack badges correctly', () => {
-      render(<ProjectSection />);
-
-      // Check a few specific badges from the tech arrays
-      expect(screen.getByText('React 19')).toBeInTheDocument();
-      expect(screen.getByText('Context + Reducer')).toBeInTheDocument();
-      expect(screen.getByText('AbortController')).toBeInTheDocument();
-      expect(screen.getByText('npm Package')).toBeInTheDocument();
-    });
+    // 3. Ensure other projects are NOT there
+    expect(
+      screen.queryByText('Modular Book Tracker SPA'),
+    ).not.toBeInTheDocument();
   });
 
-  describe('Links & Security', () => {
-    it('contains valid external and GitHub links with security attributes', () => {
-      render(<ProjectSection />);
+  // project-section.test.tsx
+  it('has the correct section ID for navigation', () => {
+    const { container } = render(<ProjectSection />);
 
-      // Resume Craft links
-      const resumeLiveLink = screen.getAllByRole('link', {
-        name: /external link/i,
-      })[0];
-      const resumeGithubLink = screen.getAllByRole('link', {
-        name: /github/i,
-      })[0];
+    // Section ID check karne ka sabse solid tareeka
+    const section = container.querySelector('#projects');
+    expect(section).toBeInTheDocument();
 
-      expect(resumeLiveLink).toHaveAttribute(
-        'href',
-        'https://resume-craft-react.vercel.app/',
-      );
-      expect(resumeLiveLink).toHaveAttribute('target', '_blank');
-      expect(resumeLiveLink).toHaveAttribute('rel', 'noopener noreferrer');
-
-      expect(resumeGithubLink).toHaveAttribute(
-        'href',
-        'https://github.com/umarSiddique010/resume-craft-react',
-      );
-      expect(resumeGithubLink).toHaveAttribute('target', '_blank');
-    });
-  });
-
-  describe('Interactive Features (DOM & State)', () => {
-    it('toggles between Desktop and Mobile views for the first project', () => {
-      render(<ProjectSection />);
-
-      const desktopBtn = screen.getByRole('button', { name: /desktop view/i });
-      const mobileBtn = screen.getByRole('button', { name: /mobile view/i });
-
-      const desktopImg = screen.getByAltText('Resume Craft Desktop View');
-      const mobileImg = screen.getByAltText('Resume Craft Mobile View');
-
-      const desktopContainer = desktopImg.parentElement;
-      const mobileContainer = mobileImg.parentElement?.parentElement;
-
-      expect(desktopContainer).toHaveClass('opacity-100');
-      expect(mobileContainer).toHaveClass('opacity-0');
-
-      fireEvent.click(mobileBtn);
-
-      expect(desktopContainer).toHaveClass('opacity-0');
-      expect(mobileContainer).toHaveClass('opacity-100');
-
-      fireEvent.click(desktopBtn);
-
-      expect(desktopContainer).toHaveClass('opacity-100');
-      expect(mobileContainer).toHaveClass('opacity-0');
-    });
-
-    it('does NOT render toggle buttons for projects without a mobile image (index > 0)', () => {
-      render(<ProjectSection />);
-
-      const desktopBtns = screen.getAllByRole('button', {
-        name: /desktop view/i,
-      });
-      const mobileBtns = screen.getAllByRole('button', {
-        name: /mobile view/i,
-      });
-
-      expect(desktopBtns).toHaveLength(1);
-      expect(mobileBtns).toHaveLength(1);
-    });
+    // Heading check
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
+      /Featured Projects/i,
+    );
   });
 });

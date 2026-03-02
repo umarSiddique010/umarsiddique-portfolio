@@ -100,7 +100,7 @@ describe('HeroSection Component', () => {
       const nameHeading = screen.getByRole('heading', { level: 2 });
       expect(nameHeading).toHaveTextContent('Md Umar Siddique');
 
-      expect(screen.getByText('Full-Stack Developer')).toBeInTheDocument();
+      expect(screen.getByText('Full Stack Developer')).toBeInTheDocument();
       expect(screen.getByText(/India • Remote Friendly/i)).toBeInTheDocument();
     });
 

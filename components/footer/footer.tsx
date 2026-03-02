@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Badge } from '../ui/badge';
 import { navLinks } from '@/constants/navigation-links';
 import { socialLinks } from '@/constants/socials-links';
+import clsx from 'clsx';
 
 export default function Footer() {
   return (
@@ -67,7 +68,10 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.title}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/50 text-foreground/60 hover:text-foreground hover:bg-accent hover:scale-110 transition-all duration-300 border border-transparent hover:border-accent-foreground/10 group"
+                className={clsx(
+                  'flex items-center justify-center w-10 h-10 rounded-full bg-accent/50 text-foreground/60 hover:bg-accent hover:scale-110 transition-all duration-300 border border-transparent hover:border-accent-foreground/10 group',
+                  link.color,
+                )}
               >
                 <span className="shrink-0 transition-transform duration-300 ease-out group-hover:-translate-y-1">
                   {link.icon}

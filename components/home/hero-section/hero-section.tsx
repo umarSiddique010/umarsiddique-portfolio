@@ -4,6 +4,7 @@ import { motion, Variants } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image'; // 👉 Image import kiya hai
 import { Download, MapPin } from 'lucide-react';
 import { CodeIntro } from './hero-code';
 
@@ -58,7 +59,7 @@ export default function HeroSection() {
         initial="hidden"
         animate="visible"
       >
-        {/* Left Side */}
+        {/* --- Left Side --- */}
         <motion.div
           className="lg:col-span-8 flex flex-col items-start text-left"
           variants={itemVariants}
@@ -71,7 +72,7 @@ export default function HeroSection() {
             Available for new opportunities
           </Badge>
 
-          {/* Main Heading   */}
+          {/* Main Heading */}
           <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-extrabold tracking-tighter text-foreground mb-6 leading-[1.05]">
             <motion.div
               className="flex flex-wrap mb-1"
@@ -164,27 +165,47 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Right Side */}
+        {/* --- Right Side --- */}
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-4 flex flex-col items-start lg:border-l border-foreground/10 lg:pl-12"
+          className="lg:col-span-4 flex flex-col items-start lg:border-l border-foreground/10 lg:pl-12 pt-8 lg:pt-0"
         >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1, y: [0, -8, 0] }}
+            transition={{
+              scale: { type: 'spring', stiffness: 100, delay: 0.2 },
+              y: { repeat: Infinity, duration: 4, ease: 'easeInOut' }, // Floating effect
+            }}
+            className="relative bg-accent/40 dark:bg-accent/20 rounded-3xl w-48 h-48 md:w-64 md:h-64 mb-8 drop-shadow-2xl"
+          >
+            <Image
+              src="/avatar.webp"
+              alt="Md Umar Siddique - Developer Avatar"
+              fill
+              className="object-fit"
+              priority
+            />
+          </motion.div>
+
           <div className="space-y-1">
             <h2 className="font-bold text-2xl md:text-3xl text-foreground tracking-tight">
               Md Umar Siddique
             </h2>
             <p className="text-base font-medium text-muted-foreground">
-              Full-Stack Developer
+              Full Stack Developer
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground mt-6 bg-foreground/5 px-3 py-1.5 rounded-full">
-            <MapPin className="h-4 w-4" />
+          <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground mt-6 mb-8 bg-foreground/5 px-3 py-1.5 rounded-full w-fit">
+            <MapPin className="h-4 w-4 text-emerald-500" />
             <span>India • Remote Friendly</span>
           </div>
 
-          {/* Code Intro */}
-          <CodeIntro />
+          {/* Code Intro Component */}
+          <div className="w-full">
+            <CodeIntro />
+          </div>
         </motion.div>
       </motion.div>
     </section>

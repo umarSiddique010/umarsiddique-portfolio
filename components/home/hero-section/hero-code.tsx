@@ -1,6 +1,6 @@
 export function CodeIntro() {
   return (
-    <div className="mt-8 w-full rounded-xl bg-foreground/5 border border-foreground/10 p-4 font-mono text-sm leading-6">
+    <div className="mt-8 w-full rounded-xl bg-accent/10 border border-foreground/20 p-4 font-mono text-sm leading-6 hover:bg-foreground/5 hover:border-foreground/20 transition-all duration-500 ease-in-out">
       <p>
         <span className="text-teal-600 font-semibold">const</span>{' '}
         <span className="text-fuchsia-600 font-medium">umar</span>{' '}

@@ -62,7 +62,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="p-8 rounded-2xl bg-foreground/5 backdrop-blur-md border border-foreground/10 hover:bg-foreground/[0.07] transition-colors"
+            className="p-8 rounded-2xl bg-accent border border-foreground/10 transition-all duration-500 ease-in-out hover:bg-input hover:border-foreground/20"
           >
             <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-6 border border-blue-500/20">
               <Code2 className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -107,7 +107,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="p-8 rounded-xl bg-foreground/5 backdrop-blur-md border border-foreground/10 hover:bg-foreground/[0.07] transition-colors"
+            className="p-8 rounded-xl bg-accent border border-foreground/10 transition-all duration-500 ease-in-out hover:bg-input hover:border-foreground/20"
           >
             <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center mb-6 border border-orange-500/20">
               <GitBranch className="h-4 w-4 text-orange-600 dark:text-orange-400" />
@@ -169,7 +169,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="p-8 rounded-xl bg-foreground/5 backdrop-blur-md border border-foreground/10 hover:bg-foreground/[0.07] transition-colors"
+            className="p-8 rounded-xl bg-accent border border-foreground/10 transition-all duration-500 ease-in-out hover:bg-input hover:border-foreground/20"
           >
             <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center mb-6 border border-purple-500/20">
               <Blocks className="h-4 w-4 text-purple-600 dark:text-purple-400" />
@@ -193,7 +193,7 @@ export default function AboutSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="mt-16 w-full py-12 px-6 md:py-20 md:px-12 rounded-3xl bg-linear-to-b from-accent to-transparent border border-foreground/10 flex items-center justify-center text-center hover:bg-accent transition-colors duration-300"
+        className="mt-16 w-full py-12 px-6 md:py-20 md:px-12 rounded-3xl bg-accent border border-foreground/10 flex items-center justify-center text-center transition-alls duration-500 hover:bg-input hover:border-foreground/20"
       >
         <p className="text-xl md:text-2xl lg:text-3xl text-foreground/85 font-bold leading-relaxed tracking-tighter max-w-4xl">
           I build full-stack applications end-to-end —{' '}

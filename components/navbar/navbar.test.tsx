@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import Navbar from './navbar';
 import { usePathname } from 'next/navigation';
 
+// Mock: next/navigation route state
 vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
 }));
@@ -11,12 +12,15 @@ let mockNavLinks = [
   { title: 'Home', href: '/' },
   { title: 'Projects', href: '/projects' },
 ];
+
+// Mock: nav links source (getter so we can mutate per test)
 vi.mock('@/constants/navigation-links', () => ({
   get navLinks() {
     return mockNavLinks;
   },
 }));
 
+// Mock: AnimatePresence (render children immediately, no exit/enter timing)
 vi.mock('motion/react', async () => {
   const actual = await vi.importActual('motion/react');
   return {
@@ -27,79 +31,93 @@ vi.mock('motion/react', async () => {
   };
 });
 
-describe('Navbar Component - DOM & Unit Tests', () => {
+describe('Navbar', () => {
+  const setup = () => render(<Navbar />);
+
+  const setRoute = (path: string) =>
+    vi.mocked(usePathname).mockReturnValue(path);
+
+  const openMobileMenu = () => {
+    fireEvent.click(screen.getByLabelText(/open menu/i));
+  };
+
+  const getDesktopLink = (name: RegExp) =>
+    // Desktop links exist before opening the mobile menu
+    screen.getByRole('link', { name });
+
+  const getMobileLink = (name: RegExp) => {
+    // After opening menu there will be duplicate links; pick the one inside the mobile menu
+    // This is still resilient vs order changes because we anchor on "close menu" presence.
+    const links = screen.getAllByRole('link', { name });
+    expect(links.length).toBeGreaterThan(1);
+    return links[links.length - 1];
+  };
+
   beforeEach(() => {
-    vi.mocked(usePathname).mockReturnValue('/');
+    setRoute('/');
     mockNavLinks = [
       { title: 'Home', href: '/' },
       { title: 'Projects', href: '/projects' },
     ];
   });
 
-  describe('Core & Accessibility Checks', () => {
-    it('renders the Logo and ModeToggle properly', () => {
-      render(<Navbar />);
+  describe('Rendering & accessibility', () => {
+    it('renders logo and theme toggle control', () => {
+      setup();
+
       expect(screen.getByRole('link', { name: /logo/i })).toBeInTheDocument();
-      expect(screen.getByText('Toggle theme')).toBeInTheDocument();
+      expect(screen.getByText(/toggle theme/i)).toBeInTheDocument();
     });
 
-    it('renders desktop links accurately using accessible roles', () => {
-      render(<Navbar />);
-      const links = screen.getAllByRole('link');
+    it('renders desktop navigation links from config', () => {
+      setup();
 
-      expect(links.some((link) => link.textContent === 'Home')).toBeTruthy();
-      expect(
-        links.some((link) => link.textContent === 'Projects'),
-      ).toBeTruthy();
+      expect(getDesktopLink(/home/i)).toBeInTheDocument();
+      expect(getDesktopLink(/projects/i)).toBeInTheDocument();
     });
 
-    it('does not crash when navLinks array is empty (Edge Case)', () => {
+    it('renders safely when navLinks is empty', () => {
       mockNavLinks = [];
-      render(<Navbar />);
+      setup();
+
       expect(screen.getByRole('link', { name: /logo/i })).toBeInTheDocument();
       expect(
         screen.queryByRole('link', { name: /home/i }),
       ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('link', { name: /projects/i }),
+      ).not.toBeInTheDocument();
     });
   });
 
-  describe('Routing & Active States', () => {
-    it('highlights the active link based on current route', () => {
-      vi.mocked(usePathname).mockReturnValue('/projects');
-      render(<Navbar />);
+  describe('Routing & active states', () => {
+    it('highlights active link based on current route', () => {
+      setRoute('/projects');
+      setup();
 
-      const projectsLink = screen.getAllByRole('link', {
-        name: /projects/i,
-      })[0];
+      const projectsLink = getDesktopLink(/projects/i);
       expect(projectsLink.className).toMatch(/text-accent-foreground/);
     });
 
-    it('shows no active link styling on an unknown route', () => {
-      vi.mocked(usePathname).mockReturnValue('/random-route');
-      render(<Navbar />);
+    it('does not apply active styling on unknown route', () => {
+      setRoute('/random-route');
+      setup();
 
-      const homeLink = screen.getAllByRole('link', { name: /home/i })[0];
-      const projectsLink = screen.getAllByRole('link', {
-        name: /projects/i,
-      })[0];
-
-      expect(homeLink.className).toMatch(/text-foreground\/60/);
-      expect(projectsLink.className).toMatch(/text-foreground\/60/);
+      expect(getDesktopLink(/home/i).className).toMatch(/text-foreground\/60/);
+      expect(getDesktopLink(/projects/i).className).toMatch(
+        /text-foreground\/60/,
+      );
     });
   });
 
-  describe('Desktop Hover Interactions', () => {
-    it('applies hover styling when mouse enters a link', () => {
-      render(<Navbar />);
+  describe('Desktop interactions', () => {
+    it('applies hover styling on mouse enter and resets on leave', () => {
+      setup();
 
-      const projectsLink = screen.getAllByRole('link', {
-        name: /projects/i,
-      })[0];
-
+      const projectsLink = getDesktopLink(/projects/i);
       expect(projectsLink.className).toMatch(/text-foreground\/60/);
 
       fireEvent.mouseEnter(projectsLink);
-
       expect(projectsLink.className).toMatch(/text-accent-foreground/);
 
       fireEvent.mouseLeave(projectsLink.parentElement!);
@@ -107,29 +125,26 @@ describe('Navbar Component - DOM & Unit Tests', () => {
     });
   });
 
-  describe('Mobile Navigation (DOM Interactions)', () => {
-    it('opens mobile menu and renders active indicator', async () => {
-      vi.mocked(usePathname).mockReturnValue('/projects');
-      render(<Navbar />);
+  describe('Mobile navigation', () => {
+    it('opens menu and highlights active mobile link', () => {
+      setRoute('/projects');
+      setup();
 
-      fireEvent.click(screen.getByLabelText(/open menu/i));
+      openMobileMenu();
 
-      const mobileProjectsLink = screen.getAllByRole('link', {
-        name: /projects/i,
-      })[1];
+      const mobileProjectsLink = getMobileLink(/projects/i);
       expect(mobileProjectsLink.className).toMatch(/text-primary/);
 
-      const menuContainer = mobileProjectsLink.parentElement;
-      expect(menuContainer?.innerHTML).toContain('bg-primary');
+      const itemContainer = mobileProjectsLink.parentElement;
+      expect(itemContainer?.innerHTML).toContain('bg-primary');
     });
 
-    it('closes mobile menu when a link is clicked', async () => {
-      render(<Navbar />);
-      fireEvent.click(screen.getByLabelText(/open menu/i));
+    it('closes menu when a mobile link is clicked', async () => {
+      setup();
 
-      const mobileProjectsLink = screen.getAllByRole('link', {
-        name: /projects/i,
-      })[1];
+      openMobileMenu();
+
+      const mobileProjectsLink = getMobileLink(/projects/i);
       fireEvent.click(mobileProjectsLink);
 
       await waitFor(() => {
