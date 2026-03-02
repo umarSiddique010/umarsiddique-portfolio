@@ -14,7 +14,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full sticky top-0 z-50 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10 backdrop-blur-[0.5px]">
+    <nav className="w-full sticky top-0 z-50 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10 md:backdrop-blur-[0.5px]">
       <Link href="/" className="font-bold text-xl">
         LOGO
       </Link>
