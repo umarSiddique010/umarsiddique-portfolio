@@ -1,6 +1,6 @@
 import ProjectCard from '@/components/project-card/project-card';
 import { Button } from '@/components/ui/button';
-import { projects } from '@/constants/projects';
+import { projects } from '@/constants/projects-data';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 

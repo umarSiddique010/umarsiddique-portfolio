@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Projects from './page';
-import { Project } from '@/constants/projects';
+import { Project } from '@/constants/projects-data';
 
-vi.mock('@/constants/projects', () => ({
+vi.mock('@/constants/projects-data', () => ({
   projects: [
     { id: 1, title: 'Mocked Project Alpha' },
     { id: 2, title: 'Mocked Project Beta' },

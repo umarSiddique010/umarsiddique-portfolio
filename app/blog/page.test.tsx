@@ -2,10 +2,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Blogs from './page';
 import { ReactNode } from 'react';
-import { Blog } from '@/constants/blogs';
+import { Blog } from '@/constants/blogs-data';
 
 // --- Data mocks  ---
-vi.mock('@/constants/blogs', () => ({
+vi.mock('@/constants/blogs-data', () => ({
   blogs: [
     { id: 1, title: 'HTML Mastery', category: 'HTML' },
     { id: 2, title: 'CSS Magic', category: 'CSS' },

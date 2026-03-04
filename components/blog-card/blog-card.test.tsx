@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import BlogCard from './blog-card';
-import { Blog } from '@/constants/blogs';
+import { Blog } from '@/constants/blogs-data';
 import type { ReactNode } from 'react';
 
 type MotionDivProps = {

@@ -14,7 +14,7 @@ import {
   Lightbulb,
   ChevronDown,
 } from 'lucide-react';
-import { Project } from '@/constants/projects';
+import { Project } from '@/constants/projects-data';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

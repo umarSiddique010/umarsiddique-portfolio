@@ -1,7 +1,7 @@
 import CTAsection from '@/components/cta-section/cta-section';
 import ProjectCard from '@/components/project-card/project-card';
 import { projectsCTA } from '@/constants/cta-data';
-import { projects } from '@/constants/projects';
+import { projects } from '@/constants/projects-data';
 
 export default function Projects() {
   return (

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ProjectSection from './project-section';
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/constants/projects-data';
 import { ReactNode } from 'react';
 
 // Mock ProjectCard

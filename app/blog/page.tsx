@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import BlogCard from '@/components/blog-card/blog-card';
-import { blogs } from '@/constants/blogs';
+import { blogs } from '@/constants/blogs-data';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
 import { blogCTA } from '@/constants/cta-data';

@@ -17,7 +17,7 @@ export const projects: Project[] = [
     title: 'Resume Craft',
 
     description:
-      'A secure, client-side React application that enables users to rapidly build and export professional resumes. It features real-time rendering and multiple layout templates with a strict zero-data-retention policy for absolute privacy.',
+      'A secure, client-side React application that enables users to rapidly build and export professional resumes in pdf. It features real-time rendering and multiple layout templates with a strict zero-data-retention policy for absolute privacy.',
 
     intent:
       'Engineered as a privacy-first, open-source alternative for high-speed resume creation. I architected the system to bypass storage entirely, providing users with immediate, secure generation of diverse layouts ranging from stylish visual designs to ATS-optimized templates.',
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     id: 4,
     title: 'useHttpRequest',
     description:
-      'A lightweight React hook for HTTP requests with GET caching, request deduplication (waterfall protection), AbortController cleanup, debounce support, and manual refetch/cache invalidation.',
+      'A lightweight React hook for full CRUD operations (GET, POST, PUT, DELETE) featuring GET caching, request deduplication (waterfall protection), AbortController cleanup, and debounce support.',
     intent:
       'Architected to solve a strict bundle-size constraint I faced while building a React SPA. I open-sourced this lightweight optimization ideology realizing the broader developer community shares the same frustration with oversized fetching dependencies.',
     keyLearning:
@@ -72,7 +72,6 @@ export const projects: Project[] = [
     desktopImage: '/use-http-request-hook-screenshot.webp',
     mobileImage: null,
   },
-
   {
     id: 3,
     title: 'useLocalstorage',

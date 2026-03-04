@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ProjectCard from './project-card';
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/constants/projects-data';
 import type { ReactNode } from 'react';
 
 type MotionDivProps = {
