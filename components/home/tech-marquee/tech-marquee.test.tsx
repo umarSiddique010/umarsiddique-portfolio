@@ -14,18 +14,20 @@ describe('TechMarquee Component', () => {
     vi.useFakeTimers();
   });
 
+  const setup = () => render(<TechMarquee />);
+
   it('renders marquee items and duplicates them for infinite scroll', () => {
-    render(<TechMarquee />);
+    setup();
 
     const reactLinks = screen.getAllByRole('link', { name: /react/i });
     const nextLinks = screen.getAllByRole('link', { name: /next\.js/i });
 
-    expect(reactLinks).toHaveLength(2);
-    expect(nextLinks).toHaveLength(2);
+    expect(reactLinks).toHaveLength(4);
+    expect(nextLinks).toHaveLength(4);
   });
 
   it('contains valid external links with security attributes', () => {
-    render(<TechMarquee />);
+    setup();
 
     const links = screen.getAllByRole('link');
     links.forEach((link) => {
@@ -35,7 +37,7 @@ describe('TechMarquee Component', () => {
   });
 
   it('updates isHovered state on mouse enter and leave', () => {
-    render(<TechMarquee />);
+    setup();
 
     const container = (
       screen.getAllByRole('link', { name: /react/i })[0] as HTMLElement
@@ -48,14 +50,14 @@ describe('TechMarquee Component', () => {
   });
 
   it('renders icons for each tech item', () => {
-    render(<TechMarquee />);
+    setup();
 
-    expect(screen.getAllByText('⚛️')).toHaveLength(2);
-    expect(screen.getAllByText('▲')).toHaveLength(2);
+    expect(screen.getAllByText('⚛️')).toHaveLength(4);
+    expect(screen.getAllByText('▲')).toHaveLength(4);
   });
 
   it('applies correct transform style for animation', () => {
-    const { container } = render(<TechMarquee />);
+    const { container } = setup();
     const motionDiv = container.querySelector('div');
 
     const style = window.getComputedStyle(motionDiv as Element);

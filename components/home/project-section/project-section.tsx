@@ -1,5 +1,8 @@
 import ProjectCard from '@/components/project-card/project-card';
+import { Button } from '@/components/ui/button';
 import { projects } from '@/constants/projects';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ProjectSection() {
   const homeProjects = projects.filter(
@@ -22,6 +25,14 @@ export default function ProjectSection() {
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
       </section>
+      <div className="mt-10 flex justify-start">
+        <Button asChild className="rounded-xl font-semibold">
+          <Link href="/projects" className="inline-flex items-center gap-2">
+            View All Projects
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
     </section>
   );
 }

@@ -12,7 +12,7 @@ import { techItems } from '@/constants/tech-stack-items';
 import Link from 'next/link';
 
 export default function TechMarquee() {
-  const marqueeItems = [...techItems, ...techItems];
+  const marqueeItems = [...techItems, ...techItems, ...techItems, ...techItems];
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
