@@ -1,4 +1,6 @@
 import { DogIcon } from 'lucide-react';
+import { FaCss3Alt } from 'react-icons/fa';
+import { IoLogoJavascript } from 'react-icons/io';
 import {
   SiNextdotjs,
   SiReact,
@@ -18,6 +20,7 @@ import {
   SiPrettier,
   SiNpm,
 } from 'react-icons/si';
+import { TiHtml5 } from 'react-icons/ti';
 
 export type TechStackItem = {
   title: string;
@@ -32,7 +35,6 @@ export const techItems: TechStackItem[] = [
   {
     title: 'Next.js',
     href: 'https://nextjs.org/',
-    // Next.js black/white hota hai, toh text-foreground best hai for dark mode support
     icon: <SiNextdotjs className={`${iconClass} text-foreground`} />,
   },
   {
@@ -41,14 +43,29 @@ export const techItems: TechStackItem[] = [
     icon: <SiReact className={`${iconClass} text-[#61DAFB]`} />,
   },
   {
+    title: 'HTML',
+    href: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+    icon: <TiHtml5 className={`${iconClass} text-[#f30f03]`} />,
+  },
+  {
     title: 'TypeScript',
     href: 'https://typescriptlang.org/',
     icon: <SiTypescript className={`${iconClass} text-[#3178C6]`} />,
   },
   {
+    title: 'JavaScript',
+    href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+    icon: <IoLogoJavascript className={`${iconClass} text-[#ecd107]`} />,
+  },
+  {
     title: 'Tailwind CSS',
     href: 'https://tailwindcss.com/',
     icon: <SiTailwindcss className={`${iconClass} text-[#06B6D4]`} />,
+  },
+  {
+    title: 'CSS',
+    href: 'https://www.w3.org/Style/CSS/Overview.en.html',
+    icon: <FaCss3Alt className={`${iconClass} text-[#076eec]`} />,
   },
   {
     title: 'Node.js',
