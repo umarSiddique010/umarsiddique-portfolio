@@ -1,13 +1,32 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { BrainCircuit, BookOpen, GitMerge, Rocket } from 'lucide-react';
+import { BrainCircuit, BookOpen, GitMerge, Rocket, Wrench } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 export default function AboutCards() {
+  const categories = {
+    Languages: ['TypeScript', 'JavaScript', 'HTML', 'CSS'],
+
+    Frontend: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
+
+    'Backend & Data': ['Node.js', 'PostgreSQL', 'Prisma', 'Neon'],
+
+    'Testing & Quality': [
+      'Vitest',
+      'Jest',
+      'Testing Library',
+      'ESLint',
+      'Prettier',
+    ],
+
+    'Tooling & CI/CD': ['Git', 'GitHub', 'GitHub Actions', 'Husky', 'npm'],
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+      {/* The Non-CS Journey */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -15,36 +34,51 @@ export default function AboutCards() {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="md:col-span-3"
       >
-        <Card className="h-full overflow-hidden border-foreground/10 bg-accent/10 hover:bg-foreground/5 transition-all duration-300 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start">
+        <Card className="h-full overflow-hidden border-foreground/10 bg-foreground/5 hover:border-foreground/20 hover:bg-foreground/10 transition-all duration-300 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start shadow-lg">
           <div className="p-4 rounded-2xl bg-emerald-500/10 shrink-0">
             <BookOpen className="w-8 h-8 text-emerald-500" />
           </div>
-          <div>
+          <article>
             <h2 className="text-2xl font-bold mb-4">The Non-CS Journey</h2>
             <div className="text-muted-foreground leading-relaxed space-y-4 max-w-4xl">
+              <header>
+                My journey into software engineering didn&apos;t start with a CS
+                degree. It started with a 250MB RAM Windows XP machine when I
+                was ten years old. I used to take it apart just to understand
+                how it worked. By fourteen, I had become the unofficial “tech
+                guy” in my neighborhood, fixing computers for friends and
+                family.
+              </header>
               <p>
-                My engineering journey didn&apos;t start in a university lab. It
-                started in childhood, tearing apart old computers just to
-                understand how the logic flowed. By 14, I was the neighborhood
-                tech guy, fixing PCs until financial hurdles forced a pause.
+                When that PC eventually broke, financial constraints meant I
+                couldn&apos;t replace it, and I had to step away from technology
+                for several years.
               </p>
               <p>
-                Years later, while preparing for UPSC exams, I realized my brain
-                was wired for building systems, not memorizing policies. I
-                pivoted fully into software engineering. I funded my learning by
-                working full-time, coding late into the night because
-                architecting for the web felt natural to me.
+                In mid-2023, while preparing for the UPSC exams, I finally got
+                access to a laptop again. The moment I started using it, I
+                realized the curiosity I had as a child hadn&apos;t gone
+                anywhere.
               </p>
               <p>
-                The turning point was early 2026 when I dived deep into Next.js
-                and modern React architecture. Since then, I’ve focused on
-                shipping production-ready systems and understanding the
-                architectural “why” behind every decision. I transitioned from
-                self-taught fundamentals into disciplined, production-focused
-                engineering.
+                In 2024, to fund my learning, I worked full-time at a grocery
+                store. After finishing my shifts, I would come home and spend my
+                evenings teaching myself web development and building projects.
               </p>
+              <p>
+                The real turning point came in late 2025 when I discovered
+                Next.js and modern React architecture. For the first time,
+                everything clicked — from UI to backend to deployment as a
+                complete system. Since then, I&apos;ve focused on consistently
+                shipping code and building production-ready applications
+              </p>
+              <footer>
+                Today, I&apos;m focused on understanding systems end-to-end and
+                eventually engineering software that solves meaningful
+                real-world problems.
+              </footer>
             </div>
-          </div>
+          </article>
         </Card>
       </motion.div>
 
@@ -56,7 +90,7 @@ export default function AboutCards() {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="md:col-span-2"
       >
-        <Card className="h-full overflow-hidden border-foreground/10 bg-accent/10 hover:bg-foreground/5 transition-all duration-300 rounded-3xl p-8 flex flex-col justify-center">
+        <Card className="h-full overflow-hidden border-foreground/10 bg-foreground/5 hover:border-foreground/20 hover:bg-foreground/10 transition-all duration-300 rounded-3xl p-8 flex flex-col justify-center shadow-lg">
           <BrainCircuit className="w-8 h-8 text-cyan-500 mb-6" />
           <h2 className="text-xl font-bold mb-4">
             How I Think About Engineering
@@ -104,7 +138,7 @@ export default function AboutCards() {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="md:col-span-1"
       >
-        <Card className="h-full overflow-hidden border-foreground/10 bg-accent/10 hover:bg-foreground/5 transition-all duration-300 rounded-3xl p-8 flex flex-col items-start">
+        <Card className="h-full overflow-hidden border-foreground/10 bg-foreground/5 hover:border-foreground/20 hover:bg-foreground/10 transition-all duration-300 rounded-3xl p-8 flex flex-col items-start shadow-lg">
           <div className="p-3 rounded-xl bg-orange-500/10 mb-6">
             <Rocket className="w-6 h-6 text-orange-500" />
           </div>
@@ -118,7 +152,7 @@ export default function AboutCards() {
         </Card>
       </motion.div>
 
-      {/*  How I Work / The Process  */}
+      {/* How I Work / The Process */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +160,7 @@ export default function AboutCards() {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="md:col-span-3"
       >
-        <Card className="h-full overflow-hidden border-foreground/10 bg-accent/10 hover:bg-foreground/5 transition-all duration-300 rounded-3xl p-8">
+        <Card className="h-full overflow-hidden border-foreground/10 bg-foreground/5 hover:border-foreground/20 hover:bg-foreground/10 transition-all duration-300 rounded-3xl p-8 shadow-lg">
           <div className="flex items-center gap-4 mb-8">
             <GitMerge className="w-8 h-8 text-fuchsia-500" />
             <h2 className="text-xl font-bold">How I Work (The Workflow)</h2>
@@ -180,6 +214,36 @@ export default function AboutCards() {
                 ensure optimal client-side performance.
               </p>
             </div>
+          </div>
+        </Card>
+      </motion.div>
+
+      {/* Engineering Toolkit  */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="md:col-span-3"
+      >
+        <Card className="h-full overflow-hidden border-foreground/10 bg-foreground/5 hover:border-foreground/20 hover:bg-foreground/10 transition-all duration-300 rounded-3xl py-6 px-6 md:px-8 shadow-lg">
+          <div className="flex items-center gap-4 mb-6">
+            <Wrench className="w-7 h-7 text-blue-500" />
+            <h2 className="text-xl font-bold">Engineering Toolkit</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {Object.entries(categories).map(([categoryName, items]) => (
+              <div key={categoryName}>
+                <h3 className="text-sm font-bold text-foreground/80 mb-3 tracking-tight uppercase">
+                  {categoryName}
+                </h3>
+                <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1 font-medium">
+                  {items.map((itemName) => {
+                    return <li key={itemName}>{itemName}</li>;
+                  })}
+                </ul>
+              </div>
+            ))}
           </div>
         </Card>
       </motion.div>

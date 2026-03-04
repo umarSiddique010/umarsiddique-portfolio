@@ -63,13 +63,13 @@ describe('AboutCards Component', () => {
       setup();
 
       expect(
-        screen.getByText(/tearing apart old computers/i),
+        screen.getByText(/My journey into software engineering/i),
       ).toBeInTheDocument();
+      expect(screen.getByText(/In mid-2023/i)).toBeInTheDocument();
       expect(
-        screen.getByText(/brain was wired for building systems/i),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/architecting for the web felt natural/i),
+        screen.getByText(
+          /focused on understanding systems end-to-end and eventually engineering software/i,
+        ),
       ).toBeInTheDocument();
     });
 
@@ -102,6 +102,28 @@ describe('AboutCards Component', () => {
         ).toBeInTheDocument();
         expect(screen.getByText(desc)).toBeInTheDocument();
       });
+    });
+  });
+
+  describe('EngineeringToolkit', () => {
+    it('renders toolkit categories and their items', () => {
+      setup();
+
+      expect(
+        screen.getByRole('heading', { name: /Engineering Toolkit/i }),
+      ).toBeInTheDocument();
+
+      expect(screen.getByText('Languages')).toBeInTheDocument();
+      expect(screen.getByText('Frontend')).toBeInTheDocument();
+      expect(screen.getByText('Backend & Data')).toBeInTheDocument();
+      expect(screen.getByText('Testing & Quality')).toBeInTheDocument();
+      expect(screen.getByText('Tooling & CI/CD')).toBeInTheDocument();
+
+      expect(screen.getByText('TypeScript')).toBeInTheDocument();
+      expect(screen.getByText('React')).toBeInTheDocument();
+      expect(screen.getByText('Node.js')).toBeInTheDocument();
+      expect(screen.getByText('Vitest')).toBeInTheDocument();
+      expect(screen.getByText('GitHub Actions')).toBeInTheDocument();
     });
   });
 
