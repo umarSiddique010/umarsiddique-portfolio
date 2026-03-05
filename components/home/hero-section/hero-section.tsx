@@ -4,9 +4,9 @@ import { motion, Variants } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import Image from 'next/image'; // 👉 Image import kiya hai
+import Image from 'next/image';
 import { Download, MapPin } from 'lucide-react';
-import { CodeIntro } from './hero-code';
+import { CodeIntro } from './code-intro';
 
 export default function HeroSection() {
   const containerVariants: Variants = {
@@ -44,7 +44,7 @@ export default function HeroSection() {
             className="mb-8 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 px-4 py-1.5 text-sm font-medium border-0 transition-colors"
           >
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 mr-2 animate-pulse animation-duration-[0.8s]"></span>
-            Available for new opportunities
+            Currently Available for New Opportunities
           </Badge>
 
           {/* Main Heading */}

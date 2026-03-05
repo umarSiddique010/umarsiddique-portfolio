@@ -1,11 +1,11 @@
 import ProjectCard from '@/components/project-card/project-card';
 import { Button } from '@/components/ui/button';
-import { projects } from '@/constants/projects-data';
+import { projectData } from '@/constants/projects-data';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ProjectSection() {
-  const homeProjects = projects.filter(
+  const homeProjects = projectData.filter(
     (p) => p.title === 'Resume Craft' || p.title === 'useHttpRequest',
   );
   return (

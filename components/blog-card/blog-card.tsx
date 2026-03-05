@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { ExternalLink, Target } from 'lucide-react';
-import { Blog } from '@/constants/blogs-data';
+import { BlogData } from '@/constants/blogs-data';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +13,7 @@ export default function BlogCard({
   blog,
   index = 0,
 }: {
-  blog: Blog;
+  blog: BlogData;
   index?: number;
 }) {
   return (

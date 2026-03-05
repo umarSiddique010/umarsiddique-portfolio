@@ -1,4 +1,4 @@
-export type Blog = {
+export type BlogData = {
   id: number;
   category: string;
   title: string;
@@ -9,7 +9,7 @@ export type Blog = {
   devToUrl: string;
 };
 
-export const blogs: Blog[] = [
+export const blogsData: BlogData[] = [
   {
     id: 8,
     category: 'JavaScript',

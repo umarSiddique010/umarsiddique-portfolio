@@ -2,24 +2,25 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Blogs from './page';
 import { ReactNode } from 'react';
-import { Blog } from '@/constants/blogs-data';
+import { BlogData } from '@/constants/blogs-data';
 
 // --- Data mocks  ---
 vi.mock('@/constants/blogs-data', () => ({
-  blogs: [
+  blogsData: [
     { id: 1, title: 'HTML Mastery', category: 'HTML' },
     { id: 2, title: 'CSS Magic', category: 'CSS' },
     { id: 3, title: 'JS Logic', category: 'JavaScript' },
   ],
 }));
 
+// Mock CTA
 vi.mock('@/constants/cta-data', () => ({
-  blogCTA: { title1: 'Test CTA' },
+  blogCTA: { title1: 'Test CTA', buttonText: 'Go', variant: 'minimal' },
 }));
 
 // --- Component mocks ---
 vi.mock('@/components/blog-card/blog-card', () => ({
-  default: ({ blog, index }: { blog: Blog; index: number }) => (
+  default: ({ blog, index }: { blog: BlogData; index: number }) => (
     <div
       data-testid="blog-card"
       data-index={index}
@@ -65,9 +66,10 @@ vi.mock('motion/react', () => ({
   },
 }));
 describe('Blogs Page', () => {
+  const setup = () => render(<Blogs />);
   describe('Initial Render', () => {
     it('renders header, description, category buttons, CTA, and default "All" state', () => {
-      render(<Blogs />);
+      setup();
 
       expect(screen.getByText('Engineering Essays.')).toBeInTheDocument();
       expect(
@@ -97,7 +99,7 @@ describe('Blogs Page', () => {
   describe('Filtering', () => {
     describe('Category Filtering', () => {
       it('filters HTML blogs and updates inactive button classes', () => {
-        render(<Blogs />);
+        setup();
 
         fireEvent.click(screen.getByRole('button', { name: 'HTML' }));
 
@@ -110,7 +112,7 @@ describe('Blogs Page', () => {
       });
 
       it('filters CSS blogs and applies active class', () => {
-        render(<Blogs />);
+        setup();
 
         const cssBtn = screen.getByRole('button', { name: 'CSS' });
         fireEvent.click(cssBtn);
@@ -125,7 +127,7 @@ describe('Blogs Page', () => {
       });
 
       it('filters JavaScript blogs and keeps category correct', () => {
-        render(<Blogs />);
+        setup();
 
         fireEvent.click(screen.getByRole('button', { name: 'JavaScript' }));
 
@@ -138,7 +140,7 @@ describe('Blogs Page', () => {
 
     describe('filter by sort', () => {
       it('sorts blogs by newest first when "Newest" is selected', () => {
-        render(<Blogs />);
+        setup();
 
         fireEvent.change(screen.getByLabelText(/Sort by:/i), {
           target: { value: 'newest' },
@@ -149,7 +151,7 @@ describe('Blogs Page', () => {
       });
 
       it('sorts blogs by oldest first when "Oldest" is selected', () => {
-        render(<Blogs />);
+        setup();
 
         fireEvent.change(screen.getByLabelText(/Sort by:/i), {
           target: { value: 'oldest' },
@@ -162,7 +164,7 @@ describe('Blogs Page', () => {
 
   describe('Empty State', () => {
     it('does NOT show empty state when "All" has items', () => {
-      render(<Blogs />);
+      setup();
 
       expect(
         screen.queryByText(/No engineering logs found for this category yet/i),
@@ -172,7 +174,7 @@ describe('Blogs Page', () => {
 
   describe('Props / Mapping Integrity', () => {
     it('passes index prop to BlogCard for staggered animations', () => {
-      render(<Blogs />);
+      setup();
 
       const cards = screen.getAllByTestId('blog-card');
       expect(cards[0]).toHaveAttribute('data-index', '0');

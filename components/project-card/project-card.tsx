@@ -14,7 +14,7 @@ import {
   Lightbulb,
   ChevronDown,
 } from 'lucide-react';
-import { Project } from '@/constants/projects-data';
+import { ProjectData } from '@/constants/projects-data';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -23,7 +23,7 @@ export default function ProjectCard({
   project,
   index,
 }: {
-  project: Project;
+  project: ProjectData;
   index: number;
 }) {
   const [isMobileView, setIsMobileView] = useState(false);

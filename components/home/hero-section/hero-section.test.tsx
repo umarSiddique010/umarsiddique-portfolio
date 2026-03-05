@@ -47,7 +47,7 @@ vi.mock('motion/react', () => {
 });
 
 // Mock the CodeIntro
-vi.mock('./hero-code', () => ({
+vi.mock('./code-intro', () => ({
   CodeIntro: () => <div data-testid="mock-code-intro">Mocked Code Intro</div>,
 }));
 
@@ -56,7 +56,7 @@ describe('HeroSection Component', () => {
     it('renders the availability badge', () => {
       render(<HeroSection />);
       expect(
-        screen.getByText(/Available for new opportunities/i),
+        screen.getByText(/Currently Available for New Opportunities/i),
       ).toBeInTheDocument();
     });
 

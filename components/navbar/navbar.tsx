@@ -9,6 +9,8 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { AnimatePresence, motion, Variants } from 'motion/react';
 import { navLinks } from '@/constants/navigation-links';
+import logo from '@/app/favicon.ico';
+import Image from 'next/image';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -16,7 +18,14 @@ export default function Navbar() {
   return (
     <nav className="w-full sticky top-0 z-50 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10 md:backdrop-blur-[0.5px]">
       <Link href="/" className="font-bold text-xl">
-        LOGO
+        <Image
+          src={logo}
+          alt="Logo"
+          width={50}
+          priority
+          loading="eager"
+          height={50}
+        />
       </Link>
 
       <div className="flex items-center gap-2 md:gap-4">

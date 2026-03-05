@@ -65,7 +65,7 @@ describe('Navbar', () => {
     it('renders logo and theme toggle control', () => {
       setup();
 
-      expect(screen.getByRole('link', { name: /logo/i })).toBeInTheDocument();
+      expect(screen.getByAltText(/logo/i)).toBeInTheDocument();
       expect(screen.getByText(/toggle theme/i)).toBeInTheDocument();
     });
 

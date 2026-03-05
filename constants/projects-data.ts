@@ -1,6 +1,7 @@
-export type Project = {
+export type ProjectData = {
   id: number;
   title: string;
+  category: string;
   description: string;
   intent: string;
   keyLearning: string;
@@ -11,11 +12,11 @@ export type Project = {
   mobileImage: string | null;
 };
 
-export const projects: Project[] = [
+export const projectData: ProjectData[] = [
   {
     id: 5,
     title: 'Resume Craft',
-
+    category: 'React',
     description:
       'A secure, client-side React application that enables users to rapidly build and export professional resumes in pdf. It features real-time rendering and multiple layout templates with a strict zero-data-retention policy for absolute privacy.',
 
@@ -54,6 +55,7 @@ export const projects: Project[] = [
   {
     id: 4,
     title: 'useHttpRequest',
+    category: 'Open source',
     description:
       'A lightweight React hook for full CRUD operations (GET, POST, PUT, DELETE) featuring GET caching, request deduplication (waterfall protection), AbortController cleanup, and debounce support.',
     intent:
@@ -75,7 +77,7 @@ export const projects: Project[] = [
   {
     id: 3,
     title: 'useLocalstorage',
-
+    category: 'Open source',
     description:
       'An open-source, zero-dependency React hook built to help developers safely manage localStorage. It solves a real problem by eliminating repetitive boilerplate and guaranteeing UI consistency across tabs.',
 
@@ -101,7 +103,7 @@ export const projects: Project[] = [
   {
     id: 2,
     title: 'Rick & Morty Memory Game',
-
+    category: 'React',
     description:
       'A production-grade interactive memory game featuring fluid React Motion animations, dynamic REST API integration, and an immersive custom audio engine, all backed by enterprise-level CI/CD pipelines.',
 
@@ -135,7 +137,7 @@ export const projects: Project[] = [
   {
     id: 1,
     title: 'Modular Book Tracker SPA',
-
+    category: 'Vanilla JS',
     description:
       'A high-performance, framework-free Single Page Application for library management. It features persistent local storage, responsive sidebar navigation, and programmatic DOM rendering to deliver a fast, app-like user experience.',
 

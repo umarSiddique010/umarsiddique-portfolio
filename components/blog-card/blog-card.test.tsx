@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import BlogCard from './blog-card';
-import { Blog } from '@/constants/blogs-data';
+import { BlogData } from '@/constants/blogs-data';
 import type { ReactNode } from 'react';
 
 type MotionDivProps = {
@@ -26,7 +26,7 @@ vi.mock('motion/react', () => ({
   },
 }));
 
-const mockBlog: Blog = {
+const mockBlog: BlogData = {
   id: 1,
   category: 'HTML',
   title: 'HTML Mastery',
@@ -70,7 +70,7 @@ describe('BlogCard', () => {
     it('renders all topics as badges', () => {
       setup();
 
-      mockBlog.topics.forEach((topic) => {
+      mockBlog.topics.forEach((topic: string | number) => {
         expect(screen.getByText(topic)).toBeInTheDocument();
       });
     });
@@ -81,7 +81,7 @@ describe('BlogCard', () => {
 
       expect(screen.getByText(emptyTopicsBlog.title)).toBeInTheDocument();
 
-      mockBlog.topics.forEach((topic) => {
+      mockBlog.topics.forEach((topic: string | number) => {
         expect(screen.queryByText(topic)).not.toBeInTheDocument();
       });
     });

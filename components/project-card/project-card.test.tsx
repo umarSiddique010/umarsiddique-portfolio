@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ProjectCard from './project-card';
-import type { Project } from '@/constants/projects-data';
+import type { ProjectData } from '@/constants/projects-data';
 import type { ReactNode } from 'react';
 
 type MotionDivProps = {
@@ -42,9 +42,10 @@ vi.mock('motion/react', () => ({
   AnimatePresence: ({ children }: { children: ReactNode }) => <>{children}</>,
 }));
 
-const mockFullProject: Project = {
+const mockFullProject: ProjectData = {
   id: 5,
   title: 'Resume Craft',
+  category: 'React',
   description: 'A secure, client-side React application.',
   intent: 'Engineered as a privacy-first alternative.',
   keyLearning: 'Context + useReducer state design.',
@@ -55,7 +56,7 @@ const mockFullProject: Project = {
   mobileImage: '/mobile-view.webp',
 };
 
-const mockProjectNoMobile: Project = {
+const mockProjectNoMobile: ProjectData = {
   ...mockFullProject,
   id: 4,
   mobileImage: null,

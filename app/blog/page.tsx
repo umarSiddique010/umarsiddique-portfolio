@@ -2,13 +2,16 @@
 
 import { useState } from 'react';
 import BlogCard from '@/components/blog-card/blog-card';
-import { blogs } from '@/constants/blogs-data';
+import { blogsData } from '@/constants/blogs-data';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
 import { blogCTA } from '@/constants/cta-data';
 import CTAsection from '@/components/cta-section/cta-section';
 
-const categories = ['All', 'HTML', 'CSS', 'JavaScript'];
+const categories = [
+  'All',
+  ...new Set(blogsData.map((blog) => blog.category).reverse()),
+];
 
 export default function Blogs() {
   const [activeCategory, setActiveCategory] = useState<string>('All');
@@ -16,15 +19,17 @@ export default function Blogs() {
 
   const filteredBlogs =
     activeCategory === 'All'
-      ? blogs
-      : blogs.filter(
+      ? blogsData
+      : blogsData.filter(
           (blog) =>
             blog.category.toUpperCase() === activeCategory.toUpperCase(),
         );
 
-  const sortedBlogs = [...filteredBlogs].sort((a, b) =>
-    sortBy === 'newest' ? b.id - a.id : a.id - b.id,
-  );
+  const sortedBlogs = [...filteredBlogs].sort((a, b) => {
+    const aId = Number(a.id);
+    const bId = Number(b.id);
+    return sortBy === 'newest' ? bId - aId : aId - bId;
+  });
 
   return (
     <section className="w-full max-w-6xl mx-auto px-6 pt-20 -pb-20 md:pt-32 md:-pb-20">
@@ -59,13 +64,13 @@ export default function Blogs() {
         </div>
 
         <label
-          htmlFor="sort-by"
+          htmlFor="blog-sort-by"
           className="flex items-center gap-2 ml-auto sm:ml-0"
         >
           Sort by:
           <select
-            name="sort-by"
-            id="sort-by"
+            name="blog-sort-by"
+            id="blog-sort-by"
             onChange={(e) => setSortBy(e.target.value)}
             className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 border"
           >
@@ -83,7 +88,11 @@ export default function Blogs() {
       <motion.section layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {sortedBlogs.length > 0 ? (
           sortedBlogs.map((blog, index) => (
-            <BlogCard key={blog.id} blog={blog} index={index} />
+            <BlogCard
+              key={`${blog.id}-${activeCategory}-${sortBy}`}
+              blog={blog}
+              index={index}
+            />
           ))
         ) : (
           <div className="col-span-full py-20 text-center border border-dashed border-foreground/10 bg-accent/5 rounded-2xl">

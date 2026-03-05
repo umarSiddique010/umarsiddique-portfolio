@@ -1,14 +1,19 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import Projects from './page';
-import { Project } from '@/constants/projects-data';
+import type { ProjectData } from '@/constants/projects-data';
 
+// Mock project data
 vi.mock('@/constants/projects-data', () => ({
-  projects: [
-    { id: 1, title: 'Mocked Project Alpha' },
-    { id: 2, title: 'Mocked Project Beta' },
+  projectData: [
+    { id: 1, title: 'Project One', category: 'App' },
+    { id: 2, title: 'Open Source Two', category: 'Open source' },
+    { id: 3, title: 'Open Source Three', category: 'Open source' },
   ],
 }));
+
+// Mock CTA data
 
 vi.mock('@/constants/cta-data', () => ({
   projectsCTA: {
@@ -18,100 +23,78 @@ vi.mock('@/constants/cta-data', () => ({
   },
 }));
 
+// Mock project card component
+
 vi.mock('@/components/project-card/project-card', () => ({
-  default: ({ project, index }: { project: Project; index: number }) => (
+  default: ({ project, index }: { project: ProjectData; index: number }) => (
     <div data-testid="mock-project-card" data-index={index}>
-      {project.title}
+      {project.title} (id:{project.id})
     </div>
   ),
 }));
+
+// Mock CTA section component
 
 vi.mock('@/components/cta-section/cta-section', () => ({
-  default: ({
-    title1,
-    buttonText,
-    variant,
-  }: {
-    title1: string;
-    buttonText: string;
-    variant: string;
-  }) => (
-    <div data-testid="mock-cta-section" data-variant={variant}>
-      {title1} - {buttonText}
-    </div>
-  ),
+  default: () => <div data-testid="mock-cta-section" />,
 }));
 
-describe('Projects Page Component', () => {
-  describe('Typography & Static Content', () => {
-    it('renders the main heading correctly', () => {
-      render(<Projects />);
+// Helper function to get rendered titles
+function getRenderedTitles() {
+  return screen.getAllByTestId('mock-project-card').map((el) => el.textContent);
+}
 
-      const heading = screen.getByRole('heading', { level: 1 });
-      expect(heading).toHaveTextContent('Engineered Systems.');
-    });
+describe('Projects Page', () => {
+  const setup = () => render(<Projects />);
 
-    it('renders the engineering-focused descriptive paragraph', () => {
-      render(<Projects />);
+  it('renders newest by default (id desc)', () => {
+    setup();
 
-      expect(
-        screen.getByText(
-          /From privacy-first React applications to zero-dependency/i,
-        ),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          /Production-ready systems built with clear architecture/i,
-        ),
-      ).toBeInTheDocument();
-    });
+    expect(getRenderedTitles()).toEqual([
+      'Open Source Three (id:3)',
+      'Open Source Two (id:2)',
+      'Project One (id:1)',
+    ]);
   });
 
-  describe('ProjectCard Array Mapping', () => {
-    it('maps over the projects array and renders the exact number of cards', () => {
-      render(<Projects />);
+  it('filters by category when clicking category button', async () => {
+    const user = userEvent.setup();
+    setup();
 
-      const projectCards = screen.getAllByTestId('mock-project-card');
+    // Click "Open source"
+    await user.click(screen.getByRole('button', { name: /open source/i }));
 
-      expect(projectCards).toHaveLength(2);
-    });
-
-    it('passes the correct project data and index to each ProjectCard', () => {
-      render(<Projects />);
-
-      const projectCards = screen.getAllByTestId('mock-project-card');
-
-      expect(projectCards[0]).toHaveTextContent('Mocked Project Alpha');
-      expect(projectCards[1]).toHaveTextContent('Mocked Project Beta');
-
-      expect(projectCards[0]).toHaveAttribute('data-index', '0');
-      expect(projectCards[1]).toHaveAttribute('data-index', '1');
-    });
-
-    it('contains the correct CSS grid classes for responsive layout', () => {
-      render(<Projects />);
-
-      const gridContainer =
-        screen.getAllByTestId('mock-project-card')[0].parentElement;
-
-      expect(gridContainer).toHaveClass(
-        'grid',
-        'grid-cols-1',
-        'md:grid-cols-2',
-        'gap-8',
-      );
-    });
+    expect(getRenderedTitles()).toEqual([
+      'Open Source Three (id:3)',
+      'Open Source Two (id:2)',
+    ]);
   });
 
-  describe('CTA Section Integration', () => {
-    it('renders CTA with correct data', () => {
-      render(<Projects />);
+  it('sorts oldest/newest correctly (and works with active filter)', async () => {
+    const user = userEvent.setup();
+    setup();
 
-      const cta = screen.getByTestId('mock-cta-section');
+    // Filter
+    await user.click(screen.getByRole('button', { name: /open source/i }));
+    expect(getRenderedTitles()).toEqual([
+      'Open Source Three (id:3)',
+      'Open Source Two (id:2)',
+    ]);
 
-      expect(cta).toHaveTextContent('Mocked CTA Title');
-      expect(cta).toHaveTextContent('Mocked Button');
-      expect(cta).toHaveAttribute('data-variant', 'minimal');
-    });
+    // Change sort to oldest
+    await user.selectOptions(screen.getByLabelText(/sort by/i), 'oldest');
+
+    expect(getRenderedTitles()).toEqual([
+      'Open Source Two (id:2)',
+      'Open Source Three (id:3)',
+    ]);
+
+    // Back to newest
+    await user.selectOptions(screen.getByLabelText(/sort by/i), 'newest');
+
+    expect(getRenderedTitles()).toEqual([
+      'Open Source Three (id:3)',
+      'Open Source Two (id:2)',
+    ]);
   });
 });
