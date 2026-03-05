@@ -14,6 +14,30 @@ export type ProjectData = {
 
 export const projectData: ProjectData[] = [
   {
+    id: 6,
+    title: 'Engineering Portfolio',
+    category: 'Next.js Full-Stack',
+    description:
+      'A production-grade engineering portfolio built with Next.js 16 and React 19, featuring physics-based UI interactions and a secure, database-backed messaging system using Server Actions.',
+    intent:
+      'Architected to embody a "systems over syntax" philosophy, serving as a living blueprint of my ability to engineer scalable, full-stack applications with enterprise-level quality controls.',
+    keyLearning:
+      'Mastered Next.js Server Actions for secure data mutations, integrated serverless PostgreSQL with transactional email pipelines, and orchestrated complex layout animations while enforcing strict CI/CD testing gates.',
+    techStack: [
+      'Next.js 16 (App Router)',
+      'React 19',
+      'Tailwind CSS v4',
+      'Neon (PostgreSQL)',
+      'Resend API',
+      'Motion',
+      'Vitest & Husky',
+    ],
+    githubUrl: 'https://github.com/umarSiddique010/umarsiddique-portfolio',
+    liveUrl: 'https://umarsiddique-portfolio.vercel.app',
+    desktopImage: '/umarsiddique-portfolio-desktop-view.webp',
+    mobileImage: '/umarsiddique-portfolio-mobile-view.webp',
+  },
+  {
     id: 5,
     title: 'Resume Craft',
     category: 'React',
@@ -137,7 +161,7 @@ export const projectData: ProjectData[] = [
   {
     id: 1,
     title: 'Modular Book Tracker SPA',
-    category: 'Vanilla JS',
+    category: 'Vanilla JavaScript',
     description:
       'A high-performance, framework-free Single Page Application for library management. It features persistent local storage, responsive sidebar navigation, and programmatic DOM rendering to deliver a fast, app-like user experience.',
 

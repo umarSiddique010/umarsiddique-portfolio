@@ -16,7 +16,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full sticky top-0 z-50 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10 md:backdrop-blur-[0.5px]">
+    <nav className="w-full sticky top-0 z-40 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10 md:backdrop-blur-[0.5px]">
       <Link href="/" className="font-bold text-xl">
         <Image
           src={logo}
@@ -172,7 +172,7 @@ function MobileNav({
               transition: { duration: 0.5, ease: 'easeInOut' },
             }}
             transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-            className="fixed inset-0 z-50 flex flex-col bg-accent/50 backdrop-blur-md p-2"
+            className="fixed inset-0 z-40 flex flex-col bg-accent/50 backdrop-blur-md p-2"
           >
             <div className="flex justify-end items-center h-20 w-full">
               <button
