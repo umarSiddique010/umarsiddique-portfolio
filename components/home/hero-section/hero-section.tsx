@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Download, MapPin } from 'lucide-react';
 import { CodeIntro } from './code-intro';
+import { toast } from 'sonner';
 
 export default function HeroSection() {
   const containerVariants: Variants = {
@@ -132,8 +133,8 @@ export default function HeroSection() {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed font-medium"
           >
             Full-stack developer building fast, accessible web applications with
-            Next.js. I focus on performance, scalable architecture, and building
-            systems that hold up in production.
+            Next.js and TypeScript. I focus on performance, scalable
+            architecture, and building systems that hold up in production.
           </motion.p>
 
           <motion.div
@@ -160,8 +161,11 @@ export default function HeroSection() {
               variant="ghost"
               size="lg"
               className="rounded-full px-6 h-12 text-muted-foreground hover:text-foreground"
+              onClick={() =>
+                toast.success('My CV is on its way. Thanks for taking a look')
+              }
             >
-              <Link href="/resume.pdf" download>
+              <Link href="/md-umar-siddique-resume.pdf" download>
                 <Download className="mr-2 h-4 w-4" /> Download CV
               </Link>
             </Button>

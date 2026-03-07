@@ -5,6 +5,7 @@ import { Send, ChevronDown, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { State, submitContactForm } from '@/lib/action';
 import clsx from 'clsx';
+import { toast } from 'sonner';
 
 const initialState: State = {
   errors: {},
@@ -24,13 +25,15 @@ export default function ContactForm() {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    setIntent(state.fields?.intent || '');
     if (state?.success) {
+      toast.success("Message received! I'll get back to you soon.");
+      setIntent(state?.fields?.intent || '');
       setShowMessage(true);
       timer = setTimeout(() => {
         setShowMessage(false);
       }, 5000);
     } else if (!state?.success) {
+      toast.error('Oops! That didn’t send. Please try again.');
       setShowMessage(true);
     }
     return () => clearTimeout(timer);
@@ -228,7 +231,7 @@ export default function ContactForm() {
         {isPending ? (
           <>
             Sending...
-            <Loader2 className="w-5 h-1 ml-2 animate-spin" />
+            <Loader2 className="w-5 h-5 ml-2 animate-spin" />
           </>
         ) : (
           <>
@@ -238,11 +241,11 @@ export default function ContactForm() {
         )}
       </Button>
 
-      <div className="h-1 transition-all duration-300">
+      <div className="h-1.5 transition-all duration-300">
         {showMessage && state?.message && (
           <p
             className={clsx(
-              'text-sm text-center mt-2',
+              'text-sm text-center',
               state.success ? 'text-green-500' : 'text-red-500',
             )}
           >

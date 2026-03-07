@@ -1,6 +1,21 @@
-# <img src='./app/favicon.ico' width='45' style='margin-bottom: -10px; margin-right: 5px;' alt='logo'> Md Umar Siddique | Engineering Portfolio
+# <img src='./app/favicon.ico' height='45' style="margin-bottom:-11px; margin-right:2px;"/> Md Umar Siddique | Engineering Portfolio
 
 <div align="center">
+
+### Systems Over Syntax.
+
+<p align="center">
+  <strong>A production-grade Next.js 16 application showcasing full-stack architecture, 
+  serverless orchestration, and disciplined engineering practices.</strong>
+</p>
+
+<p align="center">
+  <a href="https://www.umarsiddique.dev/"><strong>View Live Production Deployment</strong></a>
+  &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="#local-development"><strong>Local Setup</strong></a>
+  &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="https://github.com/umarSiddique010/umarsiddique-portfolio/issues"><strong>Report an Issue</strong></a>
+</p>
 
 [![Next.js](https://img.shields.io/badge/Next.js_16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
@@ -10,145 +25,154 @@
 [![Neon](https://img.shields.io/badge/Neon_DB-00E599?style=for-the-badge&logo=neon&logoColor=black)](https://neon.tech/)
 [![Resend](https://img.shields.io/badge/Resend_API-000000?style=for-the-badge&logo=minutemailer&logoColor=white)](https://resend.com/)
 [![Husky](https://img.shields.io/badge/Husky_Hooks-42B983?style=for-the-badge&logo=git&logoColor=white)](https://typicode.github.io/husky/)
-
-[Live Site](https://umarsiddique-portfolio.vercel.app) · [View Code](https://github.com/umarSiddique010/umarsiddique-portfolio) · [Report Bug](https://github.com/umarSiddique010/umarsiddique-portfolio/issues)
+[![Lint-Staged](https://img.shields.io/badge/Lint--Staged-1572B6?style=for-the-badge&logo=git&logoColor=white)](https://github.com/lint-staged/lint-staged)
+[![Vercel](https://img.shields.io/badge/Vercel_Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 </div>
 
----
+## Overview
 
-## 📖 Overview
+This repository houses the source code for **umarsiddique.dev**, a portfolio engineered to demonstrate **"Systems Over Syntax."** Unlike standard static portfolios, this application is a dynamic, full-stack system built on the **Next.js 16 App Router** and **React 19**.
 
-This repository houses the source code for my professional engineering portfolio. More than just a showcase of projects, this application is a demonstration of modern web architecture, emphasizing **performance, type safety, and component modularity**.
+It is designed to highlight architectural rigor, featuring a custom-built interactive terminal, a fully serverless messaging infrastructure with database persistence, and a strictly typed, tested codebase. The project adheres to a **"Shift Left"** philosophy, utilizing heavy linting, formatting, and unit testing to ensure production stability before deployment.
 
-Built on **Next.js 16 (App Router)** and **React 19**, the system leverages **Tailwind CSS v4** for styling and **Motion** for complex, physics-based interactions. The architecture prioritizes a "production-first" mindset, featuring comprehensive unit testing, strict linting gates, and server-side validation for all data mutations.
+## Features & Architecture
 
-> **Core Philosophy:** "Systems Over Syntax." Writing code is the baseline; architecting systems that are maintainable, scalable, and resilient is the goal.
+### 1. Interactive `CodeIntro` Terminal
 
----
+The hero section features a custom `CodeIntro` component that simulates a developer's terminal environment, complete with a functional **macOS-style window header**.
 
-## 🏗️ Architectural Highlights & Engineering Decisions
+- **State-Driven UI:** Implements functional window controls where the "Maximize" state triggers a z-index overlay revealing hidden ASCII art, and "Minimize" utilizes layout projection to collapse the DOM node.
+- **Physics-Based Animation:** Powered by `motion/react` spring physics (`stiffness: 150`, `damping: 15`), ensuring fluid, non-blocking window transitions without layout thrashing.
+- **Component Isolation:** Encapsulated as a Client Component to decouple heavy animation logic from the main thread, preserving LCP (Largest Contentful Paint) performance.
 
-### 1. Interactive Interface Design (`CodeIntro`)
+### 2. Robust Serverless Messaging System
 
-The Hero section features a custom `CodeIntro` component that simulates a macOS-style terminal window.
+The contact form is not a simple `mailto` link or third-party iframe; it is a complete full-stack feature.
 
-- **Physics-Based Animation:** Leveraging `motion/react` (formerly Framer Motion), the component implements spring-physics for minimizing, maximizing, and restoring the window state.
-- **Layout Animations:** The component uses the `layout` prop to automatically animate changes in DOM structure without manual coordinate calculation, ensuring 60fps performance during state transitions.
-- **Component Isolation:** The window logic is encapsulated entirely within the client component, preventing re-renders of the static server-rendered background.
+- **Server Actions:** Utilizes Next.js Server Actions and React 19's `useActionState` hook to handle form submissions without a separate API route, ensuring progressive enhancement.
+- **Data Integrity:** Input is validated strictly against a **Zod** schema (`contactSchema`) on the server before processing.
+- **Persistence & Notification:**
+  - **Storage:** Validated messages are persisted to a **Neon Serverless PostgreSQL** database for long-term record keeping.
+  - **Transactional Email:** The system orchestrates the **Resend API** to send dual emails: an immediate admin notification and a professional auto-reply to the user.
+- **Error Handling:** Granular error states are returned from the server and rendered inline, providing immediate, accessible feedback.
 
-### 2. Robust Messaging System (Server Actions)
+### 3. Infrastructure & Edge Deployment
 
-The contact form is not a simple client-side API call. It is a robust, full-stack feature built using **Next.js Server Actions**.
+The application is engineered for low latency and high availability.
 
-- **Type-Safe Validation:** Inputs are validated on the server using `zod` schemas before execution, ensuring data integrity and preventing injection attacks.
-- **Database Persistence:** Validated messages are persisted to a **Neon Serverless PostgreSQL** database.
-- **Transactional Email:** The system integrates with the **Resend API** to trigger two concurrent email streams:
-  1.  An immediate admin notification with full payload details.
-  2.  An automated, professional acknowledgement email sent to the user.
-- **Progressive Enhancement:** The form uses React's `useActionState` hook to manage pending states and optimistic UI updates without blocking the main thread.
+- **DNS Strategy:** The domain (`.dev` TLD registered via Porkbun) is routed through **Vercel's authoritative Nameservers**. This enables immediate propagation of DNS changes and leverages the Vercel Edge Network for global caching.
+- **Security:** Strict HTTPS enforcement and automated SSL generation via Let's Encrypt.
+- **Optimization:** Assets and font files (Geist Sans/Mono) are optimized and served via the edge, ensuring minimal Time to First Byte (TTFB).
 
-### 3. Engineering Discipline & Quality Assurance
+### 4. Testing & Quality Assurance
 
-This project enforces enterprise-level code quality standards.
+This project treats testing as a first-class citizen, not an afterthought.
 
-- **Testing Strategy:** Critical UI components (like the Contact Form and Navigation) and utility functions are tested using **Vitest** and **React Testing Library**.
-- **CI/CD Gates:** A strict **Husky** setup enforces `lint-staged` protocols. Commits are blocked unless they pass ESLint checks and Prettier formatting, ensuring the main branch remains clean and consistent.
+- **Unit Testing:** Critical components (e.g., `ContactForm`, `ContactCard`, `HeroSection`) are tested using **Vitest** and **React Testing Library**.
+- **Mocking Strategy:** External dependencies like `motion/react`, `next/navigation`, and server actions are mocked to ensure isolated, deterministic tests.
 
----
+### 5. Automated CI/CD Pipeline
 
-## 🛠️ Technology Stack
+To maintain high engineering standards, the repository enforces a strict automated workflow that prevents technical debt:
 
-| Category       | Technology            | Usage                                                    |
-| :------------- | :-------------------- | :------------------------------------------------------- |
-| **Framework**  | **Next.js 16**        | App Router, Server Actions, SSR/SSG.                     |
-| **UI Library** | **React 19**          | Server Components, Hooks, `useActionState`.              |
-| **Styling**    | **Tailwind CSS v4**   | Utility-first styling, CSS variables, Dark Mode.         |
-| **Animation**  | **Motion**            | Complex gestures, layout transitions, scroll animations. |
-| **Database**   | **Neon (PostgreSQL)** | Serverless SQL database for message persistence.         |
-| **Validation** | **Zod**               | Schema validation for forms and environment variables.   |
-| **Email**      | **Resend**            | Transactional email API for contact form logic.          |
-| **Testing**    | **Vitest**            | Unit and Integration testing runner.                     |
-| **Icons**      | **Lucide React**      | Consistent, lightweight SVG iconography.                 |
+- **Git Hooks (Husky):** Pre-commit hooks are configured to run validation scripts locally, preventing broken or unformatted code from ever reaching the remote repository.
+- **Lint-Staged:** Optimizes the workflow by running **ESLint** and **Prettier** only on staged files, ensuring style consistency without manual intervention.
+- **Production-Ready Gates:** Every commit must pass type-checking (`tsc`) and the complete test suite, enforcing a "Zero-Bug" deployment philosophy before any code is merged into production.
 
----
+## Tech Stack
 
-## 🚀 Getting Started
+| Category           | Technology          | Usage                                                              |
+| :----------------- | :------------------ | :----------------------------------------------------------------- |
+| **Core Framework** | **Next.js 16**      | App Router, Server Actions, Edge Runtime capability.               |
+| **UI Library**     | **React 19**        | Server Components, `useActionState`, Hooks.                        |
+| **Language**       | **TypeScript**      | Strict type safety across the entire codebase.                     |
+| **Database**       | **Neon (Postgres)** | Serverless SQL database for persisting contact form data.          |
+| **Messaging**      | **Resend**          | Transactional email API for notifications and auto-replies.        |
+| **Styling**        | **Tailwind CSS v4** | Utility-first CSS, configured with generic theme variables.        |
+| **Animation**      | **Motion**          | Complex layout animations, spring physics, and micro-interactions. |
+| **Validation**     | **Zod**             | Schema validation for environment variables and form inputs.       |
+| **Testing**        | **Vitest**          | Blazing fast unit test runner compatible with Vite.                |
+| **DevOps / CI/CD** | **Husky & Vercel**  | Git hooks for linting and automated edge deployment.               |
 
-Follow these steps to set up the project locally for development.
+## Local Development
+
+Follow these steps to set up the project locally.
 
 ### Prerequisites
 
 - Node.js 18+ (LTS recommended)
 - npm or pnpm
 
-### Installation
+### 1. Clone the Repository
 
-1. **Clone the repository**
+```bash
+git clone https://github.com/umarSiddique010/umarsiddique-portfolio.git
+cd umarsiddique-portfolio
+```
 
-   ```bash
-   git clone https://github.com/umarSiddique010/umarsiddique-portfolio.git
-   cd umarsiddique-portfolio
-   ```
+### 2. Install Dependencies
 
-2. **Install dependencies**
+```bash
+npm install
+# or
+pnpm install
+```
 
-   ```bash
-   npm install
-   ```
+### 3. Environment Configuration
 
-3. **Configure Environment Variables**
-   Create a `.env.local` file in the root directory and add the following keys (required for the Contact form to function):
+Create a `.env` file in the root directory. You will need credentials for Neon and Resend.
 
-   ```bash
-   # Database Connection (Neon Postgres)
-   DATABASE_URL="postgres://user:password@endpoint.neon.tech/neondb?sslmode=require"
+```bash
+# Database (Neon Postgres)
+DATABASE_URL="postgres://user:password@ep-host.region.aws.neon.tech/neondb?sslmode=require"
 
-   # Email Service (Resend)
-   RESEND_API_KEY="re_123456789"
-   ```
+# Email (Resend)
+RESEND_API_KEY="re_123456789"
+```
 
-4. **Run the development server**
+### 4. Run Development Server
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
-5. **Run Tests**
-   To ensure all components are functioning as expected:
-   ```bash
-   npm run test
-   ```
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
----
+### 5. Running Tests
 
-## 📂 Project Structure
+To execute the Vitest suite:
 
-```text
-├── app/                  # Next.js App Router (Pages & Layouts)
-│   ├── about/            # About page logic
-│   ├── blog/             # Blog listing & filtering
-│   ├── contact/          # Contact page with server actions
-│   ├── projects/         # Project showcase
-│   └── globals.css       # Tailwind v4 imports & theme variables
-├── components/           # Reusable UI Components
-│   ├── contact-cards/    # Form logic & server integration
-│   ├── home/             # Hero, Marquee, & Landing sections
-│   └── ui/               # Radix/Shadcn primitives (Button, Card, Badge)
-├── lib/                  # Utilities & Server Actions
-│   ├── action.ts         # Server-side form handling (Zod/Resend/SQL)
-│   └── utils.ts          # Class merging utilities
-└── public/               # Static assets
+```bash
+npm test
 ```
 
 ---
 
 <div align="center">
 
-**Crafted by Md Umar Siddique**
+### Developer & Maintainer
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/md-umar-siddique)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/umarSiddique010)
-[![Dev.to](https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white)](https://dev.to/umarsiddique)
+**Md Umar Siddique**
+
+<p align="center">
+  <a href="https://www.umarsiddique.dev/">
+    <img src="https://img.shields.io/badge/Portfolio-umarsiddique.dev-000000?style=flat-square&logo=googlechrome&logoColor=white" alt="Portfolio Website" />
+  </a>
+  <a href="https://www.linkedin.com/in/md-umar-siddique-1519b12a4/">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://github.com/umarSiddique010">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://www.npmjs.com/~umarSiddique010">
+    <img src="https://img.shields.io/badge/NPM-CB3837?style=flat-square&logo=npm&logoColor=white" alt="NPM" />
+  </a>
+  <a href="https://dev.to/umarsiddique010">
+    <img src="https://img.shields.io/badge/Dev.to-0A0A0A?style=flat-square&logo=dev.to&logoColor=white" alt="Dev.to" />
+  </a>
+</p>
+
+&copy; 2024 - Present. Released under the MIT License.
 
 </div>

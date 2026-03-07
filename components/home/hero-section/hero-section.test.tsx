@@ -89,7 +89,10 @@ describe('HeroSection Component', () => {
 
       expect(viewWorkLink).toHaveAttribute('href', '#projects');
       expect(contactLink).toHaveAttribute('href', '/contact');
-      expect(downloadLink).toHaveAttribute('href', '/resume.pdf');
+      expect(downloadLink).toHaveAttribute(
+        'href',
+        '/md-umar-siddique-resume.pdf',
+      );
     });
 
     it('ensures the Download CV link has the download attribute', () => {

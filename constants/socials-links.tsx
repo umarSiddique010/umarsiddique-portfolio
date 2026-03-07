@@ -42,7 +42,7 @@ export const socialLinks: SocialLink[] = [
     color: 'hover:text-[#1DA1F2]',
   },
   {
-    title: 'DEV',
+    title: 'DEV Community',
     href: 'https://dev.to/umarsiddique010',
     icon: <span className="text-sm font-bold transition-colors">DEV</span>,
     color: 'hover:text-foreground',

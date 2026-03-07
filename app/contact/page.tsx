@@ -40,7 +40,7 @@ export default function Contact() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:col-span-7 bg-foreground/5 border border-foreground/10 rounded-3xl p-6 md:p-8 transition-all duration-300 ease-in-out hover:border-foreground/20 hover:bg-foreground/10 group-hover:scale-105 shadow-xl"
+          className="lg:col-span-7 bg-foreground/5 border border-foreground/10 rounded-3xl p-6 md:p-8 transition-all duration-500 ease-in-out hover:border-foreground/20 hover:bg-foreground/10 group-hover:scale-105 shadow-xl"
         >
           <ContactForm />
         </motion.div>

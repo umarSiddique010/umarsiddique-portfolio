@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import Blogs from './page';
 import { ReactNode } from 'react';
@@ -47,28 +48,67 @@ vi.mock('@/components/cta-section/cta-section', () => ({
   ),
 }));
 
+//  Mock Shadcn UI Select as Native HTML Select
+vi.mock('@/components/ui/select', () => ({
+  Select: ({
+    value,
+    onValueChange,
+    children,
+  }: {
+    value: string;
+    onValueChange: (value: string) => void;
+    children: ReactNode;
+  }) => (
+    <select
+      data-testid="mock-shadcn-select"
+      value={value}
+      onChange={(e) => onValueChange(e.target.value)}
+    >
+      {children}
+    </select>
+  ),
+  SelectTrigger: ({ children }: { children: ReactNode }) => <>{children}</>,
+  SelectContent: ({ children }: { children: ReactNode }) => <>{children}</>,
+  SelectGroup: ({ children }: { children: ReactNode }) => <>{children}</>,
+  SelectLabel: () => null,
+  SelectItem: ({ value, children }: { value: string; children: ReactNode }) => (
+    <option value={value}>{children}</option>
+  ),
+  SelectValue: ({ placeholder }: { placeholder: string }) => (
+    <option value="" disabled>
+      {placeholder}
+    </option>
+  ),
+}));
+
 // --- Motion mock  ---
 type MotionDivProps = {
   children: ReactNode;
   className?: string;
+  layout?: boolean;
 };
 
-// --- Motion mock  ---
 vi.mock('motion/react', () => ({
   motion: {
     div: ({ children, className }: MotionDivProps) => (
       <div className={className}>{children}</div>
     ),
-
     section: ({ children, className }: MotionDivProps) => (
       <section className={className}>{children}</section>
     ),
   },
 }));
+
+// Helper function to extract text
+function getRenderedTitles() {
+  return screen.getAllByTestId('blog-card').map((el) => el.textContent);
+}
+
 describe('Blogs Page', () => {
   const setup = () => render(<Blogs />);
+
   describe('Initial Render', () => {
-    it('renders header, description, category buttons, CTA, and default "All" state', () => {
+    it('renders header, description, Select dropdowns, and defaults to Newest & All', () => {
       setup();
 
       expect(screen.getByText('Engineering Essays.')).toBeInTheDocument();
@@ -76,19 +116,16 @@ describe('Blogs Page', () => {
         screen.getByText(/Long-form analysis of web architecture/i),
       ).toBeInTheDocument();
 
-      const categories = ['All', 'HTML', 'CSS', 'JavaScript'];
-      categories.forEach((cat) => {
-        expect(screen.getByRole('button', { name: cat })).toBeInTheDocument();
-      });
+      // Ensure selects are rendered
+      const selects = screen.getAllByTestId('mock-shadcn-select');
+      expect(selects).toHaveLength(2);
 
-      const allBtn = screen.getByRole('button', { name: 'All' });
-      expect(allBtn).toHaveClass(
-        'bg-foreground',
-        'text-background',
-        'border-foreground',
-      );
-
-      expect(screen.getAllByTestId('blog-card')).toHaveLength(3);
+      // Default sorting is 'newest' (b.id - a.id -> 3, 2, 1)
+      expect(getRenderedTitles()).toEqual([
+        'JS Logic',
+        'CSS Magic',
+        'HTML Mastery',
+      ]);
 
       expect(screen.getByTestId('mock-cta-section')).toHaveTextContent(
         'Test CTA',
@@ -98,38 +135,36 @@ describe('Blogs Page', () => {
 
   describe('Filtering', () => {
     describe('Category Filtering', () => {
-      it('filters HTML blogs and updates inactive button classes', () => {
+      it('filters HTML blogs correctly via Select', async () => {
+        const user = userEvent.setup();
         setup();
 
-        fireEvent.click(screen.getByRole('button', { name: 'HTML' }));
+        const categorySelect = screen.getAllByTestId('mock-shadcn-select')[0];
+        await user.selectOptions(categorySelect, 'HTML');
 
-        const cards = screen.getAllByTestId('blog-card');
-        expect(cards).toHaveLength(1);
-        expect(cards[0]).toHaveTextContent('HTML Mastery');
-
-        const cssBtn = screen.getByRole('button', { name: 'CSS' });
-        expect(cssBtn).toHaveClass('bg-foreground/5', 'text-muted-foreground');
+        const titles = getRenderedTitles();
+        expect(titles).toHaveLength(1);
+        expect(titles).toEqual(['HTML Mastery']);
       });
 
-      it('filters CSS blogs and applies active class', () => {
+      it('filters CSS blogs correctly', async () => {
+        const user = userEvent.setup();
         setup();
 
-        const cssBtn = screen.getByRole('button', { name: 'CSS' });
-        fireEvent.click(cssBtn);
+        const categorySelect = screen.getAllByTestId('mock-shadcn-select')[0];
+        await user.selectOptions(categorySelect, 'CSS');
 
-        expect(cssBtn).toHaveClass(
-          'bg-foreground',
-          'text-background',
-          'border-foreground',
-        );
-        expect(screen.getByText('CSS Magic')).toBeInTheDocument();
-        expect(screen.getAllByTestId('blog-card')).toHaveLength(1);
+        const titles = getRenderedTitles();
+        expect(titles).toHaveLength(1);
+        expect(titles).toEqual(['CSS Magic']);
       });
 
-      it('filters JavaScript blogs and keeps category correct', () => {
+      it('filters JavaScript blogs and keeps category correct', async () => {
+        const user = userEvent.setup();
         setup();
 
-        fireEvent.click(screen.getByRole('button', { name: 'JavaScript' }));
+        const categorySelect = screen.getAllByTestId('mock-shadcn-select')[0];
+        await user.selectOptions(categorySelect, 'JavaScript');
 
         const cards = screen.getAllByTestId('blog-card');
         expect(cards).toHaveLength(1);
@@ -138,26 +173,33 @@ describe('Blogs Page', () => {
       });
     });
 
-    describe('filter by sort', () => {
-      it('sorts blogs by newest first when "Newest" is selected', () => {
+    describe('Sort Filtering', () => {
+      it('sorts blogs by newest first when "Newest" is selected', async () => {
+        const user = userEvent.setup();
         setup();
 
-        fireEvent.change(screen.getByLabelText(/Sort by:/i), {
-          target: { value: 'newest' },
-        });
+        const sortSelect = screen.getAllByTestId('mock-shadcn-select')[1];
+        await user.selectOptions(sortSelect, 'newest');
 
-        const cards = screen.getAllByTestId('blog-card');
-        expect(cards[0]).toHaveTextContent('JS Logic');
+        expect(getRenderedTitles()).toEqual([
+          'JS Logic',
+          'CSS Magic',
+          'HTML Mastery',
+        ]);
       });
 
-      it('sorts blogs by oldest first when "Oldest" is selected', () => {
+      it('sorts blogs by oldest first when "Oldest" is selected', async () => {
+        const user = userEvent.setup();
         setup();
 
-        fireEvent.change(screen.getByLabelText(/Sort by:/i), {
-          target: { value: 'oldest' },
-        });
-        const cards = screen.getAllByTestId('blog-card');
-        expect(cards[0]).toHaveTextContent('HTML Mastery');
+        const sortSelect = screen.getAllByTestId('mock-shadcn-select')[1];
+        await user.selectOptions(sortSelect, 'oldest');
+
+        expect(getRenderedTitles()).toEqual([
+          'HTML Mastery',
+          'CSS Magic',
+          'JS Logic',
+        ]);
       });
     });
   });
@@ -169,17 +211,6 @@ describe('Blogs Page', () => {
       expect(
         screen.queryByText(/No engineering logs found for this category yet/i),
       ).not.toBeInTheDocument();
-    });
-  });
-
-  describe('Props / Mapping Integrity', () => {
-    it('passes index prop to BlogCard for staggered animations', () => {
-      setup();
-
-      const cards = screen.getAllByTestId('blog-card');
-      expect(cards[0]).toHaveAttribute('data-index', '0');
-      expect(cards[1]).toHaveAttribute('data-index', '1');
-      expect(cards[2]).toHaveAttribute('data-index', '2');
     });
   });
 });

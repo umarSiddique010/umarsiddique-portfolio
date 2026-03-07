@@ -16,31 +16,43 @@ export const projectData: ProjectData[] = [
   {
     id: 6,
     title: 'Engineering Portfolio',
-    category: 'Next.js Full-Stack',
+    category: 'Full-Stack',
+
     description:
-      'A production-grade engineering portfolio built with Next.js 16 and React 19, featuring physics-based UI interactions and a secure, database-backed messaging system using Server Actions.',
+      'A production-grade Next.js 16 portfolio demonstrating full-stack architecture, serverless messaging, and disciplined engineering practices. Built to showcase scalable architecture, typed codebases, and production-ready workflows.',
+
     intent:
-      'Architected to embody a "systems over syntax" philosophy, serving as a living blueprint of my ability to engineer scalable, full-stack applications with enterprise-level quality controls.',
+      'Designed as a systems-focused engineering portfolio to demonstrate production-level frontend architecture, serverless backend orchestration, automated CI/CD workflows, and maintainable application design.',
+
     keyLearning:
-      'Mastered Next.js Server Actions for secure data mutations, integrated serverless PostgreSQL with transactional email pipelines, and orchestrated complex layout animations while enforcing strict CI/CD testing gates.',
+      'Implemented a full-stack architecture using Next.js Server Actions, Neon serverless Postgres, and Resend while enforcing strict testing, linting, and CI/CD validation pipelines',
+
     techStack: [
-      'Next.js 16 (App Router)',
+      'Next.js 16',
       'React 19',
+      'TypeScript',
       'Tailwind CSS v4',
-      'Neon (PostgreSQL)',
-      'Resend API',
       'Motion',
-      'Vitest & Husky',
+      'Neon Postgres',
+      'Resend API',
+      'Zod',
+      'Vitest',
+      'React Testing Library',
+      'Husky',
+      'Lint-Staged',
+      'Vercel',
     ],
+
     githubUrl: 'https://github.com/umarSiddique010/umarsiddique-portfolio',
-    liveUrl: 'https://umarsiddique-portfolio.vercel.app',
-    desktopImage: '/umarsiddique-portfolio-desktop-view.webp',
-    mobileImage: '/umarsiddique-portfolio-mobile-view.webp',
+    liveUrl: 'https://www.umarsiddique.dev',
+
+    desktopImage: '/portfolio-desktop-view.webp',
+    mobileImage: '/portfolio-mobile-view.webp',
   },
   {
     id: 5,
     title: 'Resume Craft',
-    category: 'React',
+    category: 'Frontend',
     description:
       'A secure, client-side React application that enables users to rapidly build and export professional resumes in pdf. It features real-time rendering and multiple layout templates with a strict zero-data-retention policy for absolute privacy.',
 
@@ -127,7 +139,7 @@ export const projectData: ProjectData[] = [
   {
     id: 2,
     title: 'Rick & Morty Memory Game',
-    category: 'React',
+    category: 'Frontend',
     description:
       'A production-grade interactive memory game featuring fluid React Motion animations, dynamic REST API integration, and an immersive custom audio engine, all backed by enterprise-level CI/CD pipelines.',
 

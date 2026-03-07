@@ -72,8 +72,8 @@ export async function submitContactForm(
 
     // Send to me
     const adminResult = await resend.emails.send({
-      from: 'Md Umar Siddique https://www.umarsiddique.dev',
-      to: 'us70763@gmail.com', // your inbox
+      from: 'Md Umar Siddique <onboarding@resend.dev>',
+      to: 'us70763@gmail.com',
       subject: `New Contact Form: ${intent}`,
       replyTo: email,
       html: `
@@ -90,7 +90,7 @@ export async function submitContactForm(
 
     // Auto-reply to USER
     const userResult = await resend.emails.send({
-      from: 'Md Umar Siddique https://www.umarsiddique.dev',
+      from: 'Md Umar Siddique <onboarding@resend.dev>',
       to: email,
       subject: 'Thanks for reaching out!',
       html: `

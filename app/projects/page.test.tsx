@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import Projects from './page';
 import type { ProjectData } from '@/constants/projects-data';
+import { ReactNode } from 'react';
 
 // Mock project data
 vi.mock('@/constants/projects-data', () => ({
@@ -14,7 +15,6 @@ vi.mock('@/constants/projects-data', () => ({
 }));
 
 // Mock CTA data
-
 vi.mock('@/constants/cta-data', () => ({
   projectsCTA: {
     title1: 'Mocked CTA Title',
@@ -24,7 +24,6 @@ vi.mock('@/constants/cta-data', () => ({
 }));
 
 // Mock project card component
-
 vi.mock('@/components/project-card/project-card', () => ({
   default: ({ project, index }: { project: ProjectData; index: number }) => (
     <div data-testid="mock-project-card" data-index={index}>
@@ -34,12 +33,44 @@ vi.mock('@/components/project-card/project-card', () => ({
 }));
 
 // Mock CTA section component
-
 vi.mock('@/components/cta-section/cta-section', () => ({
   default: () => <div data-testid="mock-cta-section" />,
 }));
 
-// Helper function to get rendered titles
+// Mock Shadcn UI Select as a Native HTML Select
+vi.mock('@/components/ui/select', () => ({
+  Select: ({
+    value,
+    onValueChange,
+    children,
+  }: {
+    value: string;
+    onValueChange: (value: string) => void;
+    children: ReactNode;
+  }) => (
+    <select
+      data-testid="mock-shadcn-select"
+      value={value}
+      onChange={(e) => onValueChange(e.target.value)}
+    >
+      {children}
+    </select>
+  ),
+  SelectTrigger: ({ children }: { children: ReactNode }) => <>{children}</>,
+  SelectContent: ({ children }: { children: ReactNode }) => <>{children}</>,
+  SelectGroup: ({ children }: { children: ReactNode }) => <>{children}</>,
+  SelectLabel: () => null,
+  SelectItem: ({ value, children }: { value: string; children: ReactNode }) => (
+    <option value={value}>{children}</option>
+  ),
+  SelectValue: ({ placeholder }: { placeholder: string }) => (
+    <option value="" disabled>
+      {placeholder}
+    </option>
+  ),
+}));
+
+// Helper function
 function getRenderedTitles() {
   return screen.getAllByTestId('mock-project-card').map((el) => el.textContent);
 }
@@ -57,12 +88,13 @@ describe('Projects Page', () => {
     ]);
   });
 
-  it('filters by category when clicking category button', async () => {
+  it('filters by category correctly', async () => {
     const user = userEvent.setup();
     setup();
 
-    // Click "Open source"
-    await user.click(screen.getByRole('button', { name: /open source/i }));
+    const categorySelect = screen.getAllByTestId('mock-shadcn-select')[0];
+
+    await user.selectOptions(categorySelect, 'Open source');
 
     expect(getRenderedTitles()).toEqual([
       'Open Source Three (id:3)',
@@ -74,27 +106,35 @@ describe('Projects Page', () => {
     const user = userEvent.setup();
     setup();
 
-    // Filter
-    await user.click(screen.getByRole('button', { name: /open source/i }));
+    const selects = screen.getAllByTestId('mock-shadcn-select');
+    const categorySelect = selects[0];
+    const sortSelect = selects[1];
+
+    await user.selectOptions(categorySelect, 'Open source');
     expect(getRenderedTitles()).toEqual([
       'Open Source Three (id:3)',
       'Open Source Two (id:2)',
     ]);
 
-    // Change sort to oldest
-    await user.selectOptions(screen.getByLabelText(/sort by/i), 'oldest');
-
+    await user.selectOptions(sortSelect, 'oldest');
     expect(getRenderedTitles()).toEqual([
       'Open Source Two (id:2)',
       'Open Source Three (id:3)',
     ]);
 
-    // Back to newest
-    await user.selectOptions(screen.getByLabelText(/sort by/i), 'newest');
-
+    await user.selectOptions(sortSelect, 'newest');
     expect(getRenderedTitles()).toEqual([
       'Open Source Three (id:3)',
       'Open Source Two (id:2)',
     ]);
+  });
+  describe('Empty State', () => {
+    it('does NOT show empty state when "All" has items', () => {
+      setup();
+
+      expect(
+        screen.queryByText(/No System found for this category yet/i),
+      ).not.toBeInTheDocument();
+    });
   });
 });

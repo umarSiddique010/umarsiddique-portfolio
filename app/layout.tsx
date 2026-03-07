@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer/footer';
 import { ThemeProvider } from 'next-themes';
 import MainBackground from '@/components/main-background';
+import { Toaster } from '@/components/ui/sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -44,6 +45,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
+          <Toaster position="top-center" richColors duration={4000} />
         </ThemeProvider>
       </body>
     </html>
