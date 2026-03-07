@@ -9,7 +9,6 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { AnimatePresence, motion, Variants } from 'motion/react';
 import { navLinks } from '@/constants/navigation-links';
-import logo from '@/app/favicon.ico';
 import Image from 'next/image';
 
 export default function Navbar() {
@@ -19,7 +18,7 @@ export default function Navbar() {
     <nav className="w-full sticky top-0 z-40 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10 md:backdrop-blur-[0.5px]">
       <Link href="/" className="font-bold text-xl">
         <Image
-          src={logo}
+          src="/favicon.ico"
           alt="Logo"
           width={50}
           priority
