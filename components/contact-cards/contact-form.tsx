@@ -25,20 +25,23 @@ export default function ContactForm() {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (state?.success) {
-      toast.success("Message received! I'll get back to you soon.");
-      setIntent(state?.fields?.intent || '');
-      setShowMessage(true);
-      timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 5000);
-    } else if (!state?.success) {
-      toast.error('Oops! That didn’t send. Please try again.');
-      setShowMessage(true);
+
+    if (state?.message) {
+      if (state.success) {
+        toast.success("Message received! I'll get back to you soon.");
+        setIntent(state?.fields?.intent || '');
+        setShowMessage(true);
+        timer = setTimeout(() => {
+          setShowMessage(false);
+        }, 5000);
+      } else {
+        toast.error('Oops! That didn’t send. Please try again.');
+        setShowMessage(true);
+      }
     }
+
     return () => clearTimeout(timer);
   }, [state?.message, state?.success, state?.fields?.intent]);
-
   return (
     <form
       className={clsx('flex flex-col gap-6', {
