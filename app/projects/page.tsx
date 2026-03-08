@@ -120,6 +120,7 @@ export default function Projects() {
             <ProjectCard
               key={`${project.id}-${activeCategory}-${projectSortBy}`}
               project={project}
+              loading="eager"
               index={index}
             />
           ))

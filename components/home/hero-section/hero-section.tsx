@@ -182,7 +182,7 @@ export default function HeroSection() {
             animate={{ scale: 1, opacity: 1, y: [0, -8, 0] }}
             transition={{
               scale: { type: 'spring', stiffness: 100, delay: 0.2 },
-              y: { repeat: Infinity, duration: 4, ease: 'easeInOut' }, // Floating effect
+              y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
             }}
             className="relative bg-accent/40 dark:bg-accent/20 rounded-3xl w-48 h-48 md:w-64 md:h-64 mb-8 drop-shadow-2xl"
           >
@@ -190,6 +190,7 @@ export default function HeroSection() {
               src="/avatar.webp"
               alt="Md Umar Siddique - Developer Avatar"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-fit"
               priority
             />

@@ -21,13 +21,16 @@ import { Badge } from '@/components/ui/badge';
 
 export default function ProjectCard({
   project,
+  loading = 'lazy',
   index,
 }: {
   project: ProjectData;
+  loading?: 'lazy' | 'eager';
   index: number;
 }) {
-  const [isMobileView, setIsMobileView] = useState(false);
-  const [showInsights, setShowInsights] = useState(false);
+  const [isMobileView, setIsMobileView] = useState<boolean>(false);
+  const [showInsights, setShowInsights] = useState<boolean>(false);
+  const [showFullScreen, setShowFullScreen] = useState<boolean>(false);
 
   const hasMobileImage = Boolean(project.mobileImage);
 
@@ -74,17 +77,24 @@ export default function ProjectCard({
 
           {/* Desktop Image */}
           <div
+            onClick={() => setShowFullScreen((prev) => !prev)}
+            aria-label="toggle full screen"
+            aria-live="polite"
+            aria-atomic="true"
             className={clsx(
               'absolute inset-0 transition-all duration-500 ease-in-out',
               hasMobileImage && isMobileView
                 ? 'opacity-0 scale-95 pointer-events-none'
                 : 'opacity-100 scale-100',
+              showFullScreen &&
+                'lg:fixed lg:top-20 lg:left-20 lg:right-20 lg:bottom-20 lg:z-50 lg:scale-3d lg:scale-105',
             )}
           >
             <Image
               src={project.desktopImage}
               alt={`${project.title} Desktop View`}
               fill
+              loading={loading}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain object-center p-4 group-hover:scale-105 transition-all duration-500 ease-in-out"
             />
@@ -93,14 +103,25 @@ export default function ProjectCard({
           {/* Mobile Image */}
           {hasMobileImage && (
             <div
+              onClick={() => setShowFullScreen((prev) => !prev)}
+              aria-label="toggle full screen"
+              aria-live="polite"
+              aria-atomic="true"
               className={clsx(
                 'absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out',
                 isMobileView
                   ? 'opacity-100 scale-100'
                   : 'opacity-0 scale-110 pointer-events-none',
+                showFullScreen &&
+                  'lg:fixed md:top-0 lg:bottom-0 md:left-0 lg:right-0 lg:z-50 lg:scale-3d lg:scale-110',
               )}
             >
-              <div className="relative w-[25%] h-[85%] rounded-2xl border-[6px] border-foreground/10 overflow-hidden bg-background shadow-xl group-hover:scale-105 transition-all duration-500 ease-in-out">
+              <div
+                className={clsx(
+                  'relative w-[25%] h-[85%] rounded-2xl border-[6px] border-foreground/10 overflow-hidden bg-background group-hover:scale-105 transition-all duration-500 ease-in-out',
+                  showFullScreen ? 'bg-transparent border-none' : 'shadow-xl',
+                )}
+              >
                 <Image
                   src={project.mobileImage!}
                   alt={`${project.title} Mobile View`}
