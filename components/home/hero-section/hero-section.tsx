@@ -191,8 +191,8 @@ export default function HeroSection() {
               src="/avatar.webp"
               alt="Md Umar Siddique - Developer Avatar"
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-fit"
+              sizes="(max-width: 768px) 192px, 256px"
+              className="object-cover rounded-3xl"
               priority
             />
           </motion.div>

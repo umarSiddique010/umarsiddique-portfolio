@@ -2,7 +2,6 @@ import { DogIcon } from 'lucide-react';
 import { FaCss3Alt } from 'react-icons/fa';
 import { IoLogoJavascript } from 'react-icons/io';
 import {
-  SiNextdotjs,
   SiReact,
   SiTypescript,
   SiTailwindcss,
@@ -20,6 +19,7 @@ import {
   SiPrettier,
   SiNpm,
 } from 'react-icons/si';
+import { SiNextdotjs } from 'react-icons/si';
 import { TiHtml5 } from 'react-icons/ti';
 
 export type TechStackItem = {
