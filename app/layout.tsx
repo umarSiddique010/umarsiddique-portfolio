@@ -30,17 +30,8 @@ export const metadata: Metadata = {
     default: 'Md Umar Siddique | Full Stack Developer',
   },
   description:
-    'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, React, TypeScript, PostgreSQL.',
+    'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, TypeScript, PostgreSQL, Motion.',
   metadataBase: new URL('https://www.umarsiddique.dev'),
-  keywords: [
-    'Full Stack Developer',
-    'Next.js',
-    'React',
-    'TypeScript',
-    'PostgreSQL',
-    'Framer Motion',
-    'Md Umar Siddique',
-  ],
   authors: [{ name: 'Md Umar Siddique', url: 'https://www.umarsiddique.dev' }],
   creator: 'Md Umar Siddique',
   robots: 'index, follow',
@@ -52,7 +43,7 @@ export const metadata: Metadata = {
       default: 'Md Umar Siddique | Full Stack Developer',
     },
     description:
-      'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, React, TypeScript, PostgreSQL.',
+      'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, TypeScript, PostgreSQL, Motion.',
   },
   twitter: {
     card: 'summary_large_image',
@@ -61,7 +52,7 @@ export const metadata: Metadata = {
       default: 'Md Umar Siddique | Full Stack Developer',
     },
     description:
-      'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, React, TypeScript, PostgreSQL.',
+      'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, TypeScript, PostgreSQL, Motion.',
   },
 };
 
