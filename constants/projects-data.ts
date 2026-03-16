@@ -16,17 +16,13 @@ export const projectData: ProjectData[] = [
   {
     id: 6,
     title: 'Engineering Portfolio',
-    category: 'Full-Stack',
-
+    category: 'Full Stack',
     description:
-      'A production-grade Next.js 16 portfolio demonstrating full-stack architecture, serverless messaging, and disciplined engineering practices. Built to showcase scalable architecture, typed codebases, and production-ready workflows.',
-
+      'A full-stack Next.js 16 portfolio with a serverless contact system, Neon PostgreSQL persistence, transactional email via Resend, and a custom interactive terminal.',
     intent:
-      'Designed as a systems-focused engineering portfolio to demonstrate production-level frontend architecture, serverless backend orchestration, automated CI/CD workflows, and maintainable application design.',
-
+      'A portfolio is the first thing a recruiter sees. Built this to show architecture decisions, not just UI — full-stack, tested, and deployed with real infrastructure.',
     keyLearning:
-      'Implemented a full-stack architecture using Next.js Server Actions, Neon serverless Postgres, and Resend while enforcing strict testing, linting, and CI/CD validation pipelines',
-
+      'Next.js App Router, Server Actions, useActionState, Zod validation, Neon PostgreSQL, Resend API, motion/react spring physics, custom domain DNS setup via Porkbun + Vercel Nameservers, CI/CD pipeline.',
     techStack: [
       'Next.js 16',
       'React 19',
@@ -42,26 +38,21 @@ export const projectData: ProjectData[] = [
       'Lint-Staged',
       'Vercel',
     ],
-
     githubUrl: 'https://github.com/umarSiddique010/umarsiddique-portfolio',
-    liveUrl: 'https://www.umarsiddique.dev',
-
-    desktopImage: '/portfolio-desktop-view.webp',
-    mobileImage: '/portfolio-mobile-view.webp',
+    liveUrl: 'https://www.umarsiddique.dev/',
+    desktopImage: '/project-screenshots/portfolio-desktop-view.webp',
+    mobileImage: '/project-screenshots/portfolio-mobile-view.webp',
   },
   {
     id: 5,
     title: 'Resume Craft',
     category: 'Frontend',
     description:
-      'A secure, client-side React application that enables users to rapidly build and export professional resumes in pdf. It features real-time rendering and multiple layout templates with a strict zero-data-retention policy for absolute privacy.',
-
+      'A privacy-first, client-side resume builder — 4 professional templates, ATS-friendly PDF export, and a fully tested codebase. No backend, no login, no data leaves the browser.',
     intent:
-      'Engineered as a privacy-first, open-source alternative for high-speed resume creation. I architected the system to bypass storage entirely, providing users with immediate, secure generation of diverse layouts ranging from stylish visual designs to ATS-optimized templates.',
-
+      'Most resume builders require an account and store your data on their servers. Built this so anyone can generate a professional resume instantly — privately, for free, and open source.',
     keyLearning:
-      'Context + useReducer state design, dynamic form UX, template rendering, PDF pipelines (html2canvas/jsPDF + @react-pdf/renderer), and CI/CD + testing with Vitest/RTL and coverage reporting.',
-
+      'Context + Reducer architecture, client-side PDF generation, route-level code splitting, Vite manual chunking, useEffect for dependent dropdown state, CI/CD pipeline, Vitest + RTL testing strategy.',
     techStack: [
       'React 19',
       'Vite',
@@ -82,58 +73,47 @@ export const projectData: ProjectData[] = [
       'Prettier',
       'GitHub Actions',
     ],
-
     githubUrl: 'https://github.com/umarSiddique010/resume-craft-react',
     liveUrl: 'https://resume-craft-react.vercel.app/',
-    desktopImage: '/resume-craft-desktop-view.webp',
-    mobileImage: '/resume-craft-mobile-view.webp',
+    desktopImage: '/project-screenshots/resume-craft-desktop-view.webp',
+    mobileImage: '/project-screenshots/resume-craft-mobile-view.webp',
   },
   {
     id: 4,
-    title: 'useHttpRequest',
-    category: 'Open source',
+    title: '@mdus/use-http-request-hook',
+    category: 'Open Source / NPM Package',
     description:
-      'A lightweight React hook for full CRUD operations (GET, POST, PUT, DELETE) featuring GET caching, request deduplication (waterfall protection), AbortController cleanup, and debounce support.',
+      'A production-ready React hook for HTTP requests — universal method support (GET, POST, PUT, DELETE), LRU caching, request deduplication, AbortController cleanup, and debounce built in.',
     intent:
-      'Architected to solve a strict bundle-size constraint I faced while building a React SPA. I open-sourced this lightweight optimization ideology realizing the broader developer community shares the same frustration with oversized fetching dependencies.',
+      "Most devs re-implement the same fetch logic in every project. Built this once, published it — so it's reusable, reliable, and handles the edge cases most implementations miss.",
     keyLearning:
-      'Mastered advanced asynchronous JavaScript by implementing concurrent request deduplication, in-memory GET caching, and native AbortController integration to prevent memory leaks and race conditions.',
-    techStack: [
-      'React',
-      'fetch API',
-      'AbortController',
-      'TypeScript/JavaScript',
-      'npm package publishing',
-    ],
+      'Universal HTTP methods, AbortController, LRU caching strategy, request deduplication, debounce implementation, npm package architecture.',
+    techStack: ['React', 'JavaScript', 'AbortController', 'fetch API', 'npm'],
     githubUrl: 'https://github.com/umarSiddique010/use-http-request-hook',
     liveUrl: 'https://www.npmjs.com/package/@mdus/use-http-request-hook',
-    desktopImage: '/use-http-request-hook-screenshot.webp',
+    desktopImage: '/project-screenshots/use-http-request-hook-screenshot.webp',
     mobileImage: null,
   },
   {
     id: 3,
-    title: 'useLocalstorage',
-    category: 'Open source',
+    title: '@mdus/use-localstorage-hook',
+    category: 'Open Source / NPM Package',
     description:
-      'An open-source, zero-dependency React hook built to help developers safely manage localStorage. It solves a real problem by eliminating repetitive boilerplate and guaranteeing UI consistency across tabs.',
-
+      'A zero-dependency React hook for localStorage — cross-tab sync, auto-serialization, and safe error handling out of the box.',
     intent:
-      'Built on the idea that nearly every frontend app persists browser state, this hook turns raw storage into a clean, React-idiomatic foundation with automatic re-renders.',
-
+      'Every dev uses localStorage. Almost none handle cross-tab sync or memory cleanup properly. Built this so the right way is also the easy way.',
     keyLearning:
-      'Designing a stable hook API, syncing state across tabs using storage events, safe JSON parsing/stringifying, lifecycle-safe initialization, and defensive error handling for browser storage edge cases.',
-
+      'Custom hook architecture, localStorage event API, cross-tab synchronization, npm package publishing, API design.',
     techStack: [
       'React',
+      'JavaScript',
       'localStorage',
       'Web Storage API (storage events)',
-      'JavaScript',
-      'npm package publishing',
+      'npm',
     ],
-
     githubUrl: 'https://github.com/umarSiddique010/use-localstorage-hook',
     liveUrl: 'https://www.npmjs.com/package/@mdus/use-localstorage-hook',
-    desktopImage: '/use-localstorage-hook-screenshot.webp',
+    desktopImage: '/project-screenshots/use-localstorage-hook-screenshot.webp',
     mobileImage: null,
   },
   {
@@ -141,63 +121,52 @@ export const projectData: ProjectData[] = [
     title: 'Rick & Morty Memory Game',
     category: 'Frontend',
     description:
-      'A production-grade interactive memory game featuring fluid React Motion animations, dynamic REST API integration, and an immersive custom audio engine, all backed by enterprise-level CI/CD pipelines.',
-
+      'A memory card game built with React 19 Class Components — 3 difficulty levels, countdown timers, real-time scoring, and a custom audio engine.',
     intent:
-      'Created as a deliberate architectural deep dive into core React fundamentals using Class Components — mastering explicit lifecycle control, centralized state management, API integration, and production-grade testing and CI workflows from the ground up.',
-
+      'Hooks make lifecycle management invisible. Built with Class Components deliberately — to understand what hooks abstract away. The game format makes it worth sharing.',
     keyLearning:
-      'Mastered granular component lifecycle management and context binding to efficiently handle asynchronous API states, preventing memory leaks while ensuring application reliability through comprehensive Jest testing and automated GitHub Actions.',
-
+      'Class component lifecycle methods, state lifting, unidirectional data flow, Web Audio API, Jest integration testing, GitHub Actions CI.',
     techStack: [
-      'React 19 (Class Components)',
-      'JavaScript (ES6+)',
+      'React 19',
+      'JavaScript',
       'CSS Modules',
-      'Framer Motion',
+      'Motion',
       'REST API (Rick and Morty API)',
       'Fetch API',
-      'Audio API',
+      'Web Audio API',
       'Jest',
       'React Testing Library',
       'ESLint',
       'Prettier',
-      'GitHub Actions (CI/CD)',
-      'npm',
+      'GitHub Actions',
+      'GitHub Pages',
     ],
-
     githubUrl: 'https://github.com/umarSiddique010/rick-morty-game-react',
-    liveUrl: 'https://rick-morty-game-react.vercel.app/',
-    desktopImage: '/rick-morty-game-desktop-view.webp',
-    mobileImage: '/rick-morty-game-mobile-view.webp',
+    liveUrl: 'https://umarsiddique010.github.io/rick-morty-game-react/',
+    desktopImage: '/project-screenshots/rick-morty-game-desktop-view.webp',
+    mobileImage: '/project-screenshots/rick-morty-game-mobile-view.webp',
   },
   {
     id: 1,
-    title: 'Modular Book Tracker SPA',
-    category: 'Vanilla JavaScript',
+    title: 'Book Tracker JS',
+    category: 'Frontend',
     description:
-      'A high-performance, framework-free Single Page Application for library management. It features persistent local storage, responsive sidebar navigation, and programmatic DOM rendering to deliver a fast, app-like user experience.',
-
+      'A framework-free SPA built with Vanilla JS — modular OOP architecture, real DOM manipulation, and localStorage persistence.',
     intent:
-      'Architected entirely in Vanilla JavaScript with zero static HTML to achieve absolute control over the rendering lifecycle, state management, and the build pipeline.',
-
+      "Most devs skip straight to frameworks. This was built to prove you don't need one — pure JS, real architecture, zero abstractions.",
     keyLearning:
-      'Mastered Object-Oriented Architecture and native DOM manipulation by building a custom MVC-lite pattern from scratch, leveraging optimized event delegation to drastically reduce memory footprints and boost rendering performance.',
-
+      'OOP architecture, event delegation, DOM manipulation without frameworks, MVC-lite pattern, Webpack 5 bundling, unit + integration + DOM testing with Vitest.',
     techStack: [
-      'JavaScript (ES6+ Modules & Classes)',
-      'Native DOM API',
-      'localStorage API',
-      'CSS3 (Flexbox & Grid)',
+      'JavaScript',
+      'CSS3',
       'Webpack 5',
       'Vitest',
-      'JSDOM',
-      '@testing-library/dom',
-      'npm',
+      'jsdom',
+      'GitHub Pages',
     ],
-
     githubUrl: 'https://github.com/umarSiddique010/book-tracker-js',
     liveUrl: 'https://umarsiddique010.github.io/book-tracker-js/',
-    desktopImage: '/book-tracker-desktop-view.webp',
-    mobileImage: '/book-tracker-mobile-view.webp',
+    desktopImage: '/project-screenshots/book-tracker-desktop-view.webp',
+    mobileImage: '/project-screenshots/book-tracker-mobile-view.webp',
   },
 ];

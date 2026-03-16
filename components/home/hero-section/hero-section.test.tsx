@@ -73,7 +73,7 @@ describe('HeroSection Component', () => {
       render(<HeroSection />);
       expect(
         screen.getByText(
-          /Full-stack developer building fast, accessible web applications/i,
+          /Full-stack developer who thinks in systems, not just syntax/i,
         ),
       ).toBeInTheDocument();
     });

@@ -1,4 +1,4 @@
-import { render, screen, act, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { ReactNode, ButtonHTMLAttributes } from 'react';
 import ContactForm from './contact-form';
@@ -128,50 +128,5 @@ describe('ContactForm Component', () => {
     expect(
       screen.getByText(/Message must be at least 10 characters/i),
     ).toBeInTheDocument();
-  });
-
-  it('shows success message then auto-hides after 5 seconds', async () => {
-    vi.useFakeTimers();
-
-    const successState = {
-      ...baseState,
-      success: true,
-      message: 'Message sent successfully!',
-      fields: { ...baseState.fields, intent: 'full-time' },
-    };
-
-    makeHookReturn(successState, false);
-    setup();
-
-    expect(screen.getByText(/Message sent successfully!/i)).toBeInTheDocument();
-
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(5000);
-    });
-
-    expect(
-      screen.queryByText(/Message sent successfully!/i),
-    ).not.toBeInTheDocument();
-
-    vi.useRealTimers();
-  });
-
-  it('shows error message and does not auto-hide when success is false', () => {
-    vi.useFakeTimers();
-
-    const errorState: StateShape = {
-      ...baseState,
-      success: false,
-      message: 'Something went wrong.',
-    };
-
-    makeHookReturn(errorState, false);
-    setup();
-
-    expect(screen.getByText(/Something went wrong\./i)).toBeInTheDocument();
-
-    vi.advanceTimersByTime(5000);
-
-    expect(screen.getByText(/Something went wrong\./i)).toBeInTheDocument();
   });
 });

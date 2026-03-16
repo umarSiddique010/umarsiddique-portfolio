@@ -144,10 +144,10 @@ export default function AboutCards() {
           </div>
           <h2 className="text-xl font-bold mb-3">The Vision</h2>
           <p className="text-muted-foreground text-sm leading-relaxed mb-auto">
-            I operate with a <strong>Product Ownership Mindset</strong>.
-            I&apos;m not just here to close Jira tickets. My long-term goal is
-            mastering end-to-end full-stack architecture and building scalable
-            SaaS systems that solve real-world problems.
+            I operate with a <strong>Product Ownership Mindset</strong> —
+            focused on solving real problems end-to-end, not just implementing
+            tickets. My long-term goal is mastering full-stack architecture and
+            building scalable SaaS systems.
           </p>
         </Card>
       </motion.div>

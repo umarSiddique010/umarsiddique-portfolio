@@ -21,16 +21,16 @@ import { Badge } from '@/components/ui/badge';
 
 export default function ProjectCard({
   project,
-  loading = 'lazy',
+  loading = 'eager',
   index,
 }: {
   project: ProjectData;
   loading?: 'lazy' | 'eager';
   index: number;
 }) {
-  const [isMobileView, setIsMobileView] = useState<boolean>(false);
-  const [showInsights, setShowInsights] = useState<boolean>(false);
-  const [showFullScreen, setShowFullScreen] = useState<boolean>(false);
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [showInsights, setShowInsights] = useState(false);
+  const [showFullScreen, setShowFullScreen] = useState(false);
 
   const hasMobileImage = Boolean(project.mobileImage);
 
@@ -51,7 +51,7 @@ export default function ProjectCard({
               <button
                 onClick={() => setIsMobileView(false)}
                 className={clsx(
-                  'p-1.5 rounded-full transition-colors',
+                  'p-1.5 rounded-full transition-colors cursor-pointer',
                   !isMobileView
                     ? 'bg-foreground text-background shadow-sm'
                     : 'text-muted-foreground hover:text-foreground',
@@ -63,7 +63,7 @@ export default function ProjectCard({
               <button
                 onClick={() => setIsMobileView(true)}
                 className={clsx(
-                  'p-1.5 rounded-full transition-colors',
+                  'p-1.5 rounded-full transition-colors cursor-pointer',
                   isMobileView
                     ? 'bg-foreground text-background shadow-sm'
                     : 'text-muted-foreground hover:text-foreground',
@@ -82,7 +82,7 @@ export default function ProjectCard({
             aria-live="polite"
             aria-atomic="true"
             className={clsx(
-              'absolute inset-0 transition-all duration-500 ease-in-out',
+              'absolute inset-0 transition-all duration-500 ease-in-out lg:cursor-pointer',
               hasMobileImage && isMobileView
                 ? 'opacity-0 scale-95 pointer-events-none'
                 : 'opacity-100 scale-100',
@@ -108,7 +108,7 @@ export default function ProjectCard({
               aria-live="polite"
               aria-atomic="true"
               className={clsx(
-                'absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out',
+                'absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out lg:cursor-pointer',
                 isMobileView
                   ? 'opacity-100 scale-100'
                   : 'opacity-0 scale-110 pointer-events-none',

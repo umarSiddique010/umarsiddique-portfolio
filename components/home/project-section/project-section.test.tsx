@@ -34,7 +34,7 @@ describe('ProjectSection Component', () => {
     expect(renderedProjects).toHaveLength(2);
 
     expect(screen.getByText('Resume Craft')).toBeInTheDocument();
-    expect(screen.getByText('useHttpRequest')).toBeInTheDocument();
+    expect(screen.getByText('@mdus/use-http-request-hook')).toBeInTheDocument();
 
     expect(
       screen.queryByText('Modular Book Tracker SPA'),

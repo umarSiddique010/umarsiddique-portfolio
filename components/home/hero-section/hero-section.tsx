@@ -132,9 +132,10 @@ export default function HeroSection() {
             variants={itemVariants}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed font-medium"
           >
-            Full-stack developer building fast, accessible web applications with
-            Next.js and TypeScript. I focus on performance, scalable
-            architecture, and building systems that hold up in production.
+            Full-stack developer who thinks in systems, not just syntax —
+            building fast, accessible web applications with Next.js and
+            TypeScript, with a focus on performance, scalable architecture, and
+            production reliability.
           </motion.p>
 
           <motion.div

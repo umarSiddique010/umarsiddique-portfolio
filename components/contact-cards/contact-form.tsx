@@ -15,8 +15,7 @@ const initialState: State = {
 };
 
 export default function ContactForm() {
-  const [showMessage, setShowMessage] = useState<boolean>(false);
-  const [intent, setIntent] = useState<string>('');
+  const [intent, setIntent] = useState('');
 
   const [state, formAction, isPending] = useActionState(
     submitContactForm,
@@ -24,24 +23,16 @@ export default function ContactForm() {
   );
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-
     if (state?.message) {
+      setIntent(state?.fields?.intent || '');
       if (state.success) {
         toast.success("Message received! I'll get back to you soon.");
-        setIntent(state?.fields?.intent || '');
-        setShowMessage(true);
-        timer = setTimeout(() => {
-          setShowMessage(false);
-        }, 5000);
       } else {
         toast.error('Oops! That didn’t send. Please try again.');
-        setShowMessage(true);
       }
     }
-
-    return () => clearTimeout(timer);
   }, [state?.message, state?.success, state?.fields?.intent]);
+
   return (
     <form
       className={clsx('flex flex-col gap-6', {
@@ -243,19 +234,6 @@ export default function ContactForm() {
           </>
         )}
       </Button>
-
-      <div className="h-1.5 transition-all duration-300">
-        {showMessage && state?.message && (
-          <p
-            className={clsx(
-              'text-sm text-center',
-              state.success ? 'text-green-500' : 'text-red-500',
-            )}
-          >
-            {state.message}
-          </p>
-        )}
-      </div>
     </form>
   );
 }

@@ -18,8 +18,8 @@ export const navLinks: NavLink[] = [
   },
 
   {
-    title: 'Blog',
-    href: '/blog',
+    title: 'Blogs',
+    href: '/blogs',
   },
   {
     title: 'Contact',

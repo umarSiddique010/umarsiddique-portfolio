@@ -22,9 +22,9 @@ const categories = [
   ...new Set(blogsData.map((blog) => blog.category).reverse()),
 ];
 
-export default function Blogs() {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-  const [blogSortBy, setBlogSortBy] = useState<string>('newest');
+export default function BlogsClient() {
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [blogSortBy, setBlogSortBy] = useState('newest');
 
   const filteredBlogs =
     activeCategory === 'All'
@@ -117,6 +117,7 @@ export default function Blogs() {
           sortedBlogs.map((blog, index) => (
             <BlogCard
               key={`${blog.id}-${activeCategory}-${blogSortBy}`}
+              loading={index < 2 ? 'eager' : 'lazy'}
               blog={blog}
               index={index}
             />

@@ -1,6 +1,10 @@
 export type BlogData = {
   id: number;
   category: string;
+  series?: {
+    name: string;
+    part: number;
+  } | null;
   title: string;
   description: string;
   purpose: string;
@@ -13,6 +17,10 @@ export const blogsData: BlogData[] = [
   {
     id: 8,
     category: 'JavaScript',
+    series: {
+      name: 'Unpacking JavaScript: 10 Days That Changed the Internet',
+      part: 4,
+    },
     title:
       'JavaScript: The Chosen One — Why the Browser Speaks Only JavaScript (and Why We Can’t Replace It)',
     description:
@@ -29,7 +37,7 @@ export const blogsData: BlogData[] = [
       'Event Loop',
       'Network Effects',
     ],
-    bannerImage: '/javascript-blog-banner.webp',
+    bannerImage: '/blogs-cover/javascript-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/the-chosen-one-why-the-browser-speaks-only-javascript-and-why-we-cant-replace-it-450a',
   },
@@ -37,6 +45,10 @@ export const blogsData: BlogData[] = [
     id: 7,
     category: 'JavaScript',
     title: 'The Philosophy of JavaScript: Messy, Mighty, and Made for the Web',
+    series: {
+      name: 'Unpacking JavaScript: 10 Days That Changed the Internet',
+      part: 3,
+    },
     description:
       "A strategic deep dive into JavaScript's core design philosophy, explaining how intentional architectural choices like prototypal inheritance, first-class functions, and an asynchronous event loop drove its massive success.  It demonstrates why embracing the language's flexible, event-driven nature is crucial for building robust modern web applications.",
     purpose:
@@ -49,7 +61,7 @@ export const blogsData: BlogData[] = [
       'Prototypes',
       'First-Class Functions',
     ],
-    bannerImage: '/javascript-blog-banner.webp',
+    bannerImage: '/blogs-cover/javascript-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/the-philosophy-of-javascript-messy-mighty-and-made-for-the-web-3ook',
   },
@@ -57,6 +69,10 @@ export const blogsData: BlogData[] = [
     id: 6,
     category: 'JavaScript',
     title: 'Why JavaScript Survived – Wars, Standards, and Second Chances',
+    series: {
+      name: 'Unpacking JavaScript: 10 Days That Changed the Internet',
+      part: 2,
+    },
     description:
       "A historical and technical analysis of JavaScript's evolution from a fragmented browser script into a standardized, full-stack ecosystem.  It highlights how ECMAScript standards and the AJAX revolution established the asynchronous architecture of the modern web.",
     purpose:
@@ -70,7 +86,7 @@ export const blogsData: BlogData[] = [
       'Web Standards',
       'Ecosystem',
     ],
-    bannerImage: '/javascript-blog-banner.webp',
+    bannerImage: '/blogs-cover/javascript-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/episode-2-why-javascript-survived-wars-standards-and-second-chances-4l2h',
   },
@@ -78,12 +94,16 @@ export const blogsData: BlogData[] = [
     id: 5,
     category: 'JavaScript',
     title: 'Birth of JavaScript: 10 Days, One Man, and a New Era',
+    series: {
+      name: 'Unpacking JavaScript: 10 Days That Changed the Internet',
+      part: 1,
+    },
     description:
       "A strategic exploration of JavaScript's 10-day creation, detailing how foundational architectural decisions like prototypal inheritance and first-class functions shaped the modern interactive web.  It highlights why prioritizing flexibility over rigid perfection made JavaScript the web's definitive standard.",
     purpose:
       "To share the chaotic history and core DNA of JavaScript so developers can deepen their understanding and appreciation for the language's unique design.",
     topics: ['JavaScript', 'History', 'Architecture', 'Prototypes', 'Web'],
-    bannerImage: '/javascript-blog-banner.webp',
+    bannerImage: '/blogs-cover/javascript-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/birth-of-javascript-10-days-one-man-and-a-new-era-4d63',
   },
@@ -91,6 +111,10 @@ export const blogsData: BlogData[] = [
     id: 4,
     category: 'CSS',
     title: "Why Isn't Your CSS Working? Common Pitfalls and Best Practices",
+    series: {
+      name: "Why Isn't Your CSS Working?",
+      part: 3,
+    },
     description:
       'A strategic guide to mastering scalable CSS architecture by avoiding common styling pitfalls like deep nesting, ID selector overuse, and !important wars. It provides actionable best practices, including BEM methodologies and scoped styling, to help developers build maintainable frontend systems.',
     purpose:
@@ -102,7 +126,7 @@ export const blogsData: BlogData[] = [
       'Maintainability',
       'Debugging',
     ],
-    bannerImage: '/css-blog-banner.webp',
+    bannerImage: '/blogs-cover/css-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/why-isnt-your-css-working-common-pitfalls-and-best-practices-1n06',
   },
@@ -110,12 +134,16 @@ export const blogsData: BlogData[] = [
     id: 3,
     category: 'CSS',
     title: 'Why Isn’t Your CSS Working? Understanding Cascading',
+    series: {
+      name: "Why Isn't Your CSS Working?",
+      part: 2,
+    },
     description:
       'An in-depth breakdown of the CSS Cascade algorithm, detailing how browsers resolve styling conflicts through source order, specificity, origin, and importance.  It provides a practical framework for debugging overwrites and establishing maintainable frontend architectures.',
     purpose:
       'To explain CSS cascading through an investigative, real-world approach so developers practically understand how browsers determine which style rules win.',
     topics: ['CSS', 'Cascading', 'Rendering', 'Architecture', 'Debugging'],
-    bannerImage: '/css-blog-banner.webp',
+    bannerImage: '/blogs-cover/css-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/why-isnt-your-css-working-understanding-cascading-3n5j',
   },
@@ -123,6 +151,10 @@ export const blogsData: BlogData[] = [
     id: 2,
     category: 'CSS',
     title: "Why Isn't Your CSS Working? Understanding Specificity",
+    series: {
+      name: "Why Isn't Your CSS Working?",
+      part: 1,
+    },
     description:
       'A technical deep dive into CSS specificity and its calculation formula, establishing a clear mental model for resolving complex styling conflicts. It empowers developers to architect predictable, scalable frontend stylesheets and avoid fragile workarounds like the overreliance on !important.',
     purpose:
@@ -135,20 +167,21 @@ export const blogsData: BlogData[] = [
       'Frontend Architecture',
       'Debugging',
     ],
-    bannerImage: '/css-blog-banner.webp',
+    bannerImage: '/blogs-cover/css-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/why-isnt-your-css-working-understanding-specificity-3lf3',
   },
   {
     id: 1,
     category: 'HTML',
+    series: null,
     title: 'Why HTML Exists—And What Most Developers Miss',
     description:
       'A strategic overview demonstrating how semantic HTML serves as the critical architectural backbone of the web rather than a mere visual container. It explores how proper markup drives tangible product value through improved accessibility, search engine ranking, and browser performance.',
     purpose:
       'To provide a comprehensive overview of HTML so developers can ship robust web pages fully equipped with essential SEO and accessibility features.',
     topics: ['Semantics', 'Accessibility', 'SEO', 'Performance', 'Security'],
-    bannerImage: '/html-blog-banner.webp',
+    bannerImage: '/blogs-cover/html-blog-banner.webp',
     devToUrl:
       'https://dev.to/umarsiddique010/why-html-exists-and-what-most-developers-miss-251h',
   },

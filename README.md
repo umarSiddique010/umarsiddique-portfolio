@@ -14,6 +14,7 @@
   &nbsp;&nbsp;&bull;&nbsp;&nbsp;
   <a href="#local-development"><strong>Local Setup</strong></a>
   &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+  <a href="https://github.com/umarSiddique010/umarsiddique-portfolio/"><strong>Repository</strong></a>
   <a href="https://github.com/umarSiddique010/umarsiddique-portfolio/issues"><strong>Report an Issue</strong></a>
 </p>
 
@@ -27,6 +28,7 @@
 [![Husky](https://img.shields.io/badge/Husky_Hooks-42B983?style=for-the-badge&logo=git&logoColor=white)](https://typicode.github.io/husky/)
 [![Lint-Staged](https://img.shields.io/badge/Lint--Staged-1572B6?style=for-the-badge&logo=git&logoColor=white)](https://github.com/lint-staged/lint-staged)
 [![Vercel](https://img.shields.io/badge/Vercel_Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-Husky_+_Vercel-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://vercel.com/)
 
 </div>
 
@@ -34,17 +36,21 @@
 
 This repository houses the source code for **umarsiddique.dev**, a portfolio engineered to demonstrate **"Systems Over Syntax."** Unlike standard static portfolios, this application is a dynamic, full-stack system built on the **Next.js 16 App Router** and **React 19**.
 
-It is designed to highlight architectural rigor, featuring a custom-built interactive terminal, a fully serverless messaging infrastructure with database persistence, and a strictly typed, tested codebase. The project adheres to a **"Shift Left"** philosophy, utilizing heavy linting, formatting, and unit testing to ensure production stability before deployment.
+It is designed to highlight architectural rigor, featuring a custom-built interactive terminal, a fully serverless messaging infrastructure with database persistence, a strictly typed, tested codebase, and an automated CI/CD pipeline enforcing quality gates before every production deploy. The project adheres to a **"Shift Left"** philosophy, utilizing linting, formatting, type-checking, and unit testing to catch issues before they reach CI.
+
+## Application Preview
+
+![Resume Craft Live](/public/project-screenshots/portfolio-desktop-view.webp)
 
 ## Features & Architecture
 
 ### 1. Interactive `CodeIntro` Terminal
 
-The hero section features a custom `CodeIntro` component that simulates a developer's terminal environment, complete with a functional **macOS-style window header**.
+The hero section features a custom `CodeIntro` component simulating a developer terminal with a functional **macOS-style window header**.
 
-- **State-Driven UI:** Implements functional window controls where the "Maximize" state triggers a z-index overlay revealing hidden ASCII art, and "Minimize" utilizes layout projection to collapse the DOM node.
-- **Physics-Based Animation:** Powered by `motion/react` spring physics (`stiffness: 150`, `damping: 15`), ensuring fluid, non-blocking window transitions without layout thrashing.
-- **Component Isolation:** Encapsulated as a Client Component to decouple heavy animation logic from the main thread, preserving LCP (Largest Contentful Paint) performance.
+- **State-Driven UI:** Window controls are fully functional — "Maximize" triggers a z-index overlay revealing hidden ASCII art, "Minimize" collapses the DOM node via layout projection.
+- **Physics-Based Animation:** Powered by `motion/react` spring physics for fluid, non-blocking window transitions.
+- **Component Isolation:** Encapsulated as a Client Component to decouple animation logic from the main thread, preserving LCP performance.
 
 ### 2. Robust Serverless Messaging System
 
@@ -72,28 +78,29 @@ This project treats testing as a first-class citizen, not an afterthought.
 - **Unit Testing:** Critical components (e.g., `ContactForm`, `ContactCard`, `HeroSection`) are tested using **Vitest** and **React Testing Library**.
 - **Mocking Strategy:** External dependencies like `motion/react`, `next/navigation`, and server actions are mocked to ensure isolated, deterministic tests.
 
-### 5. Automated CI/CD Pipeline
+### 5. CI/CD Pipeline
 
 To maintain high engineering standards, the repository enforces a strict automated workflow that prevents technical debt:
 
-- **Git Hooks (Husky):** Pre-commit hooks are configured to run validation scripts locally, preventing broken or unformatted code from ever reaching the remote repository.
-- **Lint-Staged:** Optimizes the workflow by running **ESLint** and **Prettier** only on staged files, ensuring style consistency without manual intervention.
-- **Production-Ready Gates:** Every commit must pass type-checking (`tsc`) and the complete test suite, enforcing a "Zero-Bug" deployment philosophy before any code is merged into production.
+- **Git Hooks (Husky):** Pre-commit hooks run validation scripts locally, preventing broken or unformatted code from reaching the remote repository.
+- **Lint-Staged:** Runs ESLint and Prettier only on staged files for consistent style without manual intervention.
+- **Production-Ready Gates:** Every commit must pass type-checking (`tsc`) and the full test suite before any code reaches production.
+- **Deployment:** Vercel auto-deploys to production on every push to `main` — no broken build ever reaches the live environment.
 
 ## Tech Stack
 
-| Category           | Technology          | Usage                                                              |
-| :----------------- | :------------------ | :----------------------------------------------------------------- |
-| **Core Framework** | **Next.js 16**      | App Router, Server Actions, Edge Runtime capability.               |
-| **UI Library**     | **React 19**        | Server Components, `useActionState`, Hooks.                        |
-| **Language**       | **TypeScript**      | Strict type safety across the entire codebase.                     |
-| **Database**       | **Neon (Postgres)** | Serverless SQL database for persisting contact form data.          |
-| **Messaging**      | **Resend**          | Transactional email API for notifications and auto-replies.        |
-| **Styling**        | **Tailwind CSS v4** | Utility-first CSS, configured with generic theme variables.        |
-| **Animation**      | **Motion**          | Complex layout animations, spring physics, and micro-interactions. |
-| **Validation**     | **Zod**             | Schema validation for environment variables and form inputs.       |
-| **Testing**        | **Vitest**          | Blazing fast unit test runner compatible with Vite.                |
-| **DevOps / CI/CD** | **Husky & Vercel**  | Git hooks for linting and automated edge deployment.               |
+| Category           | Technology                       | Usage                                                                         |
+| :----------------- | :------------------------------- | :---------------------------------------------------------------------------- |
+| **Core Framework** | **Next.js 16**                   | App Router, Server Actions, Edge Runtime capability.                          |
+| **UI Library**     | **React 19**                     | Server Components, `useActionState`, Hooks.                                   |
+| **Language**       | **TypeScript**                   | Strict type safety across the entire codebase.                                |
+| **Database**       | **Neon (Postgres)**              | Serverless SQL database for persisting contact form data.                     |
+| **Messaging**      | **Resend**                       | Transactional email API for notifications and auto-replies.                   |
+| **Styling**        | **Tailwind CSS v4**              | Utility-first CSS, configured with generic theme variables.                   |
+| **Animation**      | **Motion**                       | Complex layout animations, spring physics, and micro-interactions.            |
+| **Validation**     | **Zod**                          | Schema validation for environment variables and form inputs.                  |
+| **Testing**        | **Vitest**                       | Blazing fast unit test runner compatible with Vite.                           |
+| **CI/CD**          | **Husky + Lint-Staged + Vercel** | Pre-commit validation, type-check, test gates, and automated edge deployment. |
 
 ## Local Development
 
@@ -114,8 +121,6 @@ cd umarsiddique-portfolio
 ### 2. Install Dependencies
 
 ```bash
-npm install
-# or
 pnpm install
 ```
 
@@ -134,7 +139,7 @@ RESEND_API_KEY="re_123456789"
 ### 4. Run Development Server
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
@@ -144,7 +149,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 To execute the Vitest suite:
 
 ```bash
-npm test
+pnpm test
 ```
 
 ---

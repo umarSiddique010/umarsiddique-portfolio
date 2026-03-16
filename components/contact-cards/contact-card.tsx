@@ -1,4 +1,4 @@
-import { Mail, MapPin, Clock, Phone } from 'lucide-react';
+import { Mail, MapPin, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { socialLinks } from '@/constants/socials-links';
@@ -29,22 +29,6 @@ export default function ContactCard() {
                 className="text-foreground font-semibold hover:underline"
               >
                 us70763@gmail.com
-              </a>
-            </div>
-          </div>
-
-          {/* Phone */}
-          <div className="flex items-center gap-4 text-muted-foreground group">
-            <div className="p-3 bg-foreground/5 rounded-xl border border-foreground/10 group-hover:border-foreground/20 transition-colors">
-              <Phone className="w-5 h-5 text-foreground" />
-            </div>
-            <div>
-              <p className="text-sm font-medium">Phone</p>
-              <a
-                href="tel:+91865153282"
-                className="text-foreground font-semibold hover:underline"
-              >
-                +91 86515 3282
               </a>
             </div>
           </div>

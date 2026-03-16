@@ -54,7 +54,7 @@ describe('AboutCards Component', () => {
         screen.getByText(/Product Ownership Mindset/i),
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/end-to-end full-stack architecture/i),
+        screen.getByText(/focused on solving real problems end-to-end/i),
       ).toBeInTheDocument();
       expect(screen.getByText(/scalable SaaS systems/i)).toBeInTheDocument();
     });

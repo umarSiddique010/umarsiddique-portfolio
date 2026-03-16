@@ -11,9 +11,11 @@ import { Badge } from '@/components/ui/badge';
 
 export default function BlogCard({
   blog,
+  loading = 'eager',
   index = 0,
 }: {
   blog: BlogData;
+  loading: 'eager' | 'lazy';
   index?: number;
 }) {
   return (
@@ -30,12 +32,19 @@ export default function BlogCard({
             src={blog.bannerImage}
             alt={`${blog.title} Banner`}
             fill
+            loading={loading}
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center group-hover:scale-105 transition-all duration-300 ease-in-out"
           />
         </div>
 
-        {/* --- HEADER SECTION --- */}
+        {/* --- CARD HEADER  --- */}
         <CardHeader className="pb-4 pt-6">
+          {blog.series && (
+            <p className="text-xs text-foreground/70 font-medium border-l-2 border-foreground/20 my-3 pl-1 h-fit">
+              {blog.series.name} • Part {blog.series.part}
+            </p>
+          )}
           <div className="flex items-start justify-between gap-4">
             <CardTitle className="text-2xl font-bold tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 hover:underline transition-colors duration-300">
               <Link

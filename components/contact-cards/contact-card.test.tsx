@@ -59,15 +59,6 @@ describe('ContactCard Component', () => {
       expect(emailLink).toHaveAttribute('href', 'mailto:us70763@gmail.com');
     });
 
-    it('renders phone with correct tel link', () => {
-      setup();
-      const phoneLink = screen.getByRole('link', {
-        name: /\+91 86515 3282/i,
-      });
-
-      expect(phoneLink).toHaveAttribute('href', 'tel:+91865153282');
-    });
-
     it('renders location and timezone correctly', () => {
       setup();
 

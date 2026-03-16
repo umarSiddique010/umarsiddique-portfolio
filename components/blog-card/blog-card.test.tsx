@@ -37,9 +37,9 @@ const mockBlog: BlogData = {
   devToUrl: 'https://dev.to/test',
 };
 
-describe('BlogCard', () => {
+describe('BlogCard Component', () => {
   const setup = (overrides?: Partial<React.ComponentProps<typeof BlogCard>>) =>
-    render(<BlogCard blog={mockBlog} {...overrides} />);
+    render(<BlogCard blog={mockBlog} {...overrides} loading="eager" />);
 
   const getTransition = () => {
     const motionDiv = screen.getByTestId('motion-div');
@@ -66,6 +66,21 @@ describe('BlogCard', () => {
     });
   });
 
+  describe('Series', () => {
+    it('renders series name and part when provided', () => {
+      setup({ blog: { ...mockBlog, series: { name: 'Series', part: 1 } } });
+
+      expect(screen.getByText('Series • Part 1')).toBeInTheDocument();
+    });
+
+    it('does not render series when not provided', () => {
+      setup();
+
+      expect(screen.queryByText(/Series/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Part/i)).not.toBeInTheDocument();
+    });
+  });
+
   describe('Topics', () => {
     it('renders all topics as badges', () => {
       setup();
@@ -77,7 +92,7 @@ describe('BlogCard', () => {
 
     it('renders gracefully when topics is empty', () => {
       const emptyTopicsBlog = { ...mockBlog, topics: [] as string[] };
-      render(<BlogCard blog={emptyTopicsBlog} />);
+      render(<BlogCard blog={emptyTopicsBlog} loading="eager" />);
 
       expect(screen.getByText(emptyTopicsBlog.title)).toBeInTheDocument();
 

@@ -6,7 +6,8 @@ import Link from 'next/link';
 
 export default function ProjectSection() {
   const homeProjects = projectData.filter(
-    (p) => p.title === 'Resume Craft' || p.title === 'useHttpRequest',
+    (p) =>
+      p.title === 'Resume Craft' || p.title === '@mdus/use-http-request-hook',
   );
   return (
     <section id="projects" className="w-full py-24 px-6 max-w-7xl mx-auto">
@@ -22,7 +23,12 @@ export default function ProjectSection() {
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {homeProjects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <ProjectCard
+            key={project.id}
+            loading="lazy"
+            project={project}
+            index={index}
+          />
         ))}
       </section>
       <div className="mt-10 flex justify-start">

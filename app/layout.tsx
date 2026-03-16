@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { JetBrains_Mono, Outfit } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer/footer';
@@ -7,22 +7,62 @@ import { ThemeProvider } from 'next-themes';
 import MainBackground from '@/components/main-background';
 import { Toaster } from '@/components/ui/sonner';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const outfit = Outfit({
+  variable: '--font-outfit',
   subsets: ['latin'],
   display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetBrains_mono = JetBrains_Mono({
+  variable: '--font-jetBrains_mono',
   subsets: ['latin'],
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  themeColor: '#10b981',
+  colorScheme: 'dark light',
+};
 
 export const metadata: Metadata = {
-  title: 'Md Umar Siddique | Full Stack Developer',
+  title: {
+    template: '%s | Full Stack Developer',
+    default: 'Md Umar Siddique | Full Stack Developer',
+  },
   description:
-    'Portfolio of Md Umar Siddique — Full Stack Developer specializing in Next.js',
+    'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, React, TypeScript, PostgreSQL.',
+  metadataBase: new URL('https://www.umarsiddique.dev'),
+  keywords: [
+    'Full Stack Developer',
+    'Next.js',
+    'React',
+    'TypeScript',
+    'PostgreSQL',
+    'Framer Motion',
+    'Md Umar Siddique',
+  ],
+  authors: [{ name: 'Md Umar Siddique', url: 'https://www.umarsiddique.dev' }],
+  creator: 'Md Umar Siddique',
+  robots: 'index, follow',
+  openGraph: {
+    type: 'website',
+    url: 'https://www.umarsiddique.dev',
+    title: {
+      template: '%s | Full Stack Developer',
+      default: 'Md Umar Siddique | Full Stack Developer',
+    },
+    description:
+      'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, React, TypeScript, PostgreSQL.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: {
+      template: '%s | Full Stack Developer',
+      default: 'Md Umar Siddique | Full Stack Developer',
+    },
+    description:
+      'Md Umar Siddique — Full Stack Developer. Systems Over Syntax: Next.js, React, TypeScript, PostgreSQL.',
+  },
 };
 
 export default function RootLayout({
@@ -33,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${outfit.variable} ${jetBrains_mono.variable} antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"

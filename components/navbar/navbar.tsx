@@ -104,7 +104,7 @@ function MobileNav({
   links: { title: string; href: string }[];
   pathname: string;
 }) {
-  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },

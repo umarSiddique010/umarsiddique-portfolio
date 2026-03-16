@@ -14,7 +14,7 @@ import Link from 'next/link';
 export default function TechMarquee() {
   const marqueeItems = [...techItems, ...techItems, ...techItems, ...techItems];
 
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const progress = useMotionValue(0);
 
@@ -28,7 +28,7 @@ export default function TechMarquee() {
   }, [isHovered, smoothSpeed]);
 
   useAnimationFrame((t, delta) => {
-    let moveBy = -0.015 * (delta / 16.667);
+    let moveBy = -0.015 * (delta / 25.667);
 
     moveBy *= smoothSpeed.get();
 
