@@ -11,11 +11,13 @@ import { Badge } from '@/components/ui/badge';
 
 export default function BlogCard({
   blog,
-  loading = 'eager',
+  loading,
+  priority,
   index = 0,
 }: {
   blog: BlogData;
-  loading: 'eager' | 'lazy';
+  loading: 'eager' | 'lazy' | undefined;
+  priority: boolean;
   index?: number;
 }) {
   return (
@@ -33,6 +35,7 @@ export default function BlogCard({
             alt={`${blog.title} Banner`}
             fill
             loading={loading}
+            priority={priority}
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center group-hover:scale-105 transition-all duration-300 ease-in-out"
           />
@@ -66,14 +69,14 @@ export default function BlogCard({
                   href={blog.devToUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Read on Dev.to"
+                  aria-label={`Read ${blog.title} on Dev.to`}
                 >
                   <ExternalLink className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
           </div>
-          <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
+          <p className="text-foreground/70 text-sm mt-2 leading-relaxed">
             {blog.description}
           </p>
         </CardHeader>

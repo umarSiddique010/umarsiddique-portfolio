@@ -65,8 +65,8 @@ describe('Footer Component', () => {
   it('renders social links with correct aria-labels and href(s)', () => {
     render(<Footer />);
 
-    const githubLink = screen.getByLabelText('GitHub Mock');
-    const twitterLink = screen.getByLabelText('Twitter Mock');
+    const githubLink = screen.getByLabelText('Visit GitHub Mock Profile');
+    const twitterLink = screen.getByLabelText('Visit Twitter Mock Profile');
 
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute('href', 'https://github.com/mock');

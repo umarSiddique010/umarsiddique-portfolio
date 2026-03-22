@@ -85,7 +85,7 @@ export default function CTAsection({
           {title2 && (
             <>
               <br />
-              <span className="text-muted-foreground">{title2}</span>
+              <span className="text-foreground/70">{title2}</span>
             </>
           )}
         </h2>
@@ -94,7 +94,7 @@ export default function CTAsection({
         {description && (
           <p
             className={clsx(
-              'text-muted-foreground max-w-2xl leading-relaxed font-medium',
+              'text-foreground/70 max-w-2xl leading-relaxed font-medium',
               isMinimal
                 ? 'text-base md:text-lg mb-8'
                 : 'text-lg md:text-xl mb-12',

@@ -74,8 +74,8 @@ describe('ContactCard Component', () => {
     it('renders social links dynamically with correct attributes', () => {
       setup();
 
-      const github = screen.getByLabelText('GitHub');
-      const linkedin = screen.getByLabelText('LinkedIn');
+      const github = screen.getByLabelText('Visit GitHub profile');
+      const linkedin = screen.getByLabelText('Visit LinkedIn profile');
 
       expect(github).toHaveAttribute('href', 'https://github.com/test');
       expect(github).toHaveAttribute('target', '_blank');

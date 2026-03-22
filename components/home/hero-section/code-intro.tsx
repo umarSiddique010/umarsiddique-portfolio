@@ -33,46 +33,50 @@ export function CodeIntro() {
         >
           {/* Top bar */}
           {!isClosed ? (
-            <div className="flex mb-3 items-center gap-2">
+            <div className="flex mb-3 items-center gap-3">
               <button
                 onClick={() => {
                   setIsClosed(true);
                   setIsMinimized(false);
                   setIsMaximized(false);
                 }}
-                className="w-3.5 h-3.5 p-0.5 rounded-full bg-red-500 group"
-                aria-label="Close"
+                className="p-1 -m-1 group"
+                aria-label="Close Terminal"
               >
-                <Plus className="w-full h-full rotate-45 hidden group-hover:block transition-all duration-300" />
+                <div className="w-3.5 h-3.5 p-0.5 rounded-full bg-red-500 flex items-center justify-center">
+                  <Plus className="w-full h-full rotate-45 hidden group-hover:block transition-all duration-300" />
+                </div>
               </button>
-
               <button
                 onClick={() => {
                   setIsMinimized((v) => !v);
                   setIsMaximized(false);
                 }}
-                className="w-3.5 h-3.5 p-0.5 rounded-full bg-yellow-500 group"
-                aria-label="Minimize"
+                className="p-1 -m-1 group"
+                aria-label="Minimize Terminal"
               >
-                <Minus className="w-full h-full hidden group-hover:block transition-all duration-300" />
+                <div className="w-3.5 h-3.5 p-0.5 rounded-full bg-yellow-500 flex items-center justify-center">
+                  <Minus className="w-full h-full hidden group-hover:block transition-all duration-300" />
+                </div>
               </button>
-
               <button
                 onClick={() => {
                   setIsMaximized((v) => !v);
                   setIsMinimized(false);
                 }}
-                className="w-3.5 h-3.5 p-0.5 rounded-full bg-green-500 group"
-                aria-label="Maximize"
+                className="p-1 -m-1 group"
+                aria-label="Maximize Terminal"
               >
-                <Code className="w-full h-full rotate-45 hidden group-hover:block transition-all duration-300" />
+                <div className="w-3.5 h-3.5 p-0.5 rounded-full bg-green-500 flex items-center justify-center">
+                  <Code className="w-full h-full rotate-45 hidden group-hover:block transition-all duration-300" />
+                </div>
               </button>
             </div>
           ) : (
             <button
               onClick={() => setIsClosed(false)}
               className="w-5 h-5 rounded-full p-1 bg-taupe-500 group"
-              aria-label="Restore"
+              aria-label="Restore Terminal"
             >
               <Square className="w-full h-full hidden group-hover:block transition-all duration-300" />
             </button>
@@ -90,47 +94,65 @@ export function CodeIntro() {
           >
             <div className="space-y-0.5">
               <p>
-                <span className="text-teal-600 font-semibold">const</span>{' '}
-                <span className="text-fuchsia-600 font-medium">umar</span>{' '}
+                <span className="text-teal-700 dark:text-teal-500 font-semibold">
+                  const
+                </span>{' '}
+                <span className="text-fuchsia-700 dark:text-fuchsia-500 font-medium">
+                  umar
+                </span>{' '}
                 <span className="text-foreground/80">= {'{'}</span>
               </p>
 
               <p className="pl-4">
-                <span className="text-cyan-700 font-medium">role</span>
+                <span className="text-cyan-800 dark:text-cyan-600 font-medium">
+                  role
+                </span>
                 <span className="text-foreground/80">:</span>{' '}
-                <span className="text-green-600">
+                <span className="text-green-800 dark:text-green-500">
                   &quot;Full Stack Developer&quot;
                 </span>
                 <span className="text-foreground/80">,</span>
               </p>
 
               <p className="pl-4">
-                <span className="text-cyan-700 font-medium">projects</span>
+                <span className="text-cyan-800 dark:text-cyan-600 font-medium">
+                  projects
+                </span>
                 <span className="text-foreground/80">:</span>{' '}
-                <span className="text-green-600">&quot;5 shipped&quot;</span>
+                <span className="text-green-800 dark:text-green-500">
+                  &quot;5 shipped&quot;
+                </span>
                 <span className="text-foreground/80">,</span>
               </p>
 
               <p className="pl-4">
-                <span className="text-cyan-700 font-medium">openSource</span>
+                <span className="text-cyan-800 dark:text-cyan-600 font-medium">
+                  openSource
+                </span>
                 <span className="text-foreground/80">:</span>{' '}
-                <span className="text-orange-600 font-medium">2</span>
+                <span className="text-orange-500 font-medium">2</span>
                 <span className="text-foreground/80">,</span>
               </p>
 
               <p className="pl-4">
-                <span className="text-cyan-700 font-medium">focus</span>
+                <span className="text-cyan-800 dark:text-cyan-600 font-medium">
+                  focus
+                </span>
                 <span className="text-foreground/80">:</span>{' '}
-                <span className="text-green-600">
+                <span className="text-green-800 dark:text-green-500">
                   &quot;Scalable Architecture &amp; Production Systems&quot;
                 </span>
                 <span className="text-foreground/80">,</span>
               </p>
 
               <p className="pl-4">
-                <span className="text-cyan-700 font-medium">available</span>
+                <span className="text-cyan-800 dark:text-cyan-600 font-medium">
+                  available
+                </span>
                 <span className="text-foreground/80">:</span>{' '}
-                <span className="text-red-600 font-semibold">true</span>
+                <span className="text-red-700 dark:text-red-500 font-semibold">
+                  true
+                </span>
               </p>
 
               <p>
@@ -147,7 +169,7 @@ export function CodeIntro() {
             }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className={clsx(
-              'md:text-center -ml-10 mt-20 text-green-500 text-shadow-lg text-shadow-green-800 whitespace-pre text-[8px] sm:text-xs md:text-sm',
+              'md:text-center -ml-10 mt-20 text-green-800 dark:text-green-500 text-shadow-lg text-shadow-green-800 whitespace-pre text-[8px] sm:text-xs md:text-sm',
               isMaximized ? 'block' : 'hidden',
             )}
           >

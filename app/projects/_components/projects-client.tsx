@@ -45,7 +45,7 @@ export default function ProjectsClient() {
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
             Engineered Systems.
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-foreground/70">
             From privacy-first React applications to zero-dependency open-source
             tools. I build Production-ready systems built with clear
             architecture, automated CI/CD validation, and long-term
@@ -56,13 +56,15 @@ export default function ProjectsClient() {
 
       {/* --- CATEGORY AND SORT BY FILTER --- */}
       <section className="flex flex-col items-end justify-center gap-3 md:flex-row md:justify-between md:items-center mb-12">
-        <h3 className="font-bold mr-8 md:mr-0">Filter Projects</h3>
+        <h2 className="font-bold mr-8 md:mr-0 text-foreground">
+          Filter Projects
+        </h2>
         <div className="flex flex-col gap-6 md:flex-row md:justify-end items-end md:items-center">
           {/* Category Filter */}
           <div className="flex flex-col items-start justify-center md:flex-row md:items-center gap-3">
             <Label
               htmlFor="project-category"
-              className="whitespace-nowrap font-semibold"
+              className="whitespace-nowrap font-semibold text-foreground"
             >
               Category:
             </Label>
@@ -90,7 +92,7 @@ export default function ProjectsClient() {
           <div className="flex flex-col items-start justify-center md:flex-row md:items-center gap-3">
             <Label
               htmlFor="project-sort-by"
-              className="whitespace-nowrap font-semibold"
+              className="whitespace-nowrap font-semibold text-foreground"
             >
               Sort by:
             </Label>
@@ -118,14 +120,15 @@ export default function ProjectsClient() {
           sortedProjects.map((project, index) => (
             <ProjectCard
               key={`${project.id}-${activeCategory}-${projectSortBy}`}
+              loading={index < 2 ? undefined : 'lazy'}
+              priority={index < 2}
               project={project}
-              loading="eager"
               index={index}
             />
           ))
         ) : (
           <div className="flex items-center justify-center h-64">
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-foreground/70">
               No System found for this category yet.
             </p>
           </div>

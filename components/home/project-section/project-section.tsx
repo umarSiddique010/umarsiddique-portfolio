@@ -15,7 +15,7 @@ export default function ProjectSection() {
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
           Featured Projects
         </h2>
-        <p className="text-muted-foreground text-lg max-w-md font-medium">
+        <p className="text-foreground/70 text-lg max-w-md font-medium">
           A selection of recent projects showcasing practical problem-solving
           and production-ready architecture.
         </p>
@@ -26,6 +26,7 @@ export default function ProjectSection() {
           <ProjectCard
             key={project.id}
             loading="lazy"
+            priority={false}
             project={project}
             index={index}
           />

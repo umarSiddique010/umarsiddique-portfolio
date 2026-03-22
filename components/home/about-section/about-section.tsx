@@ -36,7 +36,7 @@ export default function AboutSection() {
             Beyond the Code.
           </h3>
           <div className="h-1 w-10 bg-emerald-500/50 rounded-full mb-6" />
-          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed font-medium">
+          <div className="space-y-4 text-sm text-foreground/70 leading-relaxed font-medium">
             <p>
               I didn’t enter software engineering through a traditional path. I
               learned by building, shipping, and fixing real problems.
@@ -64,13 +64,13 @@ export default function AboutSection() {
               <h4 className="text-xl font-bold text-foreground tracking-tight">
                 How I Build
               </h4>
-              <p className="text-muted-foreground text-sm font-medium mt-1">
+              <p className="text-foreground/70 text-sm font-medium mt-1">
                 Production-first, not demo-first.
               </p>
             </div>
           </div>
 
-          <ul className="grid grid-cols-1 gap-2 list-disc list-inside text-muted-foreground text-sm font-medium">
+          <ul className="grid grid-cols-1 gap-2 list-disc list-inside text-foreground/70 text-sm font-medium">
             <li>Performance + accessibility as defaults</li>
             <li>Testing for critical flows (unit + integration)</li>
             <li>Clean data layer and predictable errors</li>

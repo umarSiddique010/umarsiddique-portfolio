@@ -41,13 +41,12 @@ describe('Navbar', () => {
     fireEvent.click(screen.getByLabelText(/open menu/i));
   };
 
-  const getDesktopLink = (name: RegExp) =>
-    // Desktop links exist before opening the mobile menu
-    screen.getByRole('link', { name });
+  const getDesktopLink = (name: RegExp) => {
+    const links = screen.getAllByRole('link', { name });
+    return links.find((link) => !link.getAttribute('aria-label')) ?? links[0];
+  };
 
   const getMobileLink = (name: RegExp) => {
-    // After opening menu there will be duplicate links; pick the one inside the mobile menu
-    // This is still resilient vs order changes because we anchor on "close menu" presence.
     const links = screen.getAllByRole('link', { name });
     expect(links.length).toBeGreaterThan(1);
     return links[links.length - 1];
@@ -72,7 +71,7 @@ describe('Navbar', () => {
     it('renders desktop navigation links from config', () => {
       setup();
 
-      expect(getDesktopLink(/home/i)).toBeInTheDocument();
+      expect(getDesktopLink(/^home$/i)).toBeInTheDocument();
       expect(getDesktopLink(/projects/i)).toBeInTheDocument();
     });
 
@@ -80,9 +79,11 @@ describe('Navbar', () => {
       mockNavLinks = [];
       setup();
 
-      expect(screen.getByRole('link', { name: /logo/i })).toBeInTheDocument();
       expect(
-        screen.queryByRole('link', { name: /home/i }),
+        screen.getByRole('link', { name: /Visit home page/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole('link', { name: /^home$/i }),
       ).not.toBeInTheDocument();
       expect(
         screen.queryByRole('link', { name: /projects/i }),

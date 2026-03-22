@@ -16,9 +16,9 @@ export default function Navbar() {
 
   return (
     <nav className="w-full sticky top-0 z-40 flex justify-between items-center px-5 py-3 max-h-18 border-b border-accent-foreground/10 md:backdrop-blur-[0.5px]">
-      <Link href="/" className="font-bold text-xl">
+      <Link href="/" aria-label="Visit home page" className="font-bold text-xl">
         <Image
-          src="/favicon.ico"
+          src="/logo.webp"
           alt="Logo"
           width={50}
           priority

@@ -46,7 +46,7 @@ export default function BlogsClient() {
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
           Engineering Essays.
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl">
+        <p className="text-lg text-foreground/70 max-w-2xl">
           Long-form analysis of web architecture, language design, and scalable
           production systems — grounded in practical engineering decisions and
           real-world trade-offs.
@@ -55,13 +55,15 @@ export default function BlogsClient() {
 
       {/* --- CATEGORY AND SORT BY FILTER BUTTONS --- */}
       <section className="flex flex-col items-end justify-center gap-3 md:flex-row md:justify-between md:items-center mb-12">
-        <h3 className="font-bold mr-13 md:mr-0">Filter Posts</h3>
+        <h2 className="font-bold mr-13 md:mr-0 text-foreground">
+          Filter Posts
+        </h2>
         <div className="flex flex-col gap-6 md:flex-row md:justify-end items-end md:items-center">
           {/* Category Filter */}
           <div className="flex flex-col items-start justify-center md:flex-row md:items-center gap-3">
             <Label
               htmlFor="project-category"
-              className="whitespace-nowrap font-semibold"
+              className="whitespace-nowrap font-semibold text-foreground"
             >
               Category:
             </Label>
@@ -88,7 +90,7 @@ export default function BlogsClient() {
           <div className="flex flex-col items-start justify-center md:flex-row md:items-center gap-3">
             <Label
               htmlFor="project-sort-by"
-              className="whitespace-nowrap font-semibold"
+              className="whitespace-nowrap font-semibold text-foreground"
             >
               Sort by:
             </Label>
@@ -117,14 +119,15 @@ export default function BlogsClient() {
           sortedBlogs.map((blog, index) => (
             <BlogCard
               key={`${blog.id}-${activeCategory}-${blogSortBy}`}
-              loading={index < 2 ? 'eager' : 'lazy'}
+              loading={index < 2 ? undefined : 'lazy'}
+              priority={index < 2}
               blog={blog}
               index={index}
             />
           ))
         ) : (
           <div className="col-span-full py-20 text-center border border-dashed border-foreground/10 bg-accent/5 rounded-2xl">
-            <p className="text-muted-foreground italic">
+            <p className="text-foreground/70 italic">
               No engineering logs found for this category yet.
             </p>
           </div>

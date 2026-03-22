@@ -40,7 +40,7 @@ export default function AboutCards() {
           </div>
           <article>
             <h2 className="text-2xl font-bold mb-4">The Non-CS Journey</h2>
-            <div className="text-muted-foreground leading-relaxed space-y-4 max-w-4xl">
+            <div className="text-foreground/70 leading-relaxed space-y-4 max-w-4xl">
               <header>
                 My journey into software engineering didn&apos;t start with a CS
                 degree. It started with a 250MB RAM Windows XP machine when I
@@ -95,13 +95,13 @@ export default function AboutCards() {
           <h2 className="text-xl font-bold mb-4">
             How I Think About Engineering
           </h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">
+          <p className="text-foreground/70 leading-relaxed mb-6">
             I don&apos;t just write syntax to make things look good. I care
             about the underlying mechanics. Writing clean code is the baseline;
             architecting systems that don&apos;t break under pressure is the
             goal.
           </p>
-          <ul className="space-y-3 text-sm text-muted-foreground">
+          <ul className="space-y-3 text-sm text-foreground/70">
             <li className="flex items-start gap-2">
               <span className="text-cyan-500 font-bold">↳</span>
               <span>
@@ -143,7 +143,7 @@ export default function AboutCards() {
             <Rocket className="w-6 h-6 text-orange-500" />
           </div>
           <h2 className="text-xl font-bold mb-3">The Vision</h2>
-          <p className="text-muted-foreground text-sm leading-relaxed mb-auto">
+          <p className="text-foreground/70 text-sm leading-relaxed mb-auto">
             I operate with a <strong>Product Ownership Mindset</strong> —
             focused on solving real problems end-to-end, not just implementing
             tickets. My long-term goal is mastering full-stack architecture and
@@ -173,7 +173,7 @@ export default function AboutCards() {
               >
                 01. Discovery
               </Badge>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground/70">
                 Understanding the core business problem before touching the
                 keyboard. Defining data structures.
               </p>
@@ -185,7 +185,7 @@ export default function AboutCards() {
               >
                 02. Architecture
               </Badge>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground/70">
                 Choosing the right tools (Next.js vs React SPA). Setting up
                 enforced linting rules, TypeScript types, and Git hooks.
               </p>
@@ -197,7 +197,7 @@ export default function AboutCards() {
               >
                 03. Execution
               </Badge>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground/70">
                 Writing modular, accessible (a11y) components. Structured local
                 testing to catch edge cases early.
               </p>
@@ -209,7 +209,7 @@ export default function AboutCards() {
               >
                 04. Shipping
               </Badge>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-foreground/70">
                 Deploying via CI/CD pipelines. Monitoring Lighthouse metrics to
                 ensure optimal client-side performance.
               </p>
@@ -237,7 +237,7 @@ export default function AboutCards() {
                 <h3 className="text-sm font-bold text-foreground/80 mb-3 tracking-tight uppercase">
                   {categoryName}
                 </h3>
-                <ul className="list-disc list-inside text-muted-foreground text-sm space-y-1 font-medium">
+                <ul className="list-disc list-inside text-foreground/70 text-sm space-y-1 font-medium">
                   {items.map((itemName) => {
                     return <li key={itemName}>{itemName}</li>;
                   })}

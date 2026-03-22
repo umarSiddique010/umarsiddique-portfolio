@@ -65,14 +65,30 @@ const mockProjectNoMobile: ProjectData = {
 describe('ProjectCard', () => {
   const setup = (
     props: Partial<React.ComponentProps<typeof ProjectCard>> = {},
-  ) => render(<ProjectCard project={mockFullProject} index={0} {...props} />);
+  ) =>
+    render(
+      <ProjectCard
+        project={mockFullProject}
+        index={0}
+        loading={undefined}
+        priority={true}
+        {...props}
+      />,
+    );
 
   const parseAttr = (el: Element, name: string) =>
     JSON.parse(el.getAttribute(name) ?? '{}');
 
   describe('Animation', () => {
     it('applies stagger delay, duration, and viewport logic to the root card', () => {
-      render(<ProjectCard project={mockFullProject} index={2} />);
+      render(
+        <ProjectCard
+          project={mockFullProject}
+          index={2}
+          loading="lazy"
+          priority={false}
+        />,
+      );
 
       const root = screen
         .getByText(mockFullProject.title)
@@ -101,8 +117,12 @@ describe('ProjectCard', () => {
     it('renders GitHub and Live links with strict security attributes', () => {
       setup();
 
-      const githubLink = screen.getByLabelText('GitHub Repository');
-      const liveLink = screen.getByLabelText('Live Project');
+      const githubLink = screen.getByLabelText(
+        `View ${mockFullProject.title} source code on GitHub`,
+      );
+      const liveLink = screen.getByLabelText(
+        `Visit ${mockFullProject.title} live Project`,
+      );
 
       [githubLink, liveLink].forEach((link) => {
         expect(link).toHaveAttribute('target', '_blank');
@@ -124,7 +144,14 @@ describe('ProjectCard', () => {
 
   describe('Images & device toggle', () => {
     it('hides toggle controls and mobile view when mobileImage is null', () => {
-      render(<ProjectCard project={mockProjectNoMobile} index={0} />);
+      render(
+        <ProjectCard
+          project={mockProjectNoMobile}
+          index={0}
+          loading={undefined}
+          priority={true}
+        />,
+      );
 
       expect(screen.queryByLabelText('Desktop view')).not.toBeInTheDocument();
       expect(screen.queryByLabelText('Mobile view')).not.toBeInTheDocument();
@@ -136,15 +163,20 @@ describe('ProjectCard', () => {
     it('toggles desktop/mobile visibility via clsx classes', () => {
       setup();
 
-      const desktopBtn = screen.getByLabelText('Desktop view');
-      const mobileBtn = screen.getByLabelText('Mobile view');
+      const desktopBtn = screen.getByLabelText(
+        `Click to view ${mockFullProject.title} in Desktop view`,
+      );
+      const mobileBtn = screen.getByLabelText(
+        `Click to view ${mockFullProject.title} in Mobile view`,
+      );
 
-      const desktopImgContainer =
-        screen.getByAltText(/Desktop View/i).parentElement;
+      const desktopImgContainer = screen.getByAltText(
+        /Screenshot of Resume Craft Desktop View/i,
+      ).parentElement;
       expect(desktopImgContainer).not.toBeNull();
 
       const mobileImgContainer = screen
-        .getByAltText(/Mobile View/i)
+        .getByAltText(/Screenshot of Resume Craft Mobile View/i)
         .closest('.absolute.inset-0.flex');
 
       expect(mobileImgContainer).not.toBeNull();
@@ -155,7 +187,7 @@ describe('ProjectCard', () => {
         'text-background',
         'shadow-sm',
       );
-      expect(mobileBtn).toHaveClass('text-muted-foreground');
+      expect(mobileBtn).toHaveClass('text-foreground/70');
 
       expect(desktopImgContainer!).toHaveClass('opacity-100', 'scale-100');
       expect(desktopImgContainer!).not.toHaveClass('pointer-events-none');
@@ -174,7 +206,7 @@ describe('ProjectCard', () => {
         'text-background',
         'shadow-sm',
       );
-      expect(desktopBtn).toHaveClass('text-muted-foreground');
+      expect(desktopBtn).toHaveClass('text-foreground/70');
 
       expect(desktopImgContainer!).toHaveClass(
         'opacity-0',

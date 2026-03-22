@@ -21,11 +21,13 @@ import { Badge } from '@/components/ui/badge';
 
 export default function ProjectCard({
   project,
-  loading = 'eager',
+  loading,
+  priority,
   index,
 }: {
   project: ProjectData;
-  loading?: 'lazy' | 'eager';
+  loading: 'eager' | 'lazy' | undefined;
+  priority: boolean;
   index: number;
 }) {
   const [isMobileView, setIsMobileView] = useState(false);
@@ -54,9 +56,9 @@ export default function ProjectCard({
                   'p-1.5 rounded-full transition-colors cursor-pointer',
                   !isMobileView
                     ? 'bg-foreground text-background shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground',
+                    : 'text-foreground/70 hover:text-foreground',
                 )}
-                aria-label="Desktop view"
+                aria-label={`Click to view ${project.title} in Desktop view`}
               >
                 <Monitor className="w-4 h-4" />
               </button>
@@ -66,9 +68,9 @@ export default function ProjectCard({
                   'p-1.5 rounded-full transition-colors cursor-pointer',
                   isMobileView
                     ? 'bg-foreground text-background shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground',
+                    : 'text-foreground/70 hover:text-foreground',
                 )}
-                aria-label="Mobile view"
+                aria-label={`Click to view ${project.title} in Mobile view`}
               >
                 <Smartphone className="w-4 h-4" />
               </button>
@@ -92,9 +94,10 @@ export default function ProjectCard({
           >
             <Image
               src={project.desktopImage}
-              alt={`${project.title} Desktop View`}
+              alt={`Screenshot of ${project.title} Desktop View`}
               fill
               loading={loading}
+              priority={priority}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-contain object-center p-4 group-hover:scale-105 transition-all duration-500 ease-in-out"
             />
@@ -124,8 +127,9 @@ export default function ProjectCard({
               >
                 <Image
                   src={project.mobileImage!}
-                  alt={`${project.title} Mobile View`}
+                  alt={`Screenshot of ${project.title} Mobile View`}
                   fill
+                  loading="lazy"
                   sizes="(max-width: 768px) 30vw, 15vw"
                   className="object-contain object-center"
                 />
@@ -151,7 +155,7 @@ export default function ProjectCard({
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="GitHub Repository"
+                  aria-label={`View ${project.title} source code on GitHub`}
                 >
                   <Github className="h-4 w-4" />
                 </Link>
@@ -166,14 +170,14 @@ export default function ProjectCard({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Live Project"
+                  aria-label={`Visit ${project.title} live Project`}
                 >
                   <ExternalLink className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
           </div>
-          <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
+          <p className="text-foreground/70 text-sm mt-2 leading-relaxed">
             {project.description}
           </p>
         </CardHeader>

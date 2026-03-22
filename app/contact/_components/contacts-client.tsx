@@ -17,7 +17,7 @@ export default function ContactClient() {
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
           Initiate Contact.
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+        <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
           Whether you have a specific project in mind, a full-time role, or just
           want to discuss web architecture—I&apos;m always open to talking about
           building solid systems.

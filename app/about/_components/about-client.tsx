@@ -19,7 +19,7 @@ export default function AboutClient() {
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
           Systems Over Syntax.
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+        <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
           I’m{' '}
           <strong className="text-foreground font-semibold">
             Md Umar Siddique
@@ -65,7 +65,7 @@ export default function AboutClient() {
 
               {/* Content */}
               <div className="flex flex-col gap-2">
-                <span className="text-sm font-bold text-muted-foreground tracking-widest uppercase">
+                <span className="text-sm font-bold text-foreground/70 tracking-widest uppercase">
                   {item.year}
                 </span>
                 <h3 className="text-xl md:text-2xl font-bold text-foreground">
@@ -74,7 +74,7 @@ export default function AboutClient() {
                 <p className="text-sm font-medium text-foreground/70 mb-2">
                   {item.institution}
                 </p>
-                <p className="text-muted-foreground leading-relaxed max-w-2xl mb-4">
+                <p className="text-foreground/70 leading-relaxed max-w-2xl mb-4">
                   {item.description}
                 </p>
 

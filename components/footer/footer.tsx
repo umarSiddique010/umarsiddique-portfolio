@@ -8,7 +8,11 @@ export default function Footer() {
   return (
     <footer className="w-full flex flex-col md:flex-row justify-evenly items-center gap-6 border-t border-accent-foreground/10 pt-13 pb-16 px-5">
       <div className="flex flex-col items-center md:items-start">
-        <Link href="/" className="font-bold text-xl mb-2">
+        <Link
+          href="/"
+          aria-label="Visit home page"
+          className="font-bold text-xl mb-2"
+        >
           Md Umar Siddique
         </Link>
         <p className="text-sm text-foreground/60 flex flex-wrap items-center gap-2 justify-center md:justify-start">
@@ -23,6 +27,7 @@ export default function Footer() {
               href="https://nextjs.org/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit nextjs.org website"
             >
               Next.js
             </Link>
@@ -39,6 +44,7 @@ export default function Footer() {
               href="https://motion.dev/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit motion.dev website"
             >
               Motion
             </Link>
@@ -53,6 +59,7 @@ export default function Footer() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                aria-label={`Visit ${link.title} page`}
                 className="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors hover:underline duration-300 ease-in-out group"
               >
                 {link.title}
@@ -71,7 +78,7 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={link.title}
+                aria-label={`Visit ${link.title} Profile`}
                 className={clsx(
                   'font-medium text-foreground/60 hover:text-foreground transition-colors hover:underline duration-300 ease-in-out group',
                 )}

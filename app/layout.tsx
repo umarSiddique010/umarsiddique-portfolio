@@ -6,6 +6,7 @@ import Footer from '@/components/footer/footer';
 import { ThemeProvider } from 'next-themes';
 import MainBackground from '@/components/main-background';
 import { Toaster } from '@/components/ui/sonner';
+import { Analytics } from '@vercel/analytics/next';
 
 const outfit = Outfit({
   variable: '--font-outfit',
@@ -77,6 +78,7 @@ export default function RootLayout({
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
           <Toaster position="top-center" richColors duration={4000} />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

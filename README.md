@@ -1,4 +1,4 @@
-# <img src='./app/favicon.ico' height='45' style="margin-bottom:-11px; margin-right:2px;"/> Md Umar Siddique | Engineering Portfolio
+# <img src='./public/logo.webp' height='45' style="margin-bottom:-11px; margin-right:2px;"/> Md Umar Siddique | Engineering Portfolio
 
 <div align="center">
 

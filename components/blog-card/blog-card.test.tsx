@@ -39,7 +39,14 @@ const mockBlog: BlogData = {
 
 describe('BlogCard Component', () => {
   const setup = (overrides?: Partial<React.ComponentProps<typeof BlogCard>>) =>
-    render(<BlogCard blog={mockBlog} {...overrides} loading="eager" />);
+    render(
+      <BlogCard
+        blog={mockBlog}
+        {...overrides}
+        loading="lazy"
+        priority={false}
+      />,
+    );
 
   const getTransition = () => {
     const motionDiv = screen.getByTestId('motion-div');
@@ -92,7 +99,9 @@ describe('BlogCard Component', () => {
 
     it('renders gracefully when topics is empty', () => {
       const emptyTopicsBlog = { ...mockBlog, topics: [] as string[] };
-      render(<BlogCard blog={emptyTopicsBlog} loading="eager" />);
+      render(
+        <BlogCard blog={emptyTopicsBlog} loading="lazy" priority={false} />,
+      );
 
       expect(screen.getByText(emptyTopicsBlog.title)).toBeInTheDocument();
 
@@ -107,7 +116,7 @@ describe('BlogCard Component', () => {
       setup();
 
       const titleLink = screen.getByRole('link', { name: mockBlog.title });
-      const iconLink = screen.getByLabelText(/Read on Dev\.to/i);
+      const iconLink = screen.getByLabelText(/Read HTML Mastery on Dev\.to/i);
 
       [titleLink, iconLink].forEach((link) => {
         expect(link).toHaveAttribute('href', mockBlog.devToUrl);

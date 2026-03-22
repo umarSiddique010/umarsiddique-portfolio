@@ -55,7 +55,7 @@ export default function ContactForm() {
             name="name"
             placeholder="John Doe"
             defaultValue={state?.fields?.name || ''}
-            className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-muted-foreground"
+            className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-foreground/70"
             disabled={isPending}
             aria-describedby="name-error"
           />
@@ -87,7 +87,7 @@ export default function ContactForm() {
             name="email"
             placeholder="john@example.com"
             defaultValue={state?.fields?.email || ''}
-            className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-muted-foreground"
+            className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-foreground/70"
             disabled={isPending}
             aria-describedby="email-error"
           />
@@ -133,7 +133,7 @@ export default function ContactForm() {
             <option value="networking">Networking / Intro</option>
             <option value="other">Other</option>
           </select>
-          <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-1 text-muted-foreground pointer-events-none" />
+          <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-1 text-foreground/70 pointer-events-none" />
         </div>
         <div
           className="h-1"
@@ -164,7 +164,7 @@ export default function ContactForm() {
             name="otherIntent"
             placeholder="Type your specific intent..."
             defaultValue={state?.fields?.otherIntent || ''}
-            className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-muted-foreground"
+            className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-foreground/70"
             disabled={isPending}
             aria-describedby="otherIntent-error"
           />
@@ -197,7 +197,7 @@ export default function ContactForm() {
           rows={5}
           placeholder="Tell me about your project or opportunity..."
           defaultValue={state?.fields?.message || ''}
-          className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-muted-foreground resize-none"
+          className="w-full px-4 py-3 rounded-xl bg-background border border-foreground/10 focus:border-foreground/30 focus:ring-1 focus:ring-foreground/30 transition-all outline-none text-foreground placeholder:text-foreground/70 resize-none"
           disabled={isPending}
           aria-describedby="message-error"
         ></textarea>
