@@ -166,9 +166,9 @@ export default function HeroSection() {
                 toast.success('My CV is on its way. Thanks for taking a look')
               }
             >
-              <Link href="/Md-Umar-Siddique-Resume.pdf" download>
+              <a href="/resume.pdf" download="Md-Umar-Siddique-Resume.pdf">
                 <Download className="mr-2 h-4 w-4" /> Download CV
-              </Link>
+              </a>
             </Button>
           </motion.div>
         </motion.div>
