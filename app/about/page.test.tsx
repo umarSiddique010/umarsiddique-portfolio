@@ -108,7 +108,9 @@ describe('AboutPage', () => {
       expect(name).toHaveClass('text-foreground', 'font-semibold');
 
       expect(
-        screen.getByText(/I design and build production-focused web systems/i),
+        screen.getByText(
+          /I design, build, and write about production-focused web systems/i,
+        ),
       ).toBeInTheDocument();
     });
   });

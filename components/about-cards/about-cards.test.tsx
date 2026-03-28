@@ -68,7 +68,7 @@ describe('AboutCards Component', () => {
       expect(screen.getByText(/In mid-2023/i)).toBeInTheDocument();
       expect(
         screen.getByText(
-          /focused on understanding systems end-to-end and eventually engineering software/i,
+          /engineering software that solves meaningful real-world problems./i,
         ),
       ).toBeInTheDocument();
     });

@@ -31,7 +31,7 @@ export const educationTimelineData: EducationTimelineItem[] = [
     institution: 'Gossner College, Ranchi',
     description:
       'Developed strong analytical skills, critical thinking, and the ability to deconstruct complex social systems—skills I now apply to architecting scalable frontend applications.',
-    highlight: '69% Hons | 72% Aggregate',
+    highlight: '69% Hons',
     icon: <GraduationCap className="w-5 h-5" />,
     color: 'text-cyan-500',
     bg: 'bg-cyan-500/10',

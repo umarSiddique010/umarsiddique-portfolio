@@ -24,10 +24,10 @@ export default function AboutClient() {
           <strong className="text-foreground font-semibold">
             Md Umar Siddique
           </strong>
-          . I design and build production-focused web systems grounded in clear
-          architecture, reliability, and long-term maintainability. My
-          background shaped how I think — in structured logic and systems, not
-          just surface-level implementation.
+          . I design, build, and write about production-focused web systems
+          grounded in clear architecture, reliability, and long-term
+          maintainability. My background shaped how I think — in structured
+          logic and systems, not just surface-level implementation.
         </p>
       </motion.section>
 

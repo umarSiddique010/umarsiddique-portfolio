@@ -41,14 +41,14 @@ export default function AboutCards() {
           <article>
             <h2 className="text-2xl font-bold mb-4">The Non-CS Journey</h2>
             <div className="text-foreground/70 leading-relaxed space-y-4 max-w-4xl">
-              <header>
+              <p>
                 My journey into software engineering didn&apos;t start with a CS
                 degree. It started with a 250MB RAM Windows XP machine when I
                 was ten years old. I used to take it apart just to understand
-                how it worked. By fourteen, I had become the unofficial “tech
-                guy” in my neighborhood, fixing computers for friends and
-                family.
-              </header>
+                how it worked. By fourteen, I had become the unofficial
+                &quot;tech guy&quot; in my neighborhood, fixing computers for
+                friends and family.
+              </p>
               <p>
                 When that PC eventually broke, financial constraints meant I
                 couldn&apos;t replace it, and I had to step away from technology
@@ -70,13 +70,13 @@ export default function AboutCards() {
                 Next.js and modern React architecture. For the first time,
                 everything clicked — from UI to backend to deployment as a
                 complete system. Since then, I&apos;ve focused on consistently
-                shipping code and building production-ready applications
+                shipping code and building production-ready applications.
               </p>
-              <footer>
+              <p>
                 Today, I&apos;m focused on understanding systems end-to-end and
                 eventually engineering software that solves meaningful
                 real-world problems.
-              </footer>
+              </p>
             </div>
           </article>
         </Card>
