@@ -91,7 +91,7 @@ describe('HeroSection Component', () => {
       expect(contactLink).toHaveAttribute('href', '/contact');
       expect(downloadLink).toHaveAttribute(
         'href',
-        '/Md-Umar-Siddique-Resume.pdf',
+        '/files/Md-Umar-Siddique-Resume.pdf',
       );
     });
 
